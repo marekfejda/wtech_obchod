@@ -13,15 +13,30 @@
 
 <!-- Header -->
 <header class="bg-light shadow-sm">
-    <div class="container-fluid p-3 d-flex justify-content-between align-items-center">
-        <a href="#" class="fs-4 fw-bold text-dark text-decoration-none">Nazov</a>
-        <form class="d-flex flex-grow-1 mx-3">
-            <input class="form-control me-2" type="search" placeholder="Search">
-            <button class="btn btn-primary" type="submit">Search</button>
+    <div class="container-fluid p-2 d-flex justify-content-between align-items-center">
+        <!-- Logo (Hidden when search is active) -->
+        <a href="#" id="logo" class="fs-4 fw-bold text-dark text-decoration-none ms-4">Nazov</a>
+
+        <!-- Search Bar -->
+        <form id="searchForm" class="d-flex flex-grow-1 mx-3 w-100 d-none d-sm-flex" style="max-width: 600px;">
+            <input id="searchInput" class="form-control me-2" type="search" placeholder="Search">
+            <!-- Search Button (Always visible on screens wider than 500px) -->
+            <button id="searchButton" class="btn btn-primary d-sm-block d-none" type="submit">Search</button>
         </form>
+
         <div class="d-flex align-items-center">
+            <!-- Search Icon (Shows search bar on click) -->
+            <button id="searchToggle" class="btn d-block d-sm-none me-3">
+                <i class="bi bi-search"></i>
+            </button>
+
+            <!-- Username (Visible on Desktop) -->
+            <span class="me-2 d-none d-lg-inline text-dark">Username</span>
+            <!-- User Icon -->
             <a href="#" class="text-dark me-3"><i class="bi bi-person-circle fs-4"></i></a>
+            <!-- Cart Icon -->
             <a href="#" class="text-dark me-3"><i class="bi bi-cart fs-4"></i></a>
+            <!-- Menu Button (Mobile) -->
             <button class="btn btn-outline-dark d-lg-none" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
                 <i class="bi bi-list"></i>
             </button>
@@ -29,9 +44,59 @@
     </div>
 </header>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let logo = document.getElementById("logo");
+        let searchForm = document.getElementById("searchForm");
+        let searchButton = document.getElementById("searchButton");
+        let searchToggle = document.getElementById("searchToggle");
+        let searchInput = document.getElementById("searchInput");
+
+        // Function to toggle search bar on mobile
+        searchToggle.addEventListener("click", function (event) {
+            logo.classList.add("d-none"); // Hide logo
+            searchForm.classList.remove("d-none"); // Show search bar
+            searchButton.classList.remove("d-none"); // Show blue search button on mobile
+            searchToggle.classList.add("d-none"); // Hide search icon
+            searchInput.focus(); // Auto-focus input when opened
+            event.stopPropagation(); // Prevents event bubbling
+        });
+
+        // Function to restore layout when clicking outside the search area
+        document.addEventListener("click", function (event) {
+            if (!searchForm.contains(event.target) && !searchToggle.contains(event.target)) {
+                // Only reset if screen width is below 500px
+                if (window.innerWidth < 500) {
+                    restoreDefaultLayout();
+                }
+            }
+        });
+
+        // Function to restore default layout on resize above 500px
+        window.addEventListener("resize", function () {
+            if (window.innerWidth >= 500) {
+                restoreDefaultLayout();
+            }
+        });
+
+        // Function to reset everything to default layout
+        function restoreDefaultLayout() {
+            logo.classList.remove("d-none"); // Show logo
+            searchForm.classList.add("d-none"); // Hide search bar
+            searchButton.classList.add("d-none"); // Hide blue search button on mobile
+            searchToggle.classList.remove("d-none"); // Show search icon
+        }
+
+        // Prevent closing when clicking inside the search bar
+        searchForm.addEventListener("click", function (event) {
+            event.stopPropagation();
+        });
+    });
+</script>
+
 <!-- Content Wrapper -->
 <div class="container-fluid flex-grow-1 d-flex">
-    <div class="row flex-grow-1">
+    <div class="row w-100">
         <!-- Sidebar -->
         <nav id="sidebarMenu" class="col-lg-2 bg-light collapse d-lg-block p-3">
             <ul class="nav flex-column">
@@ -53,14 +118,16 @@
 </div>
 
 <!-- Footer -->
-<footer class="bg-light text-center py-3 mt-auto">
-    <div class="container">
-        <div class="d-flex justify-content-center gap-4">
-            <a href="#" class="text-dark text-decoration-none">O nás</a>
-            <a href="#" class="text-dark text-decoration-none">Kontakt</a>
-            <a href="#" class="text-dark text-decoration-none">Ochrana osobných údajov</a>
+<footer class="bg-light py-2 mt-auto">
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center flex-wrap w-100 px-4 text-start">
+            <!-- Left-aligned links -->
+            <div class="d-flex flex-column flex-sm-row gap-2 gap-sm-3">
+                <a href="#" class="text-dark text-decoration-none">O nás</a>
+                <a href="#" class="text-dark text-decoration-none">Kontakt</a>
+                <a href="#" class="text-dark text-decoration-none">Ochrana osobných údajov</a>
+            </div>
         </div>
-        <p class="mt-2 text-secondary">© 2025-2025</p>
     </div>
 </footer>
 
