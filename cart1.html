@@ -33,6 +33,9 @@
             aspect-ratio: 1 / 1;
             object-fit: contain; /* Ensures the full image is visible */
         }
+        .element-shadow {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+        }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -96,7 +99,7 @@
     <div class="container">
 
         <!-- Product 1-->
-        <div class="row bg-light p-3 align-items-center rounded">
+        <div class="row bg-light p-3 align-items-center rounded element-shadow">
             <!-- Product Image -->
             <div class="col-2">
                 <a href="www.odkazNaProdukt.sk" target="_blank">
@@ -123,7 +126,7 @@
         </div>
 
         <!-- Product 2-->
-        <div class="row bg-light p-3 align-items-center rounded mt-3">
+        <div class="row bg-light p-3 align-items-center rounded element-shadow mt-3">
             <!-- Product Image -->
             <div class="col-2">
                 <a href="www.odkazNaProdukt.sk" target="_blank">
@@ -150,6 +153,23 @@
         </div>
 
 
+        <!-- Cart Summary -->
+        <div class="row bg-light p-3 align-items-center rounded element-shadow mt-4">
+             <!-- Back Button -->
+             <div class="col-3 text-start">
+                <a href="#" class="btn btn-outline-secondary w-100">Back</a>
+            </div>
+
+            <!-- Cart Total -->
+            <div class="col-6 fw-bold text-center">
+                Total: <span id="cartTotal">37.98$</span>
+            </div>
+
+            <!-- Next Button -->
+            <div class="col-3 text-end">
+                <a href="#" class="btn btn-primary w-100">Next</a>
+            </div>
+        </div>
 
 
     </div>
