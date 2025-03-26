@@ -36,6 +36,21 @@
         .element-shadow {
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Lighter shadow */
         }
+        .cart-summary {
+            position: fixed;
+            bottom: 1cm; /* Distance from the bottom */
+            left: 0;
+            right: 0;
+            width: 100%;
+        }
+        @media (max-width: 576px) { /* Adjust based on actual breakpoint */
+            .cart-summary {
+                bottom: 2.7cm; /* Move it up to avoid overlap */
+            }
+        }
+        .cart-summary .btn {
+            min-width: 70px; /* Adjust the value as needed */
+        }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -192,22 +207,27 @@
 
         
         <!-- Cart Summary -->
-        <div class="row bg-light p-3 align-items-center rounded element-shadow mt-4">
-             <!-- Back Button -->
-             <div class="col-3 text-start">
+        <div class="cart-summary">
+            <div class="container">
+            <div class="row bg-light p-3 align-items-center rounded element-shadow">
+                <!-- Back Button -->
+                <div class="col-3 text-start">
                 <a href="#" class="btn btn-outline-secondary w-50">Back</a>
-            </div>
-
-            <!-- Cart Total -->
-            <div class="col-6 fw-bold text-center">
+                </div>
+        
+                <!-- Cart Total -->
+                <div class="col-6 fw-bold text-center">
                 Total: <span id="cartTotal">37.98$</span>
-            </div>
-
-            <!-- Next Button -->
-            <div class="col-3 text-end">
+                </div>
+        
+                <!-- Next Button -->
+                <div class="col-3 text-end">
                 <a href="#" class="btn btn-primary w-75">Next</a>
+                </div>
+            </div>
             </div>
         </div>
+        
 
 
     </div>
