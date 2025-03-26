@@ -93,39 +93,66 @@
 <!-- Main content -->
 <main class="container">
     <form class="bg-light p-4 rounded shadow-sm">
-        <div class="mb-3">
-            <label for="client_name" class="form-label">Meno a priezvisko</label>
-            <input type="text" class="form-control" id="client_name" required>
-        </div>
-        <div class="mb-3">
-            <label for="address" class="form-label">Adresa a číslo domu</label>
-            <input type="text" class="form-control" id="address" required>
-        </div>
-        <div class="mb-3">
-            <label for="city" class="form-label">Mesto</label>
-            <input type="text" class="form-control" id="city" required>
-        </div>
-        <div class="mb-3">
-            <label for="zip" class="form-label">ZIP Code</label>
-            <input type="text" class="form-control" id="zip" required>
-        </div>
-        <div class="mb-3">
-            <label for="country" class="form-label">Krajina</label>
-            <select class="form-control" id="country" required>
-                <option value="SK">Slovenská republika</option>
-                <option value="CZ">Česká republika</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="phoneNumber" class="form-label">Telefónne číslo</label>
-            <input type="tel" id="phoneNumber" class="form-control" placeholder="+421 912 345 678 " required>
-        </div>
-        <div class="mb-3">
-            <label for="emailAddress" class="form-label">Email</label>
-            <input type="email" id="emailAddress" class="form-control" placeholder="vasa_adresa@mail.com" required>
+        <div class="row">
+            <!-- Column 1 -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="client_name" class="form-label">Meno a priezvisko</label>
+                    <input type="text" class="form-control" id="client_name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Adresa a číslo domu</label>
+                    <input type="text" class="form-control" id="address" required>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="zip" class="form-label">ZIP Code</label>
+                            <input type="text" class="form-control" id="zip" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="city" class="form-label">Mesto</label>
+                            <input type="text" class="form-control" id="city" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="country" class="form-label">Krajina</label>
+                    <select class="form-control" id="country" required>
+                        <option value="SK">Slovenská republika</option>
+                        <option value="CZ">Česká republika</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="phoneNumber" class="form-label">Telefónne číslo</label>
+                    <div class="input-group">
+                        <!-- Country Code Dropdown -->
+                        <select id="countryCode" class="form-select" style="max-width: 100px;">
+                            <option value="+421">+421</option>
+                            <option value="+420">+420</option>
+                        </select>
+                        
+                        <!-- Phone Number Input -->
+                        <input type="tel" id="phoneNumber" class="form-control" placeholder="912 345 678" required>
+                    </div>
+                </div>
+                
+                
+                <div class="mb-3">
+                    <label for="emailAddress" class="form-label">Email</label>
+                    <input type="email" id="emailAddress" class="form-control" placeholder="vasa_adresa@mail.com" required>
+                </div>
+            </div>
         </div>
     </form>
 </main>
+
 
 <!-- Footer -->
 <footer class="bg-light py-2 mt-auto">
