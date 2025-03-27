@@ -65,6 +65,43 @@
             background-color: #f1f1f1;
             text-decoration: none;
         }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1050;
+        }
+
+        #sidebarMenu {
+            position: fixed;
+            top: 50px; /* match header height */
+            bottom: 0;
+            left: 0;
+            width: 16.666667%; /* ~2 columns */
+            overflow-y: auto;
+            background-color: #f8f9fa;
+            z-index: 1040;
+            min-width: 170px;
+        }
+
+        main {
+            flex-grow: 1;
+            flex-shrink: 1;
+            min-width: 0;
+            margin-left: max(170px, 16.666667%);
+            padding: 2rem;
+        }
+        
+        @media (max-width: 767.98px) {
+            main {
+                margin-left: 0;
+            }
+        }
+
+        footer {
+            z-index: 1050;
+        }
+
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -95,7 +132,7 @@
             <!-- Cart Icon -->
             <a href="#" class="text-dark me-3"><i class="bi bi-cart fs-4"></i></a>
             <!-- Menu Button (Mobile) -->
-            <button class="btn btn-outline-dark d-lg-none" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
+            <button class="btn btn-outline-dark d-md-none" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
                 <i class="bi bi-list"></i>
             </button>
         </div>
@@ -103,221 +140,219 @@
 </header>
 
 <!-- Content Wrapper -->
-<div class="container-fluid flex-grow-1 d-flex">
-    <div class="row w-100">
-        <!-- Sidebar -->
-        <nav id="sidebarMenu" class="col-lg-2 bg-light collapse d-lg-block p-3">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link sidebar-category text-dark" href="#">
-                        <i class="bi bi-laptop"></i> Kategoria 1
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link sidebar-category text-dark" href="#">
-                        <i class="bi bi-phone"></i> Kategoria 2
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link sidebar-category text-dark" href="#">
-                        <i class="bi bi-headphones"></i> Kategoria 3
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link sidebar-category text-dark" href="#">
-                        <i class="bi bi-tv"></i> Kategoria 4
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link sidebar-category text-dark" href="#">
-                        <i class="bi bi-usb-symbol"></i> Kategoria 5
-                    </a>
-                </li>
-            </ul>
-        </nav>
+<div class="d-flex flex-grow-1" style="min-height: 0;">
+    <!-- Sidebar -->
+    <nav id="sidebarMenu" class="col-lg-2 bg-light collapse d-md-block p-3">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link sidebar-category text-dark" href="#">
+                    <i class="bi bi-laptop"></i> Kategoria 1
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-category text-dark" href="#">
+                    <i class="bi bi-phone"></i> Kategoria 2
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-category text-dark" href="#">
+                    <i class="bi bi-headphones"></i> Kategoria 3
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-category text-dark" href="#">
+                    <i class="bi bi-tv"></i> Kategoria 4
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-category text-dark" href="#">
+                    <i class="bi bi-usb-symbol"></i> Kategoria 5
+                </a>
+            </li>
+        </ul>
+    </nav>
 
-        <!-- Main content -->
-        <main class="col-lg-10 p-4">
-            <!-- Banner Section -->
-            <div class="container-fluid px-0 mb-4">
-                <img src="assets/banner.png" alt="Banner" class="img-fluid w-100 rounded" style="max-height: 300px; object-fit: cover;">
-            </div>
+    <!-- Main content -->
+    <main class="col-lg-10 p-4">
+        <!-- Banner Section -->
+        <div class="container-fluid px-0 mb-4">
+            <img src="assets/banner.png" alt="Banner" class="img-fluid w-100 rounded" style="max-height: 300px; object-fit: cover;">
+        </div>
 
-            <div class="container">
-                <div class="row">
-                    <!-- Product 1: macbook air blue -->
-                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                        <div class="card product-card">
-                            <div class="image-container">
-                                <a href="product-details.html">
-                                    <img src="assets/mac/mac_air_blue.webp" class="card-img-top" alt="Macbook Air Blue">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <div class="text-container">
-                                    <h5 class="card-title">Macbook Air Blue</h5>
-                                    <p class="card-text fw-bold">1624.23€</p>
-                                </div>
+        <div class="container">
+            <div class="row">
+                <!-- Product 1: macbook air blue -->
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                    <div class="card product-card">
+                        <div class="image-container">
+                            <a href="product-details.html">
+                                <img src="assets/mac/mac_air_blue.webp" class="card-img-top" alt="Macbook Air Blue">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-container">
+                                <h5 class="card-title">Macbook Air Blue</h5>
+                                <p class="card-text fw-bold">1624.23€</p>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Product 2: macbook air green -->
-                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                        <div class="card product-card">
-                            <div class="image-container">
-                                <a href="product-details.html">
-                                    <img src="assets/mac/mac_air_green.webp" class="card-img-top" alt="Macbook Air Green">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <div class="text-container">
-                                    <h5 class="card-title">Macbook Air Green</h5>
-                                    <p class="card-text fw-bold">88.48€</p>
-                                </div>
+                <!-- Product 2: macbook air green -->
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                    <div class="card product-card">
+                        <div class="image-container">
+                            <a href="product-details.html">
+                                <img src="assets/mac/mac_air_green.webp" class="card-img-top" alt="Macbook Air Green">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-container">
+                                <h5 class="card-title">Macbook Air Green</h5>
+                                <p class="card-text fw-bold">88.48€</p>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Product 3: macbook air yellow -->
-                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                        <div class="card product-card">
-                            <div class="image-container">
-                                <a href="product-details.html">
-                                    <img src="assets/mac/mac_air_yellow.webp" class="card-img-top" alt="Macbook Air Yellow">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <div class="text-container">
-                                    <h5 class="card-title">Macbook Air Yellow</h5>
-                                    <p class="card-text fw-bold">785.40€</p>
-                                </div>
+                <!-- Product 3: macbook air yellow -->
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                    <div class="card product-card">
+                        <div class="image-container">
+                            <a href="product-details.html">
+                                <img src="assets/mac/mac_air_yellow.webp" class="card-img-top" alt="Macbook Air Yellow">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-container">
+                                <h5 class="card-title">Macbook Air Yellow</h5>
+                                <p class="card-text fw-bold">785.40€</p>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Product 4: macbook pro black -->
-                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                        <div class="card product-card">
-                            <div class="image-container">
-                                <a href="product-details.html">
-                                    <img src="assets/mac/mac_pro_black.webp" class="card-img-top" alt="Macbook Pro Black">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <div class="text-container">
-                                    <h5 class="card-title">Macbook Pro Black</h5>
-                                    <p class="card-text fw-bold">2885.65€</p>
-                                </div>
+                <!-- Product 4: macbook pro black -->
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                    <div class="card product-card">
+                        <div class="image-container">
+                            <a href="product-details.html">
+                                <img src="assets/mac/mac_pro_black.webp" class="card-img-top" alt="Macbook Pro Black">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-container">
+                                <h5 class="card-title">Macbook Pro Black</h5>
+                                <p class="card-text fw-bold">2885.65€</p>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Product 5: macbook pro silver -->
-                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                        <div class="card product-card">
-                            <div class="image-container">
-                                <a href="product-details.html">
-                                    <img src="assets/mac/mac_pro_silver.webp" class="card-img-top" alt="Macbook Pro Silver">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <div class="text-container">
-                                    <h5 class="card-title">Macbook Pro Silver</h5>
-                                    <p class="card-text fw-bold">2885.65€</p>
-                                </div>
+                <!-- Product 5: macbook pro silver -->
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                    <div class="card product-card">
+                        <div class="image-container">
+                            <a href="product-details.html">
+                                <img src="assets/mac/mac_pro_silver.webp" class="card-img-top" alt="Macbook Pro Silver">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-container">
+                                <h5 class="card-title">Macbook Pro Silver</h5>
+                                <p class="card-text fw-bold">2885.65€</p>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Product 6: iPhone Black -->
-                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                        <div class="card product-card">
-                            <div class="image-container">
-                                <a href="product-details.html">
-                                    <img src="assets/iphone/iphone_black.webp" class="card-img-top" alt="iPhone Black">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <div class="text-container">
-                                    <h5 class="card-title">iPhone Black</h5>
-                                    <p class="card-text fw-bold">999€</p>
-                                </div>
+                <!-- Product 6: iPhone Black -->
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                    <div class="card product-card">
+                        <div class="image-container">
+                            <a href="product-details.html">
+                                <img src="assets/iphone/iphone_black.webp" class="card-img-top" alt="iPhone Black">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-container">
+                                <h5 class="card-title">iPhone Black</h5>
+                                <p class="card-text fw-bold">999€</p>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Product 7: iPhone Red -->
-                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                        <div class="card product-card">
-                            <div class="image-container">
-                                <a href="product-details.html">
-                                    <img src="assets/iphone/iphone_red.webp" class="card-img-top" alt="iPhone Red">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <div class="text-container">
-                                    <h5 class="card-title">iPhone Red</h5>
-                                    <p class="card-text fw-bold">999€</p>
-                                </div>
+                <!-- Product 7: iPhone Red -->
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                    <div class="card product-card">
+                        <div class="image-container">
+                            <a href="product-details.html">
+                                <img src="assets/iphone/iphone_red.webp" class="card-img-top" alt="iPhone Red">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-container">
+                                <h5 class="card-title">iPhone Red</h5>
+                                <p class="card-text fw-bold">999€</p>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Product 8: iPhone Blue -->
-                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                        <div class="card product-card">
-                            <div class="image-container">
-                                <a href="product-details.html">
-                                    <img src="assets/iphone/iphone_blue.webp" class="card-img-top" alt="iPhone Blue">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <div class="text-container">
-                                    <h5 class="card-title">iPhone Blue</h5>
-                                    <p class="card-text fw-bold">999€</p>
-                                </div>
+                <!-- Product 8: iPhone Blue -->
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                    <div class="card product-card">
+                        <div class="image-container">
+                            <a href="product-details.html">
+                                <img src="assets/iphone/iphone_blue.webp" class="card-img-top" alt="iPhone Blue">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-container">
+                                <h5 class="card-title">iPhone Blue</h5>
+                                <p class="card-text fw-bold">999€</p>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Product 9: iPhone Green -->
-                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                        <div class="card product-card">
-                            <div class="image-container">
-                                <a href="product-details.html">
-                                    <img src="assets/iphone/iphone_green.webp" class="card-img-top" alt="iPhone Green">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <div class="text-container">
-                                    <h5 class="card-title">iPhone Green</h5>
-                                    <p class="card-text fw-bold">999€</p>
-                                </div>
+                <!-- Product 9: iPhone Green -->
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                    <div class="card product-card">
+                        <div class="image-container">
+                            <a href="product-details.html">
+                                <img src="assets/iphone/iphone_green.webp" class="card-img-top" alt="iPhone Green">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-container">
+                                <h5 class="card-title">iPhone Green</h5>
+                                <p class="card-text fw-bold">999€</p>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Product 10: iPhone White -->
-                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                        <div class="card product-card">
-                            <div class="image-container">
-                                <a href="product-details.html">
-                                    <img src="assets/iphone/iphone_white.webp" class="card-img-top" alt="iPhone White">
-                                </a>
-                            </div>
-                            <div class="card-body">
-                                <div class="text-container">
-                                    <h5 class="card-title">iPhone White</h5>
-                                    <p class="card-text fw-bold">999€</p>
-                                </div>
+                <!-- Product 10: iPhone White -->
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                    <div class="card product-card">
+                        <div class="image-container">
+                            <a href="product-details.html">
+                                <img src="assets/iphone/iphone_white.webp" class="card-img-top" alt="iPhone White">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-container">
+                                <h5 class="card-title">iPhone White</h5>
+                                <p class="card-text fw-bold">999€</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
 </div>
 
 <!-- Footer -->
