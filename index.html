@@ -50,6 +50,21 @@
         .text-container {
             text-align: center; /* Centers text horizontally */
         }
+
+        .sidebar-category {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 6px;
+        transition: background-color 0.2s ease;
+        font-weight: 500;
+        }
+
+        .sidebar-category:hover {
+            background-color: #f1f1f1;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -86,56 +101,6 @@
         </div>
     </div>
 </header>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        let logo = document.getElementById("logo");
-        let searchForm = document.getElementById("searchForm");
-        let searchButton = document.getElementById("searchButton");
-        let searchToggle = document.getElementById("searchToggle");
-        let searchInput = document.getElementById("searchInput");
-
-        // Function to toggle search bar on mobile
-        searchToggle.addEventListener("click", function (event) {
-            logo.classList.add("d-none"); // Hide logo
-            searchForm.classList.remove("d-none"); // Show search bar
-            searchButton.classList.remove("d-none"); // Show blue search button on mobile
-            searchToggle.classList.add("d-none"); // Hide search icon
-            searchInput.focus(); // Auto-focus input when opened
-            event.stopPropagation(); // Prevents event bubbling
-        });
-
-        // Function to restore layout when clicking outside the search area
-        document.addEventListener("click", function (event) {
-            if (!searchForm.contains(event.target) && !searchToggle.contains(event.target)) {
-                // Only reset if screen width is below 500px
-                if (window.innerWidth < 500) {
-                    restoreDefaultLayout();
-                }
-            }
-        });
-
-        // Function to restore default layout on resize above 500px
-        window.addEventListener("resize", function () {
-            if (window.innerWidth >= 500) {
-                restoreDefaultLayout();
-            }
-        });
-
-        // Function to reset everything to default layout
-        function restoreDefaultLayout() {
-            logo.classList.remove("d-none"); // Show logo
-            searchForm.classList.add("d-none"); // Hide search bar
-            searchButton.classList.add("d-none"); // Hide blue search button on mobile
-            searchToggle.classList.remove("d-none"); // Show search icon
-        }
-
-        // Prevent closing when clicking inside the search bar
-        searchForm.addEventListener("click", function (event) {
-            event.stopPropagation();
-        });
-    });
-</script>
 
 <!-- Content Wrapper -->
 <div class="container-fluid flex-grow-1 d-flex">
@@ -355,33 +320,6 @@
     </div>
 </div>
 
-<style>
-    /* Sidebar styling */
-    .sidebar-category {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 12px;
-        border-radius: 6px;
-        transition: background-color 0.2s ease;
-        font-weight: 500;
-    }
-
-    .sidebar-category:hover {
-        background-color: #f1f1f1;
-        text-decoration: none;
-    }
-
-    /* Highlight product card on hover */
-    .product-card {
-        transition: box-shadow 0.3s ease;
-    }
-
-    .product-card:hover {
-        box-shadow: 0 0 0 2px #0d6efd50;
-    }
-</style>
-
 <!-- Footer -->
 <footer class="bg-light py-2 mt-auto">
     <div class="container-fluid">
@@ -396,11 +334,55 @@
     </div>
 </footer>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let logo = document.getElementById("logo");
+        let searchForm = document.getElementById("searchForm");
+        let searchButton = document.getElementById("searchButton");
+        let searchToggle = document.getElementById("searchToggle");
+        let searchInput = document.getElementById("searchInput");
 
-<!-- Bootstrap Icons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+        // Function to toggle search bar on mobile
+        searchToggle.addEventListener("click", function (event) {
+            logo.classList.add("d-none"); // Hide logo
+            searchForm.classList.remove("d-none"); // Show search bar
+            searchButton.classList.remove("d-none"); // Show blue search button on mobile
+            searchToggle.classList.add("d-none"); // Hide search icon
+            searchInput.focus(); // Auto-focus input when opened
+            event.stopPropagation(); // Prevents event bubbling
+        });
+
+        // Function to restore layout when clicking outside the search area
+        document.addEventListener("click", function (event) {
+            if (!searchForm.contains(event.target) && !searchToggle.contains(event.target)) {
+                // Only reset if screen width is below 576px
+                if (window.innerWidth < 576) {
+                    restoreDefaultLayout();
+                }
+            }
+        });
+
+        // Function to restore default layout on resize above 576px
+        window.addEventListener("resize", function () {
+            if (window.innerWidth >= 576) {
+                restoreDefaultLayout();
+            }
+        });
+
+        // Function to reset everything to default layout
+        function restoreDefaultLayout() {
+            logo.classList.remove("d-none"); // Show logo
+            searchForm.classList.add("d-none"); // Hide search bar
+            searchButton.classList.add("d-none"); // Hide blue search button on mobile
+            searchToggle.classList.remove("d-none"); // Show search icon
+        }
+
+        // Prevent closing when clicking inside the search bar
+        searchForm.addEventListener("click", function (event) {
+            event.stopPropagation();
+        });
+    });
+</script>
 
 </body>
 </html>
