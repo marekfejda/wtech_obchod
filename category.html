@@ -25,14 +25,51 @@
             background-color: #f1f1f1;
             text-decoration: none;
         }
-    
-        /* Highlight product card on hover */
-        .product-card {
-            transition: box-shadow 0.3s ease;
+
+        .product-card img {
+        transition: transform 0.3s ease-in-out;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        max-height: 100%;
         }
-    
-        .product-card:hover {
-            box-shadow: 0 0 0 2px #0d6efd50;
+
+        .product-card:hover img {
+        transform: scale(1.05);
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1050;
+        }
+
+        #sidebarMenu {
+            position: fixed;
+            top: 50px; /* match header height */
+            bottom: 0;
+            left: 0;
+            width: 16.666667%; /* ~2 columns */
+            overflow-y: auto;
+            background-color: #f8f9fa;
+            z-index: 1040;
+            min-width: 170px;
+        }
+
+
+        main {
+            margin-left: max(170px, 16.666667%); 
+            padding: 2rem;
+        }
+        
+        @media (max-width: 767.98px) {
+            main {
+                margin-left: 0;
+            }
+        }
+
+        footer {
+            z-index: 1050;
         }
     </style>
 
@@ -65,7 +102,7 @@
             <!-- Cart Icon -->
             <a href="#" class="text-dark me-3"><i class="bi bi-cart fs-4"></i></a>
             <!-- Menu Button (Mobile) -->
-            <button class="btn btn-outline-dark d-lg-none" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
+            <button class="btn btn-outline-dark d-md-none" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
                 <i class="bi bi-list"></i>
             </button>
         </div>
@@ -73,144 +110,242 @@
 </header>
 
 <!-- Content Wrapper -->
-<div class="container-fluid flex-grow-1 d-flex">
-    <div class="row w-100">
-        <!-- Sidebar -->
-        <nav id="sidebarMenu" class="col-lg-2 bg-light collapse d-lg-block p-3">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link sidebar-category text-dark" href="#">
-                        <i class="bi bi-laptop"></i> Kategoria 1
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link sidebar-category text-dark" href="#">
-                        <i class="bi bi-phone"></i> Kategoria 2
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link sidebar-category text-dark" href="#">
-                        <i class="bi bi-headphones"></i> Kategoria 3
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link sidebar-category text-dark" href="#">
-                        <i class="bi bi-tv"></i> Kategoria 4
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link sidebar-category text-dark" href="#">
-                        <i class="bi bi-usb-symbol"></i> Kategoria 5
-                    </a>
-                </li>
-            </ul>
-        </nav>
+<div class="d-flex w-100">
+    <!-- Sidebar -->
+    <nav id="sidebarMenu" class="col-lg-2 bg-light collapse d-md-block p-3">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link sidebar-category text-dark" href="#">
+                    <i class="bi bi-laptop"></i> Kategoria 1
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-category text-dark" href="#">
+                    <i class="bi bi-phone"></i> Kategoria 2
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-category text-dark" href="#">
+                    <i class="bi bi-headphones"></i> Kategoria 3
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-category text-dark" href="#">
+                    <i class="bi bi-tv"></i> Kategoria 4
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-category text-dark" href="#">
+                    <i class="bi bi-usb-symbol"></i> Kategoria 5
+                </a>
+            </li>
+        </ul>
+    </nav>
 
-        <!-- Main content -->
-        <main class="col-lg-10 p-4">
-            <!-- Filters -->
-            <div class="d-flex flex-wrap align-items-end gap-3 mb-4">
+    <!-- Main content -->
+    <main class="col-lg-10 p-4 flex-grow-1">
+        <!-- Filters -->
+        <div class="d-flex flex-wrap align-items-end gap-3 mb-4">
 
-                <!-- Cena (from-to in one input group) -->
-                <div>
-                    <label for="priceRange" class="form-label">Cena</label>
-                    <div class="input-group">
-                        <input type="number" class="form-control" placeholder="od" id="priceFrom" min="0">
-                        <span class="input-group-text">-</span>
-                        <input type="number" class="form-control" placeholder="do" id="priceTo" min="0">
-                    </div>
-                </div>
-
-                <!-- Farba dropdown -->
-                <div class="dropdown">
-                    <label class="form-label d-block">Farba</label>
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                        Vyber farby
-                    </button>
-                    <ul class="dropdown-menu p-2" style="min-width: 200px;">
-                        <li><input class="form-check-input me-1" type="checkbox" value="red"> Červená</li>
-                        <li><input class="form-check-input me-1" type="checkbox" value="blue"> Modrá</li>
-                        <li><input class="form-check-input me-1" type="checkbox" value="green"> Zelená</li>
-                        <li><input class="form-check-input me-1" type="checkbox" value="black"> Čierna</li>
-                    </ul>
-                </div>
-
-                <!-- Značka dropdown -->
-                <div class="dropdown">
-                    <label class="form-label d-block">Značka</label>
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                        Vyber značky
-                    </button>
-                    <ul class="dropdown-menu p-2" style="min-width: 200px;">
-                        <li><input class="form-check-input me-1" type="checkbox" value="z1"> Značka 1</li>
-                        <li><input class="form-check-input me-1" type="checkbox" value="z2"> Značka 2</li>
-                        <li><input class="form-check-input me-1" type="checkbox" value="z3"> Značka 3</li>
-                    </ul>
-                </div>
-
-                <!-- Sorting -->
-                <div class="ms-auto">
-                    <label class="form-label d-block">Cena</label>
-                    <div>
-                        <i class="bi bi-arrow-up filter-icon me-2" title="Zoradiť vzostupne"></i>
-                        <i class="bi bi-arrow-down filter-icon" title="Zoradiť zostupne"></i>
-                    </div>
+            <!-- Cena (from-to in one input group) -->
+            <div>
+                <label for="priceRange" class="form-label">Cena</label>
+                <div class="input-group">
+                    <input type="number" class="form-control" placeholder="od" id="priceFrom" min="0">
+                    <span class="input-group-text">-</span>
+                    <input type="number" class="form-control" placeholder="do" id="priceTo" min="0">
                 </div>
             </div>
 
-            <!-- Product List -->
-            <div class="row">
-                <div class="col-md-12 mb-3">
-                    <div class="d-flex align-items-center justify-content-between p-3 border rounded product-card">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="bg-light border d-flex justify-content-center align-items-center" style="width: 60px; height: 60px;">
-                                <i class="bi bi-image" style="font-size: 1.5rem;"></i>
-                            </div>
-                            <div class="fw-medium">Product Name</div>
-                        </div>
-                        <div class="fw-bold">XX.XX€</div>
-                    </div>
-                </div>
-
-                <div class="col-md-12 mb-3">
-                    <div class="d-flex align-items-center justify-content-between p-3 border rounded product-card">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="bg-light border d-flex justify-content-center align-items-center" style="width: 60px; height: 60px;">
-                                <i class="bi bi-image" style="font-size: 1.5rem;"></i>
-                            </div>
-                            <div class="fw-medium">Product Name</div>
-                        </div>
-                        <div class="fw-bold">XX.XX€</div>
-                    </div>
-                </div>
-
-                <div class="col-md-12 mb-3">
-                    <div class="d-flex align-items-center justify-content-between p-3 border rounded product-card">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="bg-light border d-flex justify-content-center align-items-center" style="width: 60px; height: 60px;">
-                                <i class="bi bi-image" style="font-size: 1.5rem;"></i>
-                            </div>
-                            <div class="fw-medium">Product Name</div>
-                        </div>
-                        <div class="fw-bold">XX.XX€</div>
-                    </div>
-                </div>
-
-                <div class="col-md-12 mb-3">
-                    <div class="d-flex align-items-center justify-content-between p-3 border rounded product-card">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="bg-light border d-flex justify-content-center align-items-center" style="width: 60px; height: 60px;">
-                                <i class="bi bi-image" style="font-size: 1.5rem;"></i>
-                            </div>
-                            <div class="fw-medium">Product Name</div>
-                        </div>
-                        <div class="fw-bold">XX.XX€</div>
-                    </div>
-                </div>
-
+            <!-- Farba dropdown -->
+            <div class="dropdown">
+                <label class="form-label d-block">Farba</label>
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                    Vyber farby
+                </button>
+                <ul class="dropdown-menu p-2" style="min-width: 200px;">
+                    <li><input class="form-check-input me-1" type="checkbox" value="red"> Červená</li>
+                    <li><input class="form-check-input me-1" type="checkbox" value="blue"> Modrá</li>
+                    <li><input class="form-check-input me-1" type="checkbox" value="green"> Zelená</li>
+                    <li><input class="form-check-input me-1" type="checkbox" value="black"> Čierna</li>
+                </ul>
             </div>
-        </main>
-    </div>
+
+            <!-- Značka dropdown -->
+            <div class="dropdown">
+                <label class="form-label d-block">Značka</label>
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                    Vyber značky
+                </button>
+                <ul class="dropdown-menu p-2" style="min-width: 200px;">
+                    <li><input class="form-check-input me-1" type="checkbox" value="z1"> Značka 1</li>
+                    <li><input class="form-check-input me-1" type="checkbox" value="z2"> Značka 2</li>
+                    <li><input class="form-check-input me-1" type="checkbox" value="z3"> Značka 3</li>
+                </ul>
+            </div>
+
+            <!-- Sorting -->
+            <div class="ms-auto d-flex align-items-center">
+                <span class="form-label mb-0 me-1">Cena</span>
+                <i id="sortIcon" class="bi bi-caret-up-fill" style="cursor: pointer;"></i>
+            </div>
+
+        </div>
+
+        <!-- Product List -->
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
+                <div class="card product-card h-100 p-3 border rounded d-flex flex-column flex-md-row" style="min-height: 250px; max-width: 380px; width: 100%;">
+                    <!-- Left: Image + Price (no space pushed between them) -->
+                    <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
+                        <div class="image-container d-flex justify-content-center align-items-center p-2 mb-2" style="width: 100%; height: 140px; overflow: hidden;">
+                        <img src="assets/mac/mac_air_blue.webp" alt="Macbook Air Blue" class="product-img">
+                        </div>
+                        <div class="fw-bold fs-6 text-center">1624.23€</div>
+                    </div>
+                
+                    <!-- Right: Name + Description -->
+                    <div class="d-flex flex-column justify-content-start w-100 w-md-50">
+                        <div class="fw-semibold fs-5 mb-1">Macbook Air Blue</div>
+                        <div class="text-muted small">Ľahký, výkonný notebook s čipom M2, ideálny pre študentov a profesionálov.</div>
+                    </div>
+                </div>
+            </div>                            
+
+            <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
+                <div class="card product-card h-100 p-3 border rounded d-flex flex-column flex-md-row" style="min-height: 250px; max-width: 380px; width: 100%;">
+                    
+                    <!-- Left: Image + Price (no space pushed between them) -->
+                    <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
+                        <div class="image-container d-flex justify-content-center align-items-center p-2 mb-2" style="width: 100%; height: 140px; overflow: hidden;">
+                        <img src="assets/mac/mac_air_blue.webp" alt="Macbook Air Blue" class="product-img">
+                        </div>
+                        <div class="fw-bold fs-6 text-center">1624.23€</div>
+                    </div>
+                
+                    <!-- Right: Name + Description -->
+                    <div class="d-flex flex-column justify-content-start w-100 w-md-50">
+                        <div class="fw-semibold fs-5 mb-1">Macbook Air Blue</div>
+                        <div class="text-muted small">Ľahký, výkonný notebook s čipom M2, ideálny pre študentov a profesionálov.</div>
+                    </div>
+                
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
+                <div class="card product-card h-100 p-3 border rounded d-flex flex-column flex-md-row" style="min-height: 250px; max-width: 380px; width: 100%;">
+                    
+                    <!-- Left: Image + Price (no space pushed between them) -->
+                    <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
+                        <div class="image-container d-flex justify-content-center align-items-center p-2 mb-2" style="width: 100%; height: 140px; overflow: hidden;">
+                        <img src="assets/mac/mac_air_blue.webp" alt="Macbook Air Blue" class="product-img">
+                        </div>
+                        <div class="fw-bold fs-6 text-center">1624.23€</div>
+                    </div>
+                
+                    <!-- Right: Name + Description -->
+                    <div class="d-flex flex-column justify-content-start w-100 w-md-50">
+                        <div class="fw-semibold fs-5 mb-1">Macbook Air Blue</div>
+                        <div class="text-muted small">Ľahký, výkonný notebook s čipom M2, ideálny pre študentov a profesionálov.</div>
+                    </div>
+                
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
+                <div class="card product-card h-100 p-3 border rounded d-flex flex-column flex-md-row" style="min-height: 250px; max-width: 380px; width: 100%;">
+                    
+                    <!-- Left: Image + Price (no space pushed between them) -->
+                    <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
+                        <div class="image-container d-flex justify-content-center align-items-center p-2 mb-2" style="width: 100%; height: 140px; overflow: hidden;">
+                        <img src="assets/mac/mac_air_blue.webp" alt="Macbook Air Blue" class="product-img">
+                        </div>
+                        <div class="fw-bold fs-6 text-center">1624.23€</div>
+                    </div>
+                
+                    <!-- Right: Name + Description -->
+                    <div class="d-flex flex-column justify-content-start w-100 w-md-50">
+                        <div class="fw-semibold fs-5 mb-1">Macbook Air Blue</div>
+                        <div class="text-muted small">Ľahký, výkonný notebook s čipom M2, ideálny pre študentov a profesionálov.</div>
+                    </div>
+
+                </div>
+            </div>  
+            
+            <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
+                <div class="card product-card h-100 p-3 border rounded d-flex flex-column flex-md-row" style="min-height: 250px; max-width: 380px; width: 100%;">
+                    <!-- Left: Image + Price (no space pushed between them) -->
+                    <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
+                        <div class="image-container d-flex justify-content-center align-items-center p-2 mb-2" style="width: 100%; height: 140px; overflow: hidden;">
+                        <img src="assets/mac/mac_air_blue.webp" alt="Macbook Air Blue" class="product-img">
+                        </div>
+                        <div class="fw-bold fs-6 text-center">1624.23€</div>
+                    </div>
+                
+                    <!-- Right: Name + Description -->
+                    <div class="d-flex flex-column justify-content-start w-100 w-md-50">
+                        <div class="fw-semibold fs-5 mb-1">Macbook Air Blue</div>
+                        <div class="text-muted small">Ľahký, výkonný notebook s čipom M2, ideálny pre študentov a profesionálov.</div>
+                    </div>
+                </div>
+            </div>  
+
+            <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
+                <div class="card product-card h-100 p-3 border rounded d-flex flex-column flex-md-row" style="min-height: 250px; max-width: 380px; width: 100%;">
+                    <!-- Left: Image + Price (no space pushed between them) -->
+                    <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
+                        <div class="image-container d-flex justify-content-center align-items-center p-2 mb-2" style="width: 100%; height: 140px; overflow: hidden;">
+                        <img src="assets/mac/mac_air_blue.webp" alt="Macbook Air Blue" class="product-img">
+                        </div>
+                        <div class="fw-bold fs-6 text-center">1624.23€</div>
+                    </div>
+                
+                    <!-- Right: Name + Description -->
+                    <div class="d-flex flex-column justify-content-start w-100 w-md-50">
+                        <div class="fw-semibold fs-5 mb-1">Macbook Air Blue</div>
+                        <div class="text-muted small">Ľahký, výkonný notebook s čipom M2, ideálny pre študentov a profesionálov.</div>
+                    </div>
+                </div>
+            </div>  
+
+            <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
+                <div class="card product-card h-100 p-3 border rounded d-flex flex-column flex-md-row" style="min-height: 250px; max-width: 380px; width: 100%;">
+                    <!-- Left: Image + Price (no space pushed between them) -->
+                    <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
+                        <div class="image-container d-flex justify-content-center align-items-center p-2 mb-2" style="width: 100%; height: 140px; overflow: hidden;">
+                        <img src="assets/mac/mac_air_blue.webp" alt="Macbook Air Blue" class="product-img">
+                        </div>
+                        <div class="fw-bold fs-6 text-center">1624.23€</div>
+                    </div>
+                
+                    <!-- Right: Name + Description -->
+                    <div class="d-flex flex-column justify-content-start w-100 w-md-50">
+                        <div class="fw-semibold fs-5 mb-1">Macbook Air Blue</div>
+                        <div class="text-muted small">Ľahký, výkonný notebook s čipom M2, ideálny pre študentov a profesionálov.</div>
+                    </div>
+                </div>
+            </div>  
+
+            <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
+                <div class="card product-card h-100 p-3 border rounded d-flex flex-column flex-md-row" style="min-height: 250px; max-width: 380px; width: 100%;">
+                    <!-- Left: Image + Price (no space pushed between them) -->
+                    <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
+                        <div class="image-container d-flex justify-content-center align-items-center p-2 mb-2" style="width: 100%; height: 140px; overflow: hidden;">
+                        <img src="assets/mac/mac_air_blue.webp" alt="Macbook Air Blue" class="product-img">
+                        </div>
+                        <div class="fw-bold fs-6 text-center">1624.23€</div>
+                    </div>
+                
+                    <!-- Right: Name + Description -->
+                    <div class="d-flex flex-column justify-content-start w-100 w-md-50">
+                        <div class="fw-semibold fs-5 mb-1">Macbook Air Blue</div>
+                        <div class="text-muted small">Ľahký, výkonný notebook s čipom M2, ideálny pre študentov a profesionálov.</div>
+                    </div>
+                </div>
+            </div>  
+
+        </div>
+    </main>
 </div>
 
 <!-- Footer -->
@@ -226,6 +361,69 @@
         </div>
     </div>
 </footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const sortIcon = document.getElementById("sortIcon");
+      let ascending = true;
+  
+      sortIcon.addEventListener("click", function () {
+        ascending = !ascending;
+        sortIcon.classList.toggle("bi-caret-up-fill", ascending);
+        sortIcon.classList.toggle("bi-caret-down-fill", !ascending);
+        // Optional: Call sorting logic here
+        console.log("Sorting:", ascending ? "ascending" : "descending");
+      });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        let logo = document.getElementById("logo");
+        let searchForm = document.getElementById("searchForm");
+        let searchButton = document.getElementById("searchButton");
+        let searchToggle = document.getElementById("searchToggle");
+        let searchInput = document.getElementById("searchInput");
+
+        // Function to toggle search bar on mobile
+        searchToggle.addEventListener("click", function (event) {
+            logo.classList.add("d-none"); // Hide logo
+            searchForm.classList.remove("d-none"); // Show search bar
+            searchButton.classList.remove("d-none"); // Show blue search button on mobile
+            searchToggle.classList.add("d-none"); // Hide search icon
+            searchInput.focus(); // Auto-focus input when opened
+            event.stopPropagation(); // Prevents event bubbling
+        });
+
+        // Function to restore layout when clicking outside the search area
+        document.addEventListener("click", function (event) {
+            if (!searchForm.contains(event.target) && !searchToggle.contains(event.target)) {
+                // Only reset if screen width is below 576px
+                if (window.innerWidth < 576) {
+                    restoreDefaultLayout();
+                }
+            }
+        });
+
+        // Function to restore default layout on resize above 576px
+        window.addEventListener("resize", function () {
+            if (window.innerWidth >= 576) {
+                restoreDefaultLayout();
+            }
+        });
+
+        // Function to reset everything to default layout
+        function restoreDefaultLayout() {
+            logo.classList.remove("d-none"); // Show logo
+            searchForm.classList.add("d-none"); // Hide search bar
+            searchButton.classList.add("d-none"); // Hide blue search button on mobile
+            searchToggle.classList.remove("d-none"); // Show search icon
+        }
+
+        // Prevent closing when clicking inside the search bar
+        searchForm.addEventListener("click", function (event) {
+            event.stopPropagation();
+        });
+    });
+</script>  
 
 </body>
 </html>
