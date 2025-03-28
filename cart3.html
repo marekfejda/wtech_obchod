@@ -44,7 +44,7 @@
 <header class="bg-light shadow-sm">
     <div class="container-fluid p-2 d-flex justify-content-between align-items-center">
         <!-- Logo (Hidden when search is active) -->
-        <a href="#" id="logo" class="fs-4 fw-bold text-dark text-decoration-none ms-4">Nazov</a>
+        <a href="index.html" id="logo" class="fs-4 fw-bold text-dark text-decoration-none ms-4">Nazov</a>
 
         <!-- Search Bar -->
         <form id="searchForm" class="d-flex flex-grow-1 mx-3 w-100 d-none d-sm-flex" style="max-width: 600px;">
@@ -124,7 +124,7 @@
                             <input type="text" class="form-control" id="cvv" placeholder="123" required>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-success">Zaplatiť kartou</button>
+                            <button type="button" class="btn btn-success" onclick="window.location.href='cart4.html'">Zaplatiť kartou</button>
                         </div>
                     </form>
                 </div>
@@ -136,7 +136,7 @@
                     <h4>Hotovosť pri doručení</h4>
                     <p class="mt-4">Ak uprednostňujete platbu v hotovosti, môžete si zvoliť túto možnosť. Uistite sa, že pri doručení produktu máte presnú sumu.</p>
                     <div class="text-center">
-                        <button class="btn btn-success mt-4">Zaplatiť pri doručení</button>
+                        <button type="button" class="btn btn-success mt-4" onclick="window.location.href='cart4.html'">Zaplatiť pri doručení</button>
                     </div>
                 </div>
             </div>
@@ -152,7 +152,7 @@
         <div class="row bg-light p-3 align-items-center rounded element-shadow">
             <!-- Back Button -->
             <div class="col-3 text-start">
-            <a href="#" class="btn btn-outline-secondary w-50">Back</a>
+            <a href="cart2.html" class="btn btn-outline-secondary w-50">Back</a>
             </div>
     
             <!-- Cart Total -->
