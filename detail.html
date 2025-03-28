@@ -42,7 +42,12 @@
                 padding: 1.5rem !important;
             }
         }
-        
+        .carousel-indicators .active {
+            background-color: #00000064; 
+        }
+        .carousel-indicators button:not(.active) {
+            background-color: #b7b7b7;
+        }
         /* Ensure footer stays at bottom */
         .min-vh-100 {
             min-height: 100vh;
@@ -90,86 +95,85 @@
 
 <!-- Content Wrapper -->
 <div class="container-fluid flex-grow-1 d-flex">
-    <div class="row w-100">
-        <!-- Sidebar -->
-        <nav id="sidebarMenu" class="col-lg-2 bg-light collapse d-lg-block p-3">
-            <ul class="nav flex-column">
-                <li class="nav-item"><a class="nav-link text-dark" href="#">Kategoria 1</a></li>
-                <li class="nav-item"><a class="nav-link text-dark" href="#">Kategoria 2</a></li>
-                <li class="nav-item"><a class="nav-link text-dark" href="#">Kategoria 3</a></li>
-                <li class="nav-item"><a class="nav-link text-dark" href="#">Kategoria 4</a></li>
-                <li class="nav-item"><a class="nav-link text-dark" href="#">Kategoria 5</a></li>
-            </ul>
-        </nav>
+    <!-- Sidebar -->
+    <nav id="sidebarMenu" class="col-lg-2 bg-light collapse d-lg-block p-3">
+        <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link text-dark" href="#">Kategoria 1</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="#">Kategoria 2</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="#">Kategoria 3</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="#">Kategoria 4</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="#">Kategoria 5</a></li>
+        </ul>
+    </nav>
 
-        <!-- Main content -->
-        <main class="col-lg-10 p-4">
-                <div class="row">
-                    <!-- Image Gallery -->
-                    <div class="col-md-6 mb-4">
-                        <div id="imageGallery" class="carousel slide" style="max-width: 600px; margin: 0 auto;">
-                            <!-- Indicators -->
-                            <div class="carousel-indicators">
-                                <button type="button" data-bs-target="#imageGallery" data-bs-slide-to="0" class="active"></button>
-                                <button type="button" data-bs-target="#imageGallery" data-bs-slide-to="1"></button>
-                                <button type="button" data-bs-target="#imageGallery" data-bs-slide-to="2"></button>
-                                <button type="button" data-bs-target="#imageGallery" data-bs-slide-to="3"></button>
-                                <button type="button" data-bs-target="#imageGallery" data-bs-slide-to="4"></button>
-                            </div>
-                            
-                            <div class="carousel-inner ratio ratio-1x1 bg-white">
-                                <div class="carousel-item active h-100">
-                                    <div class="d-flex justify-content-center align-items-center h-100">
-                                        <img src="assets/iphone/iphone_pro_black_1.webp" class="d-block img-fluid mh-100 object-fit-contain" alt="Product Image 1">
-                                    </div>
-                                </div>
-                                <div class="carousel-item h-100">
-                                    <div class="d-flex justify-content-center align-items-center h-100">
-                                        <img src="assets/iphone/iphone_pro_black_2.webp" class="d-block img-fluid mh-100 object-fit-contain" alt="Product Image 2">
-                                    </div>
-                                </div>
-                                <div class="carousel-item h-100">
-                                    <div class="d-flex justify-content-center align-items-center h-100">
-                                        <img src="assets/iphone/iphone_pro_black_3.webp" class="d-block img-fluid mh-100 object-fit-contain" alt="Product Image 3">
-                                    </div>
-                                </div>
-                                <div class="carousel-item h-100">
-                                    <div class="d-flex justify-content-center align-items-center h-100">
-                                        <img src="assets/iphone/iphone_pro_black_4.webp" class="d-block img-fluid mh-100 object-fit-contain" alt="Product Image 4">
-                                    </div>
-                                </div>
-                                <div class="carousel-item h-100">
-                                    <div class="d-flex justify-content-center align-items-center h-100">
-                                        <img src="assets/iphone/iphone_pro_black_5.webp" class="d-block img-fluid mh-100 object-fit-contain" alt="Product Image 5">
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <button class="carousel-control-prev" type="button" data-bs-target="#imageGallery" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#imageGallery" data-bs-slide="next">
-                                <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
-                            </button>
+    <!-- Main content -->
+    <main class="col-lg-10 p-4">
+            <div class="row">
+                <!-- Image Gallery -->
+                <div class="col-md-6 mb-4">
+                    <div id="imageGallery" class="carousel slide" style="max-width: 600px; margin: 0 auto;">
+                        <!-- Indicators -->
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#imageGallery" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#imageGallery" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#imageGallery" data-bs-slide-to="2"></button>
+                            <button type="button" data-bs-target="#imageGallery" data-bs-slide-to="3"></button>
+                            <button type="button" data-bs-target="#imageGallery" data-bs-slide-to="4"></button>
                         </div>
+                        
+                        <div class="carousel-inner ratio ratio-1x1 bg-white">
+                            <div class="carousel-item active h-100">
+                                <div class="d-flex justify-content-center align-items-center h-100">
+                                    <img src="assets/iphone/iphone_pro_black_1.webp" class="d-block img-fluid mh-100 object-fit-contain" alt="Product Image 1">
+                                </div>
+                            </div>
+                            <div class="carousel-item h-100">
+                                <div class="d-flex justify-content-center align-items-center h-100">
+                                    <img src="assets/iphone/iphone_pro_black_2.webp" class="d-block img-fluid mh-100 object-fit-contain" alt="Product Image 2">
+                                </div>
+                            </div>
+                            <div class="carousel-item h-100">
+                                <div class="d-flex justify-content-center align-items-center h-100">
+                                    <img src="assets/iphone/iphone_pro_black_3.webp" class="d-block img-fluid mh-100 object-fit-contain" alt="Product Image 3">
+                                </div>
+                            </div>
+                            <div class="carousel-item h-100">
+                                <div class="d-flex justify-content-center align-items-center h-100">
+                                    <img src="assets/iphone/iphone_pro_black_4.webp" class="d-block img-fluid mh-100 object-fit-contain" alt="Product Image 4">
+                                </div>
+                            </div>
+                            <div class="carousel-item h-100">
+                                <div class="d-flex justify-content-center align-items-center h-100">
+                                    <img src="assets/iphone/iphone_pro_black_5.webp" class="d-block img-fluid mh-100 object-fit-contain" alt="Product Image 5">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="carousel-control-prev" type="button" data-bs-target="#imageGallery" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#imageGallery" data-bs-slide="next">
+                            <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                        </button>
                     </div>
-                    
-                    <!-- Product Details -->
-                    <div class="col-md-6">
-                        <h3 class="fw-bold">Iphone 16 Pro - cierna</h3>
-                        <p class="product-text">Mobilný telefón - 6,3" Super Retina XDR OLED 2622 x 1206 (120 Hz), operačná pamäť 8 GB, vnútorná pamäť 256 GB, single SIM + eSIM, procesor Apple A18 Pro, fotoaparát: 48 Mpx (f/1,78) hlavný + 48 Mpx širokouhlý + 12 Mpx teleobjektív, predná kamera 12 Mpx, GPS, NFC, LTE, 5G, USB-C, vodoodolný podľa IP68, rýchle nabíjanie, bezdrôtové nabíjanie 25 W, batéria 3582 mAh, model 2024, iOS</p>
+                </div>
+                
+                <!-- Product Details -->
+                <div class="col-md-6">
+                    <h3 class="fw-bold">Iphone 16 Pro - cierna</h3>
+                    <p class="product-text">Mobilný telefón - 6,3" Super Retina XDR OLED 2622 x 1206 (120 Hz), operačná pamäť 8 GB, vnútorná pamäť 256 GB, single SIM + eSIM, procesor Apple A18 Pro, fotoaparát: 48 Mpx (f/1,78) hlavný + 48 Mpx širokouhlý + 12 Mpx teleobjektív, predná kamera 12 Mpx, GPS, NFC, LTE, 5G, USB-C, vodoodolný podľa IP68, rýchle nabíjanie, bezdrôtové nabíjanie 25 W, batéria 3582 mAh, model 2024, iOS</p>
 
-                        <!-- Quantity Selector and Add to Cart -->
-                        <div class="d-flex align-items-center mt-3">
-                            <input type="number" class="form-control w-auto me-2" value="1" min="1">
-                            <button class="btn btn-primary">
-                                Pridať do košíka <i class="bi bi-cart"></i>
-                            </button>
-                        </div>
+                    <!-- Quantity Selector and Add to Cart -->
+                    <div class="d-flex align-items-center mt-3">
+                        <input type="number" class="form-control w-auto me-2" value="1" min="1">
+                        <button class="btn btn-primary">
+                            Pridať do košíka <i class="bi bi-cart"></i>
+                        </button>
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
 </div>
 
 <!-- Footer -->
