@@ -21,23 +21,24 @@
 <!-- Header -->
 <header class="bg-light shadow-sm">
     <div class="container-fluid p-2 d-flex justify-content-between align-items-center">
-        <!-- Logo (Hidden when search is active) -->
-        <a href="#" id="logo" class="fs-4 fw-bold text-dark text-decoration-none ms-4">Nazov</a>
+        <a href="#" id="logo" class="fs-4 fw-bold text-dark text-decoration-none ms-4">
+            <img src="assets/logo.png" alt="Logo" style="height: 40px;">
+        </a>
 
         <!-- Search Bar -->
         <form id="searchForm" class="d-flex flex-grow-1 mx-3 w-100 d-none d-sm-flex" style="max-width: 600px;">
             <input id="searchInput" class="form-control me-2" type="search" placeholder="Search">
-            <!-- Search Button (Always visible on screens wider than 500px) -->
+            <!-- Search Button -->
             <button id="searchButton" class="btn btn-primary d-sm-block d-none" type="submit">Search</button>
         </form>
 
         <div class="d-flex align-items-center">
-            <!-- Search Icon (Shows search bar on click) -->
+            <!-- Search Icon -->
             <button id="searchToggle" class="btn d-block d-sm-none me-3">
                 <i class="bi bi-search"></i>
             </button>
 
-            <!-- Username (Visible on Desktop) -->
+            <!-- Username  -->
             <span class="me-2 d-none d-lg-inline text-dark">Username</span>
             <!-- User Icon -->
             <a href="#" class="text-dark me-3"><i class="bi bi-person-circle fs-4"></i></a>
@@ -73,7 +74,6 @@
 <footer class="bg-light py-2 mt-auto">
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center flex-wrap w-100 px-4 text-start">
-            <!-- Left-aligned links -->
             <div class="d-flex flex-column flex-sm-row gap-2 gap-sm-3">
                 <a href="#" class="text-dark text-decoration-none">O nás</a>
                 <a href="#" class="text-dark text-decoration-none">Kontakt</a>
