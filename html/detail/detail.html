@@ -8,56 +8,7 @@
     <link rel="icon" type="image/png" href="../../assets/favicon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <style>
-        #imageGallery {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .carousel-inner {
-            border-radius: 0.5rem;
-            overflow: hidden;
-            background-color: #f8f9fa;
-        }
-
-        .carousel-control-prev,
-        .carousel-control-next {
-            width: 8%;
-        }
-
-        .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-            background-size: 60%;
-        }
-
-        @media (max-width: 768px) {
-            #imageGallery {
-                max-width: 100%;
-            }
-
-            .carousel-control-prev-icon,
-            .carousel-control-next-icon {
-                background-size: 40%;
-                padding: 1.5rem !important;
-            }
-        }
-
-        .carousel-indicators .active {
-            background-color: #00000064;
-        }
-
-        .carousel-indicators button:not(.active) {
-            background-color: #b7b7b7;
-        }
-
-        .min-vh-100 {
-            min-height: 100vh;
-        }
-
-        .product-text {
-            text-align: justify;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -209,58 +160,9 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
+    <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let logo = document.getElementById("logo");
-            let searchForm = document.getElementById("searchForm");
-            let searchButton = document.getElementById("searchButton");
-            let searchToggle = document.getElementById("searchToggle");
-            let searchInput = document.getElementById("searchInput");
-
-            // Function to toggle search bar on mobile
-            searchToggle.addEventListener("click", function (event) {
-                logo.classList.add("d-none");
-                searchForm.classList.remove("d-none");
-                searchButton.classList.remove("d-none");
-                searchToggle.classList.add("d-none");
-                searchInput.focus();
-                event.stopPropagation();
-            });
-
-            // Function to restore layout when clicking outside the search area
-            document.addEventListener("click", function (event) {
-                if (!searchForm.contains(event.target) && !searchToggle.contains(event.target)) {
-                    if (window.innerWidth < 500) {
-                        restoreDefaultLayout();
-                    }
-                }
-            });
-
-            // Function to restore default layout on resize above 500px
-            window.addEventListener("resize", function () {
-                if (window.innerWidth >= 500) {
-                    restoreDefaultLayout();
-                }
-            });
-
-            // Function to reset everything to default layout
-            function restoreDefaultLayout() {
-                logo.classList.remove("d-none");
-                searchForm.classList.add("d-none");
-                searchButton.classList.add("d-none");
-                searchToggle.classList.remove("d-none");
-            }
-
-            // Prevent closing when clicking inside the search bar
-            searchForm.addEventListener("click", function (event) {
-                event.stopPropagation();
-            });
-        });
-    </script>
-
+    <script src="script.js"></script>
 </body>
 
 </html>

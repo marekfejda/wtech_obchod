@@ -1,0 +1,48 @@
+#imageGallery {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.carousel-inner {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: #f8f9fa;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 8%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-size: 60%;
+}
+
+@media (max-width: 768px) {
+    #imageGallery {
+        max-width: 100%;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-size: 40%;
+        padding: 1.5rem !important;
+    }
+}
+
+.carousel-indicators .active {
+    background-color: #00000064;
+}
+
+.carousel-indicators button:not(.active) {
+    background-color: #b7b7b7;
+}
+
+.min-vh-100 {
+    min-height: 100vh;
+}
+
+.product-text {
+    text-align: justify;
+}
