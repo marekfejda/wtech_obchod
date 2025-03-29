@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sidebar Menu Layout</title>
+    <title>iSHOP - payment</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
@@ -29,13 +29,6 @@
         .element-shadow {
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        .product-image {
-            width: 100%;
-            max-width: 80px;
-            height: auto;
-            aspect-ratio: 1 / 1;
-            object-fit: contain;
-        }
         .cart-summary .btn {
             min-width: 70px;
         }
@@ -51,7 +44,7 @@
 <header class="bg-light shadow-sm">
     <div class="container-fluid p-2 d-flex justify-content-between align-items-center">
         <a href="#" id="logo" class="fs-4 fw-bold text-dark text-decoration-none ms-4">
-            <img src="assets/logo.png" alt="Logo" style="height: 40px;">
+            <img src="../../assets/logo.png" alt="Logo" style="height: 40px;">
         </a>
 
         <!-- Search Bar -->
@@ -86,119 +79,70 @@
     <div class="d-flex justify-content-between align-items-center">
         <div class="step active">1</div>
         <div class="progress flex-grow-1 mx-2" style="height: 6px;">
-            <div class="progress-bar" style="width: 0%;"></div>
+            <div class="progress-bar" style="width: 100%;"></div>
         </div>
-        <div class="step">2</div>
+        <div class="step active">2</div>
         <div class="progress flex-grow-1 mx-2" style="height: 6px;">
-            <div class="progress-bar" style="width: 0;"></div>
+            <div class="progress-bar" style="width: 100%;"></div>
         </div>
-        <div class="step">3</div>
+        <div class="step active">3</div>
     </div>
     <div class="d-flex justify-content-between mt-2">
-        <span><b>Summary</b></span>
+        <span>Summary</span>
         <span>Shipping</span>
-        <span>Payment</span>
+        <span><b>Payment</b></span>
     </div>
 </div>
 
 
-<!-- Main content -->
+<!-- Main content-->
 <main class="flex-grow-1">
     <div class="container">
 
         <div class="mt-5"></div>
-
-
-
-        <!-- Product 1-->
-        <div class="row bg-light p-3 align-items-center rounded element-shadow">
-            <!-- Product Image -->
-            <div class="col-2">
-                <a href="www.odkazNaProdukt.sk" target="_blank">
-                    <img src="assets/iphone/iphone_black.webp" class="product-image" alt="Product Image">
-                </a>
-            </div>
-
-            <!-- Product Details -->
-            <div class="col-6">
-                <a href="www.odkazNaProdukt.sk" target="_blank" class="fw-bold text-dark text-decoration-none">
-                    Iphone 16 black
-                </a>
-            </div>
-
-            <!-- Quantity -->
-            <div class="col-2 text-center">
-                <input type="number" id="quantityInput" class="form-control" value="1" min="1" style="width: 60px; text-align: center;">
-            </div>
-
-            <!-- Price -->
-            <div class="col-2 text-end fw-bold">
-                18.99$
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2>Vyberte si spôsob platby</h2>
             </div>
         </div>
 
-
-
-        <!-- Product 2-->
-        <div class="row bg-light p-3 align-items-center rounded element-shadow mt-3">
-            <!-- Product Image -->
-            <div class="col-2">
-                <a href="www.odkazNaProdukt.sk" target="_blank">
-                    <img src="assets/iphone/iphone_white.webp" class="product-image" alt="Product Image">
-                </a>
+        <div class="row mt-4">
+            <!-- PLATBA KARTOU -->
+            <div class="col-12 col-md-6">
+                <div class="bg-light p-3 rounded element-shadow">
+                    <h4>Platobná karta</h4>
+                    <form>
+                        <div class="mb-3">
+                            <label for="cardNumber" class="form-label">Číslo karty</label>
+                            <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9876 5432" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="expiryDate" class="form-label">Dátum expirácie (MM/YY)</label>
+                            <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" maxlength="5" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cvv" class="form-label">CVV</label>
+                            <input type="text" class="form-control" id="cvv" placeholder="123" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-success" onclick="window.location.href='cart4.html'">Zaplatiť kartou</button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
-            <!-- Product Details -->
-            <div class="col-6">
-                <a href="www.odkazNaProdukt.sk" target="_blank" class="fw-bold text-dark text-decoration-none">
-                    Iphone 16 white
-                </a>
+            <!-- PLATBA CASH -->
+            <div class="col-12 col-md-6 mt-4 mt-md-0">
+                <div class="bg-light p-3 rounded element-shadow">
+                    <h4>Hotovosť pri doručení</h4>
+                    <p class="mt-4">Ak uprednostňujete platbu v hotovosti, môžete si zvoliť túto možnosť. Uistite sa, že pri doručení produktu máte presnú sumu.</p>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-success mt-4" onclick="window.location.href='cart4.html'">Zaplatiť pri doručení</button>
+                    </div>
+                </div>
             </div>
 
-            <!-- Quantity -->
-            <div class="col-2 text-center">
-                <input type="number" id="quantityInput" class="form-control" value="1" min="1" style="width: 60px; text-align: center;">
-            </div>
-
-            <!-- Price -->
-            <div class="col-2 text-end fw-bold">
-                18.99$
-            </div>
         </div>
-
-
-
-        <!-- Product 3-->
-        <div class="row bg-light p-3 align-items-center rounded element-shadow mt-3">
-            <!-- Product Image -->
-            <div class="col-2">
-                <a href="www.odkazNaProdukt.sk" target="_blank">
-                    <img src="assets/iphone/iphone_red.webp" class="product-image" alt="Product Image">
-                </a>
-            </div>
-
-            <!-- Product Details -->
-            <div class="col-6">
-                <a href="www.odkazNaProdukt.sk" target="_blank" class="fw-bold text-dark text-decoration-none">
-                    Iphone 16 red
-                </a>
-            </div>
-
-            <!-- Quantity -->
-            <div class="col-2 text-center">
-                <input type="number" id="quantityInput" class="form-control" value="1" min="1" style="width: 60px; text-align: center;">
-            </div>
-
-            <!-- Price -->
-            <div class="col-2 text-end fw-bold">
-                1928.99$
-            </div>
-        </div>
-
-             
-        
-        
-
 
     </div>
 </main>
@@ -209,22 +153,16 @@
         <div class="row bg-light p-3 align-items-center rounded element-shadow">
             <!-- Back Button -->
             <div class="col-3 text-start">
-                <a href="index.html" class="btn btn-outline-secondary w-50">Back</a>
+            <a href="../cart2/cart2.html" class="btn btn-outline-secondary w-50">Back</a>
             </div>
     
             <!-- Cart Total -->
             <div class="col-6 fw-bold text-center">
-                Total: <span id="cartTotal">37.98$</span>
-            </div>
-    
-            <!-- Next Button -->
-            <div class="col-3 text-end">
-                <a href="cart2.html" class="btn btn-primary w-75">Next</a>
+            Total: <span id="cartTotal">37.98$</span>
             </div>
         </div>
     </div>
 </div>
-
 
 <!-- Footer -->
 <footer class="bg-light py-2 mt-auto">
@@ -245,5 +183,37 @@
 <!-- Bootstrap Icons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
+<script>
+    document.getElementById('expiryDate').addEventListener('input', function () {
+        var value = this.value;
+        
+        if (value.length === 2 && !value.includes('/')) {
+            this.value = value + '/';
+        }
+    });
+
+    document.getElementById('cardNumber').addEventListener('input', function () {
+        var value = this.value.split(' ').join('');
+        var formattedValue = '';
+
+        for (var i = 0; i < value.length; i += 4) {
+            formattedValue += value.substr(i, 4) + ' ';
+        }
+
+        if (value.length >= 16) {
+            formattedValue = formattedValue.substring(0, 19);
+        }
+
+        this.value = formattedValue.trim();
+    });
+
+    document.getElementById('cvv').addEventListener('input', function () {
+        var value = this.value;
+
+        if (value.length > 3) {
+            this.value = value.substring(0, 3);
+        }
+    });
+</script>
 </body>
 </html>

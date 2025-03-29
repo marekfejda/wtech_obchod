@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sidebar Menu Layout</title>
+    <title>iSHOP - account</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
    
     <style>
-        .delete-wrapper {
+        .account-wrapper {
             transform: translateY(-10vh);
         }
     </style>
@@ -22,7 +22,7 @@
 <header class="bg-light shadow-sm">
     <div class="container-fluid p-2 d-flex justify-content-between align-items-center">
         <a href="#" id="logo" class="fs-4 fw-bold text-dark text-decoration-none ms-4">
-            <img src="assets/logo.png" alt="Logo" style="height: 40px;">
+            <img src="../../assets/logo.png" alt="Logo" style="height: 40px;">
         </a>
 
         <!-- Search Bar -->
@@ -38,13 +38,13 @@
                 <i class="bi bi-search"></i>
             </button>
 
-            <!-- Username -->
+            <!-- Username  -->
             <span class="me-2 d-none d-lg-inline text-dark">Username</span>
             <!-- User Icon -->
             <a href="#" class="text-dark me-3"><i class="bi bi-person-circle fs-4"></i></a>
             <!-- Cart Icon -->
             <a href="#" class="text-dark me-3"><i class="bi bi-cart fs-4"></i></a>
-            <!-- Menu Button -->
+            <!-- Menu Button (Mobile) -->
             <button class="btn btn-outline-dark d-lg-none" data-bs-toggle="collapse" data-bs-target="#sidebarMenu">
                 <i class="bi bi-list"></i>
             </button>
@@ -52,20 +52,22 @@
     </div>
 </header>
 
-<!-- Delete Product by UID -->
-<div class="container d-flex justify-content-center align-items-center flex-grow-1 flex-column delete-wrapper">
+<!-- User/Admin Screen -->
+<div class="container d-flex justify-content-center align-items-center flex-grow-1 flex-column account-wrapper">
 
-    <!-- Title -->
-    <h4 class="mb-4">Zadaj UID produktu pre jeho odstránenie</h4>
-
-    <!-- UID Input -->
-    <div class="mb-3 w-100" style="max-width: 400px;">
-        <input type="text" class="form-control form-control-lg text-center" placeholder="UID">
+    <!-- User Icon -->
+    <div class="text-center mb-4">
+        <i class="bi bi-person-circle" style="font-size: 5rem;"></i>
     </div>
 
-    <!-- Delete Button -->
-    <button class="btn btn-danger px-4 py-2">Odstrániť produkt</button>
+    <!-- Admin Buttons -->
+    <div class="d-flex flex-column align-items-center mb-3">
+        <button class="btn btn-primary mb-2">Pridať produkt</button>
+        <button class="btn btn-primary mb-3">Odstrániť produkt</button>
+    </div>
 
+    <!-- Logout Button -->
+    <button class="btn btn-danger mb-3">Odhlásiť sa</button>
 </div>
 
 <!-- Footer -->
