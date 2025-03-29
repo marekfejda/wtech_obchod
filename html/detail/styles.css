@@ -1,3 +1,44 @@
+main {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 0;
+    margin-left: max(170px, 16.666667%);
+    padding: 2rem;
+}
+
+@media (max-width: 768px) {
+    main {
+        margin-left: 0;
+    }
+}
+
+.sidebar-category {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    font-weight: 500;
+}
+
+.sidebar-category:hover {
+    background-color: #f1f1f1;
+    text-decoration: none;
+}
+
+#sidebarMenu {
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    width: 16.666667%;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    z-index: 1040;
+    min-width: 170px;
+}
+
 #imageGallery {
     max-width: 600px;
     margin: 0 auto;
