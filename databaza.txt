@@ -1,0 +1,81 @@
+Table Products {
+  id integer [primary key]
+  name varchar
+  brand_id integer [ref: > Brands.id] //1 to n relationship
+  color_id integer [ref: > Colors.id] //1 to n relationship
+  price float
+  stockQuantity integer
+  description text
+  created_at timestamp
+}
+
+Table Brands {
+  id integer [primary key]
+  brand varchar
+}
+
+Table Colors {
+  id integer [primary key]
+  color varchar
+}
+
+Table Categories {
+  id integer [primary key]
+  category varchar
+}
+
+//n to n relationship
+Table product_categories {
+  product_id integer [ref: > Products.id]
+  category_id integer [ref: > Categories.id]
+}
+
+Table Images {
+  id integer [primary key]
+  path varchar
+}
+
+//n to n relationship
+Table product_images {
+  product_id integer [ref: > Products.id]
+  image_id integer [ref: > Images.id]
+}
+
+Table Users {
+  id integer [primary key]
+  username varchar
+  role varchar
+  email varchar
+  password varchar
+  created_at timestamp
+}
+
+Table Orders {
+  id integer [primary key]
+  user_id integer [ref: > Users.id] //1 to n relationship
+  name_surname varchar
+  address_streetnumber varchar
+  PSC varchar
+  city_country varchar
+  phone_number varchar
+  email varchar
+  payment_type varchar
+  card_number integer
+  exp_date date
+  cvc varchar
+  card_holder varchar
+  created_at timestamp
+}
+
+//n to n relationship
+Table order_products {
+  order_id integer [ref: > Orders.id]
+  product_id integer [ref: > Products.id]
+  amount integer
+}
+
+Table CartItems  {
+  user_id integer [ref: > Users.id] //1 to n relationship
+  product_id integer
+  amount integer
+}
