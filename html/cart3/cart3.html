@@ -21,8 +21,8 @@
             </a>
 
             <form id="searchForm" class="d-flex flex-grow-1 mx-3 w-100 d-none d-sm-flex" style="max-width: 600px;">
-                <input id="searchInput" class="form-control me-2" type="search" placeholder="Search">
-                <button id="searchButton" class="btn btn-primary d-sm-block d-none" type="submit">Search</button>
+                <input id="searchInput" class="form-control me-2 rounded-pill" type="search" placeholder="Search">
+                <button id="searchButton" class="btn btn-primary d-sm-block d-none rounded-pill" type="submit">Search</button>
             </form>
             <div class="d-flex align-items-center">
                 <button id="searchToggle" class="btn d-block d-sm-none me-3">
@@ -73,25 +73,25 @@
             <div class="row mt-4">
                 <!-- PLATBA KARTOU -->
                 <div class="col-12 col-md-6">
-                    <div class="bg-light p-3 rounded element-shadow">
+                    <div class="bg-light p-3 rounded-4 element-shadow">
                         <h4>Platobná karta</h4>
                         <form>
                             <div class="mb-3">
                                 <label for="cardNumber" class="form-label">Číslo karty</label>
-                                <input type="text" class="form-control" id="cardNumber"
+                                <input type="text" class="form-control rounded-pill" id="cardNumber"
                                     placeholder="1234 5678 9876 5432" required>
                             </div>
                             <div class="mb-3">
                                 <label for="expiryDate" class="form-label">Dátum expirácie (MM/YY)</label>
-                                <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY"
+                                <input type="text" class="form-control rounded-pill" id="expiryDate" placeholder="MM/YY"
                                     maxlength="5" required>
                             </div>
                             <div class="mb-3">
                                 <label for="cvv" class="form-label">CVV</label>
-                                <input type="text" class="form-control" id="cvv" placeholder="123" required>
+                                <input type="text" class="form-control rounded-pill" id="cvv" placeholder="123" required>
                             </div>
                             <div class="text-center">
-                                <button type="button" class="btn btn-success"
+                                <button type="button" class="btn btn-success rounded-pill"
                                     onclick="window.location.href='cart4.html'">Zaplatiť kartou</button>
                             </div>
                         </form>
@@ -100,12 +100,12 @@
 
                 <!-- PLATBA CASH -->
                 <div class="col-12 col-md-6 mt-4 mt-md-0">
-                    <div class="bg-light p-3 rounded element-shadow">
+                    <div class="bg-light p-3 rounded-4 element-shadow">
                         <h4>Hotovosť pri doručení</h4>
                         <p class="mt-4">Ak uprednostňujete platbu v hotovosti, môžete si zvoliť túto možnosť. Uistite
                             sa, že pri doručení produktu máte presnú sumu.</p>
                         <div class="text-center">
-                            <button type="button" class="btn btn-success mt-4"
+                            <button type="button" class="btn btn-success mt-4 rounded-pill"
                                 onclick="window.location.href='cart4.html'">Zaplatiť pri doručení</button>
                         </div>
                     </div>
@@ -119,10 +119,10 @@
     <!-- Cart Summary -->
     <div class="cart-summary">
         <div class="container">
-            <div class="row bg-light p-3 align-items-center rounded element-shadow">
+            <div class="row bg-light p-3 align-items-center rounded element-shadow rounded-pill">
                 <!-- Back Button -->
                 <div class="col-3 text-start">
-                    <a href="../cart2/cart2.html" class="btn btn-outline-secondary w-50">Back</a>
+                    <a href="../cart2/cart2.html" class="btn btn-outline-secondary w-50 rounded-pill">Back</a>
                 </div>
 
                 <!-- Cart Total -->

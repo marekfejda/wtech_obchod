@@ -21,8 +21,8 @@
 			</a>
 
 			<form id="searchForm" class="d-flex flex-grow-1 mx-3 w-100 d-none d-sm-flex" style="max-width: 600px;">
-				<input id="searchInput" class="form-control me-2" type="search" placeholder="Search">
-				<button id="searchButton" class="btn btn-primary d-sm-block d-none" type="submit">Search</button>
+				<input id="searchInput" class="form-control me-2 rounded-pill" type="search" placeholder="Search">
+				<button id="searchButton" class="btn btn-primary d-sm-block d-none rounded-pill" type="submit">Search</button>
 			</form>
 			<div class="d-flex align-items-center">
 				<button id="searchToggle" class="btn d-block d-sm-none me-3">
@@ -42,14 +42,14 @@
 		<form class="row g-4" enctype="multipart/form-data">
 			<!-- Left Column -->
 			<div class="col-md-6">
-				<input type="text" class="form-control mb-3" placeholder="Meno produktu">
-				<textarea class="form-control" rows="6" placeholder="Popis produktu"></textarea>
+				<input type="text" class="form-control mb-3 rounded-pill" placeholder="Meno produktu">
+				<textarea class="form-control rounded-4" rows="6" placeholder="Popis produktu"></textarea>
 			</div>
 
 			<!-- Right Column -->
 			<div class="col-md-6">
 				<!-- Dropdowns -->
-				<select class="form-select mb-3">
+				<select class="form-select mb-3 rounded-pill">
 					<option selected disabled>Kategória</option>
 					<option value="notebook">Notebook</option>
 					<option value="telefon">Telefón</option>
@@ -57,7 +57,7 @@
 					<option value="prislusenstvo">Príslušenstvo</option>
 				</select>
 
-				<select class="form-select mb-3">
+				<select class="form-select mb-3 rounded-pill">
 					<option selected disabled>Farba</option>
 					<option value="cierna">Čierna</option>
 					<option value="biela">Biela</option>
@@ -66,7 +66,7 @@
 					<option value="zlata">Zlatá</option>
 				</select>
 
-				<select class="form-select mb-3">
+				<select class="form-select mb-3 rounded-pill">
 					<option selected disabled>Značka</option>
 					<option value="apple">Apple</option>
 					<option value="samsung">Samsung</option>
@@ -77,7 +77,7 @@
 
 				<!-- File Input -->
 				<div class="mb-3">
-					<label for="newPhotos" class="btn btn-outline-dark">Pridať nové fotky</label>
+					<label for="newPhotos" class="btn btn-outline-dark rounded-pill">Pridať nové fotky</label>
 					<input type="file" class="form-control d-none" id="newPhotos" accept="image/*" multiple>
 				</div>
 
@@ -89,7 +89,7 @@
 
 				<!-- Submit -->
 				<div class="text-end">
-					<button type="submit" class="btn btn-primary">Upraviť produkt</button>
+					<button type="submit" class="btn btn-primary rounded-pill">Upraviť produkt</button>
 				</div>
 			</div>
 		</form>

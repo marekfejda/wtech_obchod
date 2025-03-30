@@ -21,8 +21,8 @@
             </a>
 
             <form id="searchForm" class="d-flex flex-grow-1 mx-3 w-100 d-none d-sm-flex" style="max-width: 600px;">
-                <input id="searchInput" class="form-control me-2" type="search" placeholder="Search">
-                <button id="searchButton" class="btn btn-primary d-sm-block d-none" type="submit">Search</button>
+                <input id="searchInput" class="form-control me-2 rounded-pill" type="search" placeholder="Search">
+                <button id="searchButton" class="btn btn-primary d-sm-block d-none rounded-pill" type="submit">Search</button>
             </form>
             <div class="d-flex align-items-center">
                 <button id="searchToggle" class="btn d-block d-sm-none me-3">
@@ -44,27 +44,27 @@
         <nav id="sidebarMenu" class="col-lg-2 bg-light collapse d-md-block p-3">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link sidebar-category text-dark" href="../category/category.html">
+                    <a class="nav-link sidebar-category text-dark rounded-pill" href="../category/category.html">
                         <i class="bi bi-laptop"></i> Kategoria 1
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link sidebar-category text-dark" href="../category/category.html">
+                    <a class="nav-link sidebar-category text-dark rounded-pill" href="../category/category.html">
                         <i class="bi bi-phone"></i> Kategoria 2
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link sidebar-category text-dark" href="../category/category.html">
+                    <a class="nav-link sidebar-category text-dark rounded-pill" href="../category/category.html">
                         <i class="bi bi-headphones"></i> Kategoria 3
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link sidebar-category text-dark" href="../category/category.html">
+                    <a class="nav-link sidebar-category text-dark rounded-pill" href="../category/category.html">
                         <i class="bi bi-tv"></i> Kategoria 4
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link sidebar-category text-dark" href="../category/category.html">
+                    <a class="nav-link sidebar-category text-dark rounded-pill" href="../category/category.html">
                         <i class="bi bi-usb-symbol"></i> Kategoria 5
                     </a>
                 </li>
@@ -74,22 +74,22 @@
         <!-- Main content -->
         <main class="col-lg-10 p-4 flex-grow-1">
             <!-- Filters -->
-            <div class="d-flex flex-wrap align-items-end gap-3 mb-4">
+            <div class="d-flex flex-wrap align-items-end responsive-gap mb-4">
 
                 <!-- Cena (from-to in one input group) -->
                 <div>
                     <label for="priceRange" class="form-label">Cena</label>
                     <div class="input-group">
-                        <input type="number" class="form-control" placeholder="od" id="priceFrom" min="0">
-                        <span class="input-group-text">-</span>
-                        <input type="number" class="form-control" placeholder="do" id="priceTo" min="0">
+                        <input type="number" class="form-control rounded-pill" placeholder="od" id="priceFrom" min="0">
+                        <span class="input-group-text border-0 bg-transparent rounded-pill">-</span>
+                        <input type="number" class="form-control rounded-pill" placeholder="do" id="priceTo" min="0">
                     </div>
                 </div>
 
                 <!-- Farba dropdown -->
                 <div class="dropdown">
                     <label class="form-label d-block">Farba</label>
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    <button class="btn btn-outline-secondary dropdown-toggle rounded-pill" type="button" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside">
                         Vyber farby
                     </button>
@@ -104,7 +104,7 @@
                 <!-- Značka dropdown -->
                 <div class="dropdown">
                     <label class="form-label d-block">Značka</label>
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    <button class="btn btn-outline-secondary dropdown-toggle rounded-pill" type="button" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside">
                         Vyber značky
                     </button>
@@ -127,7 +127,7 @@
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
                     <a href="../detail/detail.html" class="text-decoration-none">
-                        <div class="card product-card h-100 p-3 border rounded d-flex flex-column flex-md-row"
+                        <div class="card product-card h-100 p-3 border rounded-4 d-flex flex-column flex-md-row"
                             style="min-height: 250px; max-width: 380px; width: 100%; cursor: pointer;">
                             <!-- Left: Image + Price -->
                             <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
@@ -152,7 +152,7 @@
 
                 <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
                     <a href="../detail/detail.html" class="text-decoration-none">
-                        <div class="card product-card h-100 p-3 border rounded d-flex flex-column flex-md-row"
+                        <div class="card product-card h-100 p-3 border rounded-4 d-flex flex-column flex-md-row"
                             style="min-height: 250px; max-width: 380px; width: 100%; cursor: pointer;">
                             <!-- Left: Image + Price -->
                             <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
@@ -177,7 +177,7 @@
 
                 <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
                     <a href="../detail/detail.html" class="text-decoration-none">
-                        <div class="card product-card h-100 p-3 border rounded d-flex flex-column flex-md-row"
+                        <div class="card product-card h-100 p-3 border rounded-4 d-flex flex-column flex-md-row"
                             style="min-height: 250px; max-width: 380px; width: 100%; cursor: pointer;">
                             <!-- Left: Image + Price -->
                             <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
@@ -202,7 +202,7 @@
 
                 <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
                     <a href="../detail/detail.html" class="text-decoration-none">
-                        <div class="card product-card h-100 p-3 border rounded d-flex flex-column flex-md-row"
+                        <div class="card product-card h-100 p-3 border rounded-4 d-flex flex-column flex-md-row"
                             style="min-height: 250px; max-width: 380px; width: 100%; cursor: pointer;">
                             <!-- Left: Image + Price -->
                             <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
@@ -227,7 +227,7 @@
 
                 <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
                     <a href="../detail/detail.html" class="text-decoration-none">
-                        <div class="card product-card h-100 p-3 border rounded d-flex flex-column flex-md-row"
+                        <div class="card product-card h-100 p-3 border rounded-4 d-flex flex-column flex-md-row"
                             style="min-height: 250px; max-width: 380px; width: 100%; cursor: pointer;">
                             <!-- Left: Image + Price -->
                             <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
@@ -252,7 +252,7 @@
 
                 <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
                     <a href="../detail/detail.html" class="text-decoration-none">
-                        <div class="card product-card h-100 p-3 border rounded d-flex flex-column flex-md-row"
+                        <div class="card product-card h-100 p-3 border rounded-4 d-flex flex-column flex-md-row"
                             style="min-height: 250px; max-width: 380px; width: 100%; cursor: pointer;">
                             <!-- Left: Image + Price -->
                             <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
@@ -277,7 +277,7 @@
 
                 <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
                     <a href="../detail/detail.html" class="text-decoration-none">
-                        <div class="card product-card h-100 p-3 border rounded d-flex flex-column flex-md-row"
+                        <div class="card product-card h-100 p-3 border rounded-4 d-flex flex-column flex-md-row"
                             style="min-height: 250px; max-width: 380px; width: 100%; cursor: pointer;">
                             <!-- Left: Image + Price -->
                             <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
@@ -302,7 +302,7 @@
 
                 <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
                     <a href="../detail/detail.html" class="text-decoration-none">
-                        <div class="card product-card h-100 p-3 border rounded d-flex flex-column flex-md-row"
+                        <div class="card product-card h-100 p-3 border rounded-4 d-flex flex-column flex-md-row"
                             style="min-height: 250px; max-width: 380px; width: 100%; cursor: pointer;">
                             <!-- Left: Image + Price -->
                             <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">

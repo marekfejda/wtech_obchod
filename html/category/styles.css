@@ -9,9 +9,17 @@ main {
     padding: 2rem;
 }
 
+.responsive-gap {
+    gap: 1rem;
+}
+
 @media (max-width: 768px) {
     main {
         margin-left: 0;
+    }
+
+    .responsive-gap {
+        gap: 0.25rem;
     }
 }
 
