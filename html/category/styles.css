@@ -13,6 +13,11 @@ main {
     gap: 1rem;
 }
 
+.responsive-pagination .page-link {
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+}
+
 @media (max-width: 768px) {
     main {
         margin-left: 0;
@@ -20,6 +25,11 @@ main {
 
     .responsive-gap {
         gap: 0.25rem;
+    }
+
+    .responsive-pagination .page-link {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
     }
 }
 
