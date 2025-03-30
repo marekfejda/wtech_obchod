@@ -1,7 +1,3 @@
-.delete-wrapper {
-    transform: translateY(-10vh);
-}
-
 .toast-message {
     max-height: 30px;
     overflow: hidden;
