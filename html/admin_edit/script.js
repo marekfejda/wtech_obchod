@@ -2,7 +2,6 @@ const input = document.getElementById('productPhotos');
 const previewContainer = document.getElementById('previewContainer');
 let selectedFiles = [
     { _id: crypto.randomUUID(), url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/IPhone_X_vector.svg/800px-IPhone_X_vector.svg.png' },
-    { _id: crypto.randomUUID(), url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Billie_Eilish_at_Icebox.png/1046px-Billie_Eilish_at_Icebox.png' }
 ];
 
 function createPreview(file) {

@@ -90,3 +90,11 @@ footer {
 .text-container {
     text-align: center;
 }
+
+.product-card .card-title {
+    color: #45503B;
+}
+
+.product-card .card-text {
+    color: #45503B;
+}

@@ -83,7 +83,7 @@ footer {
 }
 
 .carousel-indicators .active {
-    background-color: #00000064;
+    background-color: #45503B64;
 }
 
 .carousel-indicators button:not(.active) {
@@ -96,4 +96,18 @@ footer {
 
 .product-text {
     text-align: justify;
+}
+
+.button_color {
+    background-color: #45503B; 
+    border-color: #45503B;
+}
+
+.button_color:hover {
+    background-color: #36412E;
+    border-color: #36412E;
+}
+
+.text-color{
+    color: #45503B;
 }

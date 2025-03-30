@@ -9,12 +9,12 @@
 }
 
 .step.active {
-    background-color: #007bff;
+    background-color: #45503B;
     color: white;
 }
 
 .progress-bar {
-    background-color: #007bff;
+    background-color: #45503B;
 }
 
 .element-shadow {
@@ -36,4 +36,14 @@
 .cart-summary {
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.button_color {
+    background-color: #45503B; 
+    border-color: #45503B;
+}
+
+.button_color:hover {
+    background-color: #36412E;
+    border-color: #36412E;
 }

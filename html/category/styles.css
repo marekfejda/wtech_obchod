@@ -75,3 +75,29 @@ footer {
 .product-card:hover img {
     transform: scale(1.05);
 }
+
+.text-color {
+    color: #45503B;
+}
+
+.button_color:hover {
+    background-color: #36412E;
+    border-color: #36412E;
+}
+
+.pagination .page-link {
+    color: #45503B;
+    background-color: #F0F0F0;
+    border-color: #45503B;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #45503B;
+    color: white;
+    border-color: #45503B;
+}
+
+.pagination .page-item:hover .page-link {
+    background-color: #DBD9DB;
+    color: #45503B;
+}
