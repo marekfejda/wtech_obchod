@@ -1,84 +1,105 @@
-const newPhotosInput = document.getElementById('newPhotos');
-const newPreviewContainer = document.getElementById('newPreviewContainer');
-const existingImagesContainer = document.getElementById('existingImages');
+const input = document.getElementById('productPhotos');
+const previewContainer = document.getElementById('previewContainer');
+let selectedFiles = [
+    { _id: crypto.randomUUID(), url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/IPhone_X_vector.svg/800px-IPhone_X_vector.svg.png' },
+    { _id: crypto.randomUUID(), url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Billie_Eilish_at_Icebox.png/1046px-Billie_Eilish_at_Icebox.png' }
+];
 
-let newSelectedFiles = [];
-let existingImages = [];
+function createPreview(file) {
+    const id = crypto.randomUUID();
+    file._id = id;
 
-function createImagePreview(src, container, onRemove) {
-	const wrapper = document.createElement('div');
-	wrapper.classList.add('position-relative');
-	wrapper.style.width = '80px';
-	wrapper.style.height = '80px';
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('position-relative');
+        wrapper.style.width = '80px';
+        wrapper.style.height = '80px';
 
-	const img = document.createElement('img');
-	img.src = src;
-	img.classList.add('rounded');
-	img.style.width = '100%';
-	img.style.height = '100%';
-	img.style.objectFit = 'cover';
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.classList.add('rounded');
+        img.style.height = '100%';
+        img.style.width = '100%';
+        img.style.objectFit = 'contain';
 
-	const removeBtn = document.createElement('button');
-	removeBtn.innerText = 'X';
-	removeBtn.className = 'btn btn-sm btn-danger';
-	removeBtn.style.position = 'absolute';
-	removeBtn.style.top = '4px';
-	removeBtn.style.right = '4px';
-	removeBtn.style.padding = '2px 6px';
-	removeBtn.style.fontSize = '0.6rem';
-	removeBtn.style.borderRadius = '4px';
-	removeBtn.style.lineHeight = '1';
-	removeBtn.style.zIndex = '10';
+        const removeBtn = document.createElement('button');
+        removeBtn.innerText = 'x';
+        removeBtn.className = 'btn btn-sm btn-danger';
+        removeBtn.style.position = 'absolute';
+        removeBtn.style.top = '4px';
+        removeBtn.style.right = '4px';
+        removeBtn.style.padding = '2px 6px';
+        removeBtn.style.fontSize = '0.6rem';
+        removeBtn.style.lineHeight = '1';
+        removeBtn.style.zIndex = '1';
 
-	removeBtn.onclick = () => {
-		onRemove(wrapper);
-	};
+        removeBtn.onclick = () => {
+            selectedFiles = selectedFiles.filter(f => f._id !== id);
+            wrapper.remove();
+        };
 
-	wrapper.appendChild(img);
-	wrapper.appendChild(removeBtn);
-	container.appendChild(wrapper);
+        wrapper.appendChild(img);
+        wrapper.appendChild(removeBtn);
+        previewContainer.appendChild(wrapper);
+    };
+    reader.readAsDataURL(file);
 }
 
-function addNewPreviews(files) {
-	files.forEach(file => {
-		const id = crypto.randomUUID();
-		file._id = id;
-		const reader = new FileReader();
-		reader.onload = function (e) {
-			createImagePreview(e.target.result, newPreviewContainer, (wrapper) => {
-				newSelectedFiles = newSelectedFiles.filter(f => f._id !== id);
-				wrapper.remove();
-			});
-		};
-		reader.readAsDataURL(file);
-	});
-}
-
-newPhotosInput.addEventListener('change', () => {
-	const files = Array.from(newPhotosInput.files);
-	newSelectedFiles.push(...files);
-	addNewPreviews(files);
-	newPhotosInput.value = '';
+input.addEventListener('change', () => {
+    const files = Array.from(input.files);
+    files.forEach(file => {
+        selectedFiles.push(file);
+        createPreview(file);
+    });
+    // Clear the input value to allow re-uploading the same file
+    input.value = '';
 });
 
-function loadExistingImages() {
-	// Clear only once
-	existingImagesContainer.innerHTML = '';
-	existingImages.forEach((src, index) => {
-		const id = `existing-${index}-${Date.now()}`;
-		createImagePreview(src, existingImagesContainer, (wrapper) => {
-			existingImages = existingImages.filter((_, i) => i !== index);
-			wrapper.remove();
-		});
-	});
+function loadExistingImages(file) {
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('position-relative');
+    wrapper.style.width = '80px';
+    wrapper.style.height = '80px';
+
+    const img = document.createElement('img');
+    img.src = file.url;
+    img.classList.add('rounded');
+    img.style.height = '100%';
+    img.style.width = '100%';
+    img.style.objectFit = 'cover';
+
+    const removeBtn = document.createElement('button');
+    removeBtn.innerText = 'x';
+    removeBtn.className = 'btn btn-sm btn-danger';
+    removeBtn.style.position = 'absolute';
+    removeBtn.style.top = '4px';
+    removeBtn.style.right = '4px';
+    removeBtn.style.padding = '2px 6px';
+    removeBtn.style.fontSize = '0.6rem';
+    removeBtn.style.lineHeight = '1';
+    removeBtn.style.zIndex = '1';
+
+    removeBtn.onclick = () => {
+        selectedFiles = selectedFiles.filter(f => f._id !== file._id);
+        wrapper.remove();
+    };
+
+    wrapper.appendChild(img);
+    wrapper.appendChild(removeBtn);
+    previewContainer.appendChild(wrapper);
 }
 
 // Simulated load (replace later with real image URLs)
 document.addEventListener("DOMContentLoaded", () => {
 	// Simulated DB values:
-	existingImages = [];
-	loadExistingImages();
+    selectedFiles.forEach(file => {
+        loadExistingImages(file);
+    });
 });
+
+
+
 
 //header logic
 let logo = document.getElementById("logo");
@@ -106,7 +127,6 @@ document.addEventListener("click", function (event) {
         }
     }
 });
-
 
 // Function to restore default layout on resize above 576px 
 window.addEventListener("resize", function () {

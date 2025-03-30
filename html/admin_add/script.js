@@ -18,7 +18,7 @@ function createPreview(file) {
         img.classList.add('rounded');
         img.style.height = '100%';
         img.style.width = '100%';
-        img.style.objectFit = 'cover';
+        img.style.objectFit = 'contain';
 
         const removeBtn = document.createElement('button');
         removeBtn.innerText = 'x';
@@ -28,9 +28,8 @@ function createPreview(file) {
         removeBtn.style.right = '4px';
         removeBtn.style.padding = '2px 6px';
         removeBtn.style.fontSize = '0.6rem';
-        removeBtn.style.borderRadius = '4px';
         removeBtn.style.lineHeight = '1';
-        removeBtn.style.zIndex = '10';
+        removeBtn.style.zIndex = '1';
 
         removeBtn.onclick = () => {
             selectedFiles = selectedFiles.filter(f => f._id !== id);
@@ -50,6 +49,7 @@ input.addEventListener('change', () => {
         selectedFiles.push(file);
         createPreview(file);
     });
+    // Clear the input value to allow re-uploading the same file
     input.value = '';
 });
 
