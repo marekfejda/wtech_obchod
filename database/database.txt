@@ -5,6 +5,7 @@ Table Products {
   color_id integer [ref: > Colors.id] //1 to n relationship
   price float
   stockQuantity integer
+  short_description text
   description text
   created_at timestamp
 }
@@ -31,14 +32,14 @@ Table product_categories {
 }
 
 Table Images {
-  id integer [primary key]
+  uid integer [primary key]
   path varchar
 }
 
 //n to n relationship
 Table product_images {
   product_id integer [ref: > Products.id]
-  image_id integer [ref: > Images.id]
+  image_id integer [ref: > Images.uid]
 }
 
 Table Users {
