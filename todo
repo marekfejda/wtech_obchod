@@ -1,5 +1,4 @@
-VYMAZAT product M:M - staci priamo..
-to iste asi brand, color, aj categoeryu
-
+VYMAZAT product M:M category
+-udpate OBRAZOK Databazy
 
 vymazat cartItems a pridat "stav" (kosik/ordered) do orders
