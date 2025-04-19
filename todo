@@ -2,3 +2,5 @@ VYMAZAT product M:M category
 -udpate OBRAZOK Databazy
 
 vymazat cartItems a pridat "stav" (kosik/ordered) do orders
+
+skratit "short description" v produktoch - spravime ked budeme mat hotove dynamicke doplnenie do HTML
