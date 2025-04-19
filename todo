@@ -1,13 +1,5 @@
-Brano
-menu a vyhladavanie nefunguje na ostatnych kartach - hotovo
-mozno iny banner - hotovo
-nech si da prec scripty prec - hotovo
-pridat ciselnik stranok - hotovo
-pridat do DB - popis produktu kratky - 10 slov - hotovo
+VYMAZAT product M:M - staci priamo..
+to iste asi brand, color, aj categoeryu
 
-Marek
-nahodit farby DONE
-prekliky - login + register (+ skontrolovat ci sa da dostat k ostatnym strankam vsetkym) DONE
-upravit detail a cart mnozstvo label DONE
-new banner DONE kinda
-odstranit menu button z kariet kde nejsu kategorie DONE
+
+vymazat cartItems a pridat "stav" (kosik/ordered) do orders
