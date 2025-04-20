@@ -37,12 +37,16 @@
                     <div id="imageGallery" class="carousel slide" style="max-width: 550px; margin: 0 auto;">
                         <!-- Indicators -->
                         <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#imageGallery" data-bs-slide-to="0"
-                                class="active"></button>
-                            <button type="button" data-bs-target="#imageGallery" data-bs-slide-to="1"></button>
-                            <button type="button" data-bs-target="#imageGallery" data-bs-slide-to="2"></button>
-                            <button type="button" data-bs-target="#imageGallery" data-bs-slide-to="3"></button>
-                            <button type="button" data-bs-target="#imageGallery" data-bs-slide-to="4"></button>
+                            @foreach ($product->images as $index => $image)
+                                <button
+                                    type="button"
+                                    data-bs-target="#imageGallery"
+                                    data-bs-slide-to="{{ $index }}"
+                                    class="{{ $index === 0 ? 'active' : '' }}"
+                                    aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                                    aria-label="Slide {{ $index + 1 }}">
+                                </button>
+                            @endforeach
                         </div>
 
                         <div class="carousel-inner ratio ratio-1x1 bg-white">
@@ -102,7 +106,7 @@
                             @if ($user && $user->role === 'admin')
                                     <span class="ms-2 product-uid"
                                         style="opacity: 0.4; font-size: 0.8rem; color: #6c757d;">{{ $product->id }}</span>
-                                        
+
                                     <button class="btn btn-outline-secondary"
                                         style="opacity: 0.4; border: none; background: none;">
                                         <i class="bi bi-pencil" style="font-size: 1.2rem; color: #6c757d;"></i>
