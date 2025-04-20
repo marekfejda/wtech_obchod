@@ -22,7 +22,7 @@
                     <li class="nav-item">
                         <a class="nav-link sidebar-category rounded-pill" style="color: #45503B;"
                             href="{{ route('category', $category->id) }}">
-                            <i class="bi bi-box"></i> {{ $category->category }}
+                            <i class="bi bi-{{ $category->icon }}"></i> {{ $category->category }}
                         </a>
                     </li>
                 @endforeach
