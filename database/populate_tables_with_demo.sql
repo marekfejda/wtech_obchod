@@ -3,11 +3,11 @@ INSERT INTO Brands (brand) VALUES
   ('Marshall'),
   ('JBL');
 
-INSERT INTO Categories (category) VALUES
-  ('iPhone'),
-  ('Macbook'),
-  ('iPad'),
-  ('Audio');
+INSERT INTO Categories (category, icon_path) VALUES
+  ('iPhone', 'assets/categories_icons/1.png'),
+  ('Macbook', 'assets/categories_icons/2.png'),
+  ('iPad', 'assets/categories_icons/3.png'),
+  ('Audio', 'assets/categories_icons/4.png');
 
 INSERT INTO Colors (color) VALUES
   ('Black'),
@@ -34,8 +34,8 @@ INSERT INTO Products (name, brand_id, category_id, color_id, price, stockQuantit
   ('iPhone 15 Green', 1, 1, 4, 899.99, 99, 'Mobilný telefón - 6,1" Super Retina XDR OLED 2556 x 1179, operačná pamäť 6 GB, vnútorná pamäť 256 GB', 'Mobilný telefón - 6,1" Super Retina XDR OLED 2556 x 1179, operačná pamäť 6 GB, vnútorná pamäť 256 GB, single SIM + eSIM, procesor Apple A16 Bionic, fotoaparát: 48 Mpx (f/1,6) hlavný + 12 Mpx širokouhlý, predná kamera 12 Mpx, GPS, NFC, LTE, 5G, USB-C, vodoodolný podľa IP68, rýchle nabíjanie 20 W, bezdrôtové nabíjanie 15 W, model 2023, iOS'),
   ('iPhone 15 Yellow', 1, 1, 7, 899.99, 99, 'Mobilný telefón - 6,1" Super Retina XDR OLED 2556 x 1179, operačná pamäť 6 GB, vnútorná pamäť 256 GB', 'Mobilný telefón - 6,1" Super Retina XDR OLED 2556 x 1179, operačná pamäť 6 GB, vnútorná pamäť 256 GB, single SIM + eSIM, procesor Apple A16 Bionic, fotoaparát: 48 Mpx (f/1,6) hlavný + 12 Mpx širokouhlý, predná kamera 12 Mpx, GPS, NFC, LTE, 5G, USB-C, vodoodolný podľa IP68, rýchle nabíjanie 20 W, bezdrôtové nabíjanie 15 W, model 2023, iOS'),
   -- iPhone 15 Pro
-  ('iPhone 15 Pro Natural Titanium', 1, 8, 1099.99, 99, 'Mobilný telefón - 6,1" Super Retina XDR OLED 2556 x 1179 (120Hz), operačná pamäť 8 GB, vnútorná pamäť 128 GB, single SIM + eSIM', 'Mobilný telefón - 6,1" Super Retina XDR OLED 2556 x 1179 (120Hz), operačná pamäť 8 GB, vnútorná pamäť 128 GB, single SIM + eSIM, procesor Apple A17 Pro, fotoaparát: 48Mpx (f/1,8) hlavný + 12Mpx širokouhlý + 12Mpx teleobjektív, predná kamera 12Mpx, GPS, NFC, LTE, 5G, USB-C, vodoodolný podľa IP68, rýchle nabíjanie, bezdrôtové nabíjanie 15W, model 2023, iOS'),
-  ('iPhone 15 Pro Blue Titanium', 1, 3, 1099.99, 99, 'Mobilný telefón - 6,1" Super Retina XDR OLED 2556 x 1179 (120Hz), operačná pamäť 8 GB, vnútorná pamäť 128 GB, single SIM + eSIM', 'Mobilný telefón - 6,1" Super Retina XDR OLED 2556 x 1179 (120Hz), operačná pamäť 8 GB, vnútorná pamäť 128 GB, single SIM + eSIM, procesor Apple A17 Pro, fotoaparát: 48Mpx (f/1,8) hlavný + 12Mpx širokouhlý + 12Mpx teleobjektív, predná kamera 12Mpx, GPS, NFC, LTE, 5G, USB-C, vodoodolný podľa IP68, rýchle nabíjanie, bezdrôtové nabíjanie 15W, model 2023, iOS'),
+  ('iPhone 15 Pro Natural Titanium', 1, 1, 8, 1099.99, 99, 'Mobilný telefón - 6,1" Super Retina XDR OLED 2556 x 1179 (120Hz), operačná pamäť 8 GB, vnútorná pamäť 128 GB, single SIM + eSIM', 'Mobilný telefón - 6,1" Super Retina XDR OLED 2556 x 1179 (120Hz), operačná pamäť 8 GB, vnútorná pamäť 128 GB, single SIM + eSIM, procesor Apple A17 Pro, fotoaparát: 48Mpx (f/1,8) hlavný + 12Mpx širokouhlý + 12Mpx teleobjektív, predná kamera 12Mpx, GPS, NFC, LTE, 5G, USB-C, vodoodolný podľa IP68, rýchle nabíjanie, bezdrôtové nabíjanie 15W, model 2023, iOS'),
+  ('iPhone 15 Pro Blue Titanium', 1, 1, 3, 1099.99, 99, 'Mobilný telefón - 6,1" Super Retina XDR OLED 2556 x 1179 (120Hz), operačná pamäť 8 GB, vnútorná pamäť 128 GB, single SIM + eSIM', 'Mobilný telefón - 6,1" Super Retina XDR OLED 2556 x 1179 (120Hz), operačná pamäť 8 GB, vnútorná pamäť 128 GB, single SIM + eSIM, procesor Apple A17 Pro, fotoaparát: 48Mpx (f/1,8) hlavný + 12Mpx širokouhlý + 12Mpx teleobjektív, predná kamera 12Mpx, GPS, NFC, LTE, 5G, USB-C, vodoodolný podľa IP68, rýchle nabíjanie, bezdrôtové nabíjanie 15W, model 2023, iOS'),
   -- iPhone 16
   ('iPhone 16 Black', 1, 1, 1, 999.99, 99, 'Mobilný telefón - 6,1" Super Retina XDR OLED 2556 x 1179, operačná pamäť 8 GB, vnútorná pamäť 128 GB, single SIM + eSIM', 'Mobilný telefón - 6,1" Super Retina XDR OLED 2556 x 1179, operačná pamäť 8 GB, vnútorná pamäť 128 GB, single SIM + eSIM, procesor Apple A18 Bionic, fotoaparát: 48 Mpx (f/1,6) hlavný + 12 Mpx širokouhlý, GPS, NFC, LTE, 5G, USB-C, vodoodolný podľa IP68, rýchle nabíjanie, bezdrôtové nabíjanie 15 W, batéria 3561 mAh, model 2024, iOS'),
   ('iPhone 16 White', 1, 1, 2, 999.99, 99, 'Mobilný telefón - 6,1" Super Retina XDR OLED 2556 x 1179, operačná pamäť 8 GB, vnútorná pamäť 128 GB, single SIM + eSIM', 'Mobilný telefón - 6,1" Super Retina XDR OLED 2556 x 1179, operačná pamäť 8 GB, vnútorná pamäť 128 GB, single SIM + eSIM, procesor Apple A18 Bionic, fotoaparát: 48 Mpx (f/1,6) hlavný + 12 Mpx širokouhlý, GPS, NFC, LTE, 5G, USB-C, vodoodolný podľa IP68, rýchle nabíjanie, bezdrôtové nabíjanie 15 W, batéria 3561 mAh, model 2024, iOS'),

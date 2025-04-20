@@ -10,7 +10,8 @@ CREATE TABLE colors (
 
 CREATE TABLE categories (
   id SERIAL PRIMARY KEY,
-  category VARCHAR NOT NULL
+  category VARCHAR NOT NULL,
+  icon_path VARCHAR NOT NULL
 );
 
 CREATE TABLE products (
