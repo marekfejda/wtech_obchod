@@ -1,0 +1,156 @@
+@extends('layouts.app')
+
+@section('title', 'iSHOP - Košík')
+
+@section('page-css')
+    <link rel="stylesheet" href="{{ asset('pages/cart1/styles.css') }}">
+@endsection
+
+@section('content')
+    <!-- Progress Bar -->
+    <div class="container my-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="step active">1</div>
+            <div class="progress flex-grow-1 mx-2" style="height: 6px;">
+                <div class="progress-bar" style="width: 0%;"></div>
+            </div>
+            <div class="step">2</div>
+            <div class="progress flex-grow-1 mx-2" style="height: 6px;">
+                <div class="progress-bar" style="width: 0;"></div>
+            </div>
+            <div class="step">3</div>
+        </div>
+        <div class="d-flex justify-content-between mt-2">
+            <span><b>Summary</b></span>
+            <span>Shipping</span>
+            <span>Payment</span>
+        </div>
+    </div>
+
+
+    <!-- Main content -->
+    <main class="flex-grow-1">
+        <div class="container">
+
+            <div class="mt-5"></div>
+
+
+
+            <!-- Product 1-->
+            <div class="row bg-light p-3 align-items-center rounded element-shadow rounded-pill">
+                <!-- Product Image -->
+                <div class="col-2">
+                    <a href="www.odkazNaProdukt.sk" target="_blank">
+                        <img src="../../assets/iphone/iphone_black.webp" class="product-image" alt="Product Image">
+                    </a>
+                </div>
+
+                <!-- Product Details -->
+                <div class="col-6">
+                    <a href="www.odkazNaProdukt.sk" target="_blank" class="fw-bold text-dark text-decoration-none">
+                        Iphone 16 black
+                    </a>
+                </div>
+
+                <!-- Quantity -->
+                <div class="col-2 text-center">
+                    <input type="number" id="quantityInput" class="form-control rounded-pill" value="1" min="1" max="99"
+                        style="width: 60px; text-align: center;">
+                </div>
+
+                <!-- Price -->
+                <div class="col-2 text-end fw-bold">
+                    18.99$
+                </div>
+            </div>
+
+
+
+            <!-- Product 2-->
+            <div class="row bg-light p-3 align-items-center rounded element-shadow mt-3 rounded-pill">
+                <!-- Product Image -->
+                <div class="col-2">
+                    <a href="www.odkazNaProdukt.sk" target="_blank">
+                        <img src="../../assets/iphone/iphone_white.webp" class="product-image" alt="Product Image">
+                    </a>
+                </div>
+
+                <!-- Product Details -->
+                <div class="col-6">
+                    <a href="www.odkazNaProdukt.sk" target="_blank" class="fw-bold text-dark text-decoration-none">
+                        Iphone 16 white
+                    </a>
+                </div>
+
+                <!-- Quantity -->
+                <div class="col-2 text-center">
+                    <input type="number" id="quantityInput" class="form-control rounded-pill" value="1" min="1" max="99"
+                        style="width: 60px; text-align: center;">
+                </div>
+
+                <!-- Price -->
+                <div class="col-2 text-end fw-bold">
+                    18.99$
+                </div>
+            </div>
+
+
+
+            <!-- Product 3-->
+            <div class="row bg-light p-3 align-items-center rounded element-shadow mt-3 rounded-pill">
+                <!-- Product Image -->
+                <div class="col-2">
+                    <a href="www.odkazNaProdukt.sk" target="_blank">
+                        <img src="../../assets/iphone/iphone_red.webp" class="product-image" alt="Product Image">
+                    </a>
+                </div>
+
+                <!-- Product Details -->
+                <div class="col-6">
+                    <a href="www.odkazNaProdukt.sk" target="_blank" class="fw-bold text-dark text-decoration-none">
+                        Iphone 16 red
+                    </a>
+                </div>
+
+                <!-- Quantity -->
+                <div class="col-2 text-center">
+                    <input type="number" id="quantityInput" class="form-control rounded-pill" value="1" min="1" max="99"
+                        style="width: 60px; text-align: center;">
+                </div>
+
+                <!-- Price -->
+                <div class="col-2 text-end fw-bold">
+                    1928.99$
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Cart Summary -->
+    <div class="cart-summary">
+        <div class="container">
+            <div class="row bg-light p-3 align-items-center rounded element-shadow rounded-pill">
+                <!-- Back Button -->
+                <div class="col-3 text-start">
+                    <a href="{{ route('index') }}" class="btn btn-outline-secondary w-50 rounded-pill">Back</a>
+                </div>
+
+                <!-- Cart Total -->
+                <div class="col-6 fw-bold text-center">
+                    Total: <span id="cartTotal">37.98$</span>
+                </div>
+
+                <!-- Next Button -->
+                <div class="col-3 text-end">
+                    <a href="{{ route('cart.2') }}" class="btn btn-primary w-75 rounded-pill button_color">Next</a>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+
+@section('page-js')
+    <script src="{{ asset('pages/cart1/scripts.js') }}"></script>
+@endsection
