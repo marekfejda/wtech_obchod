@@ -22,7 +22,7 @@ class UserController extends Controller
     {
         if ($request->isMethod('post')) {
             $user = User::where('name', $request->input('name'))
-                            ->where('password', $request->input('password')) // bez hashovania zatiaľ
+                            ->where('password', $request->input('password')) // bez hashovania
                             ->first();
 
             if ($user) {

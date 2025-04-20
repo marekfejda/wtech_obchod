@@ -25,6 +25,7 @@ Table Colors {
 Table Categories {
   id integer [primary key]
   category varchar[10]
+  icon varchar[10]
 }
 
 Table Images {

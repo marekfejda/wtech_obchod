@@ -7,7 +7,6 @@
 @endsection
 
 @section('content')
-    <!-- Content Wrapper -->
     <div class="container d-flex justify-content-center align-items-center flex-grow-1">
         <div class="w-100" style="max-width: 250px;">
             <!-- User Icon -->
@@ -15,13 +14,21 @@
                 <i class="bi bi-person-circle" style="font-size: 5rem; color: #45503B;"></i>
             </div>
 
+            @if (session('error'))
+                <div class="alert alert-danger text-center">
+                    {{ session('error') }}
+                </div>
+            @endif
+
             <!-- Login Form -->
-            <form>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+
                 <div class="mb-3">
-                    <input type="text" class="form-control rounded-pill" placeholder="User name">
+                    <input type="text" name="name" class="form-control rounded-pill" placeholder="User name" required>
                 </div>
                 <div class="mb-4">
-                    <input type="password" class="form-control rounded-pill" placeholder="Password">
+                    <input type="password" name="password" class="form-control rounded-pill" placeholder="Password" required>
                 </div>
                 <div class="d-grid mb-2">
                     <button type="submit" class="btn btn-primary rounded-pill button_color">Login</button>
