@@ -64,7 +64,7 @@ CREATE TABLE orders (
   user_id INTEGER NOT NULL REFERENCES Users(id),
   name_surname VARCHAR NOT NULL,
   address_streetnumber VARCHAR NOT NULL,
-  PSC VARCHAR NOT NULL,
+  "PSC" VARCHAR NOT NULL,
   city_country VARCHAR NOT NULL,
   phone_number VARCHAR NOT NULL,
   email VARCHAR NOT NULL,

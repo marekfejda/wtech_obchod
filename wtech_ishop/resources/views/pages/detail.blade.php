@@ -13,6 +13,14 @@
 @endsection
 
 @section('content')
+@if(session('error'))
+    <div class="alert alert-danger alert-dismissible fade show position-fixed top-10 start-50 translate-middle-x mt-3 shadow"
+         style="z-index: 1055; min-width: 300px; max-width: 90%;"
+         role="alert">
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+@endif
     <!-- Content Wrapper -->
     <div class="container-fluid flex-grow-1 d-flex">
         <!-- Sidebar -->
@@ -81,22 +89,25 @@
                         <p class="product-text text-color">{{ $product->description }}</p>
 
                         <div class="ms-3 d-flex align-items-center mt-3">
-                            <input id="quantityInput" type="number" class="form-control me-3 rounded-pill" value="1" min="1" max="{{ $product->stockquantity }}"
-                                style="width: 60px; text-align: left;">
-                                <script>
-                                    const input = document.getElementById('quantityInput');
-                                    input.addEventListener('input', function () {
-                                        const max = parseInt(input.max);
-                                        const val = parseInt(input.value);
-                                        if (val > max) {
-                                            input.value = max;
-                                        }
-                                    });
-                                </script>
+                            <form method="POST" action="{{ route('cart.add', $product->id) }}" style="display: contents;">
+                                @csrf
+                                <input  name="quantity" id="quantityInput" type="number" class="form-control me-3 rounded-pill" value="1" min="1" max="{{ $product->stockquantity }}"
+                                    style="width: 60px; text-align: left;">
+                                    <script>
+                                        const input = document.getElementById('quantityInput');
+                                        input.addEventListener('input', function () {
+                                            const max = parseInt(input.max);
+                                            const val = parseInt(input.value);
+                                            if (val > max) {
+                                                input.value = max;
+                                            }
+                                        });
+                                    </script>
 
-                            <button class="btn btn-primary rounded-pill button_color" style="min-width: 145px;">
-                                Pridať do košíka
-                            </button>
+                                <button type="submit" class="btn btn-primary rounded-pill button_color" style="min-width: 145px;">
+                                    Pridať do košíka
+                                </button>
+                            </form>
 
                             
                             @php
