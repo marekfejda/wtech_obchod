@@ -14,10 +14,22 @@
             <button id="searchToggle" class="btn d-block d-sm-none me-3">
                 <i class="bi bi-search"></i>
             </button>
-            <span class="me-2 d-none d-lg-inline" style="color: #45503B;">Username</span>
-            <a href="{{ route('login') }}" class="text-dark me-3">
+            @php
+                $user = session('user');
+            @endphp
+
+            <span class="me-2 d-none d-lg-inline" style="color: #45503B;">
+                @if ($user)
+                    {{ $user->username }}
+                @else
+                    Prihlásiť sa
+                @endif
+            </span>
+
+            <a href="{{ $user ? route('account') : route('login') }}" class="text-dark me-3">
                 <i class="bi bi-person-circle fs-4" style="color: #45503B;"></i>
             </a>
+
             <a href="{{ route('cart.1') }}" class="text-dark me-3">
                 <i class="bi bi-cart fs-4" style="color: #45503B;"></i>
             </a>
