@@ -1,14 +1,14 @@
-CREATE TABLE Brands (
+CREATE TABLE brands (
   id SERIAL PRIMARY KEY,
   brand VARCHAR NOT NULL
 );
 
-CREATE TABLE Colors (
+CREATE TABLE colors (
   id SERIAL PRIMARY KEY,
   color VARCHAR NOT NULL
 );
 
-CREATE TABLE Products (
+CREATE TABLE products (
   id SERIAL PRIMARY KEY,
   name VARCHAR NOT NULL,
   brand_id INTEGER NOT NULL REFERENCES Brands(id),
@@ -20,7 +20,7 @@ CREATE TABLE Products (
   created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
-CREATE TABLE Categories (
+CREATE TABLE categories (
   id SERIAL PRIMARY KEY,
   category VARCHAR NOT NULL
 );
@@ -31,7 +31,7 @@ CREATE TABLE Categories (
 --   PRIMARY KEY (product_id, category_id)
 -- );
 
-CREATE TABLE Images (
+CREATE TABLE images (
   uid SERIAL PRIMARY KEY,
   path VARCHAR NOT NULL
 );
@@ -42,7 +42,7 @@ CREATE TABLE product_images (
   PRIMARY KEY (product_id, image_id)
 );
 
-CREATE TABLE Users (
+CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username VARCHAR NOT NULL,
   role VARCHAR NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE Users (
   created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
-CREATE TABLE Orders (
+CREATE TABLE orders (
   id SERIAL PRIMARY KEY,
   user_id INTEGER NOT NULL REFERENCES Users(id),
   name_surname VARCHAR NOT NULL,
