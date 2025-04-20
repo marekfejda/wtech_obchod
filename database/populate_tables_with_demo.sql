@@ -3,7 +3,7 @@ INSERT INTO Brands (brand) VALUES
   ('Marshall'),
   ('JBL');
 
-INSERT INTO Categories (category, icon_path) VALUES
+INSERT INTO Categories (category, icon) VALUES
   ('iPhone', 'phone'),
   ('Macbook', 'laptop'),
   ('iPad', 'tablet'),
