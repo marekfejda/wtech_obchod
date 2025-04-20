@@ -8,28 +8,24 @@ CREATE TABLE colors (
   color VARCHAR NOT NULL
 );
 
-CREATE TABLE products (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR NOT NULL,
-  brand_id INTEGER NOT NULL REFERENCES Brands(id),
-  color_id INTEGER NOT NULL REFERENCES Colors(id),
-  price FLOAT NOT NULL,
-  stockQuantity INTEGER NOT NULL,
-  short_description TEXT,
-  description TEXT,
-  created_at TIMESTAMP NOT NULL DEFAULT NOW()
-);
-
 CREATE TABLE categories (
   id SERIAL PRIMARY KEY,
   category VARCHAR NOT NULL
 );
 
--- CREATE TABLE product_categories (
---   product_id INTEGER NOT NULL REFERENCES Products(id),
---   category_id INTEGER NOT NULL REFERENCES Categories(id),
---   PRIMARY KEY (product_id, category_id)
--- );
+CREATE TABLE products (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR NOT NULL,
+  brand_id INTEGER NOT NULL REFERENCES Brands(id),
+  category_id INTEGER NOT NULL REFERENCES Categories(id),
+  color_id INTEGER NOT NULL REFERENCES Colors(id),
+  price FLOAT NOT NULL,
+  stockQuantity INTEGER NOT NULL,
+  short_description TEXT,
+  description TEXT,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
 
 CREATE TABLE images (
   uid SERIAL PRIMARY KEY,
@@ -75,10 +71,3 @@ CREATE TABLE order_products (
   amount INTEGER NOT NULL,
   PRIMARY KEY (order_id, product_id)
 );
-
--- CREATE TABLE CartItems (
---   user_id INTEGER NOT NULL REFERENCES Users(id),
---   product_id INTEGER NOT NULL REFERENCES Products(id),
---   amount INTEGER NOT NULL,
---   PRIMARY KEY (user_id, product_id)
--- );
