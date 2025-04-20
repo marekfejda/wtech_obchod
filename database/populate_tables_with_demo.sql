@@ -4,10 +4,10 @@ INSERT INTO Brands (brand) VALUES
   ('JBL');
 
 INSERT INTO Categories (category, icon_path) VALUES
-  ('iPhone', 'phone'),
-  ('Macbook', 'laptop'),
-  ('iPad', 'tablet'),
-  ('Audio', 'headphones');
+  ('iPhone', 'assets/categories_icons/1.png'),
+  ('Macbook', 'assets/categories_icons/2.png'),
+  ('iPad', 'assets/categories_icons/3.png'),
+  ('Audio', 'assets/categories_icons/4.png');
 
 INSERT INTO Colors (color) VALUES
   ('Black'),
