@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'iSHOP - dynamicka_category')
+@section('title', 'iSHOP - ' . ($category->category ?? 'Kategória'))
 
 @section('page-css')
     <link rel="stylesheet" href="{{ asset('pages/category/styles.css') }}">
@@ -21,7 +21,7 @@
                 @foreach ($categories as $category)
                     <li class="nav-item">
                         <a class="nav-link sidebar-category rounded-pill" style="color: #45503B;"
-                            href="{{ route('category', $category->id) }}">
+                            href="{{ route('category', $category->slug) }}">
                             <i class="bi bi-{{ $category->icon }}"></i> {{ $category->category }}
                         </a>
                     </li>
@@ -149,28 +149,6 @@
                     </ul>
                 </nav>
             @endif
-
-            <!-- <nav aria-label="Product pagination" class="d-flex justify-content-center mt-4">
-                <ul class="pagination responsive-pagination">
-                  <li class="page-item active" aria-current="page">
-                    <span class="page-link">1</span>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">4</a></li>
-                  <li class="page-item"><a class="page-link" href="#">5</a></li>
-                  <li class="page-item"><a class="page-link" href="#">6</a></li>
-                  <li class="page-item"><a class="page-link" href="#">7</a></li>
-                  <li class="page-item"><a class="page-link" href="#">8</a></li>
-                  <li class="page-item"><a class="page-link" href="#">9</a></li>
-                  <li class="page-item disabled"><span class="page-link">...</span></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                      <span aria-hidden="true">&rsaquo;</span>
-                    </a>
-                  </li>
-                </ul>
-            </nav>                        -->
         </main>
     </div>
 @endsection

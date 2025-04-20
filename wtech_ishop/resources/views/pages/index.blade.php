@@ -21,7 +21,7 @@
                 @foreach ($categories as $category)
                     <li class="nav-item">
                         <a class="nav-link sidebar-category rounded-pill" style="color: #45503B;"
-                            href="{{ route('category', $category->id) }}">
+                            href="{{ route('category', $category->slug) }}">
                             <i class="bi bi-{{ $category->icon }}"></i> {{ $category->category }}
                         </a>
                     </li>

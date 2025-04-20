@@ -18,13 +18,19 @@ class CategoryController extends Controller
         return view('pages.index', compact('categories', 'products'));
     }
 
-    public function category($id)
+    public function category($slug)
     {
+        $category = Category::where('slug', $slug)->firstOrFail();
+
         $categories = Category::all();
         $brands = Brand::all();
         $colors = Color::all();
-        $products = Product::with('images')->where('category_id', $id)->paginate(12);
 
-        return view('pages.category', compact('categories', 'products', 'brands', 'colors'));
+        $products = Product::with('images')
+            ->where('category_id', $category->id)
+            ->paginate(12);
+
+        return view('pages.category', compact('categories', 'products', 'brands', 'colors', 'category'));
     }
+
 }
