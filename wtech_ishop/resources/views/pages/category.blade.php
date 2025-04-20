@@ -18,31 +18,14 @@
         <!-- Sidebar -->
         <nav id="sidebarMenu" class="col-lg-2 collapse d-md-block p-3" style="background-color: #E5EBEA;">
             <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link sidebar-category rounded-pill" style="color: #45503B;" href="{{ route('category') }}">
-                        <i class="bi bi-laptop"></i> Kategoria 1
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link sidebar-category rounded-pill" style="color: #45503B;" href="../category/category.html">
-                        <i class="bi bi-phone"></i> Kategoria 2
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link sidebar-category rounded-pill" style="color: #45503B;" href="../category/category.html">
-                        <i class="bi bi-headphones"></i> Kategoria 3
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link sidebar-category rounded-pill" style="color: #45503B;" href="../category/category.html">
-                        <i class="bi bi-tv"></i> Kategoria 4
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link sidebar-category rounded-pill" style="color: #45503B;" href="../category/category.html">
-                        <i class="bi bi-usb-symbol"></i> Kategoria 5
-                    </a>
-                </li>
+                @foreach ($categories as $category)
+                    <li class="nav-item">
+                        <a class="nav-link sidebar-category rounded-pill" style="color: #45503B;"
+                            href="{{ route('category', $category->id) }}">
+                            <i class="bi bi-box"></i> {{ $category->category }}
+                        </a>
+                    </li>
+                @endforeach
             </ul>
         </nav>
 
@@ -69,10 +52,9 @@
                         Vyber farby
                     </button>
                     <ul class="dropdown-menu p-2" style="min-width: 200px;">
-                        <li><input class="form-check-input me-1" type="checkbox" value="red"> Červená</li>
-                        <li><input class="form-check-input me-1" type="checkbox" value="blue"> Modrá</li>
-                        <li><input class="form-check-input me-1" type="checkbox" value="green"> Zelená</li>
-                        <li><input class="form-check-input me-1" type="checkbox" value="black"> Čierna</li>
+                        @foreach ($colors as $color)
+                            <li><input class="form-check-input me-1" type="checkbox" value="red">{{ $color->color }}</li>
+                        @endforeach
                     </ul>
                 </div>
 
@@ -84,9 +66,9 @@
                         Vyber značky
                     </button>
                     <ul class="dropdown-menu p-2" style="min-width: 200px;">
-                        <li><input class="form-check-input me-1" type="checkbox" value="z1"> Značka 1</li>
-                        <li><input class="form-check-input me-1" type="checkbox" value="z2"> Značka 2</li>
-                        <li><input class="form-check-input me-1" type="checkbox" value="z3"> Značka 3</li>
+                        @foreach ($brands as $brand)
+                            <li><input class="form-check-input me-1" type="checkbox" value="z1">{{ $brand->brand }}</li>
+                        @endforeach
                     </ul>
                 </div>
 
@@ -100,210 +82,75 @@
 
             <!-- Product List -->
             <div class="row">
-                <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
-                    <a href="{{ route('detail') }}" class="text-decoration-none">
-                        <div class="card product-card h-100 p-3 border rounded-4 d-flex flex-column flex-md-row"
-                            style="min-height: 250px; max-width: 380px; width: 100%; cursor: pointer;">
-                            <!-- Left: Image + Price -->
-                            <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
-                                <div class="image-container d-flex align-items-end p-2 mb-2"
-                                    style="width: 100%; height: 140px; overflow: hidden;">
-                                    <img src="../../assets/mac/mac_air_blue.webp" alt="Macbook Air Blue"
-                                        class="product-img">
+                @foreach ($products as $product)
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
+                        <a href="{{ route('detail', $product->id) }}" class="text-decoration-none">
+                            <div class="card product-card h-100 p-3 border rounded-4 d-flex flex-column flex-md-row"
+                                style="min-height: 250px; max-width: 380px; width: 100%; cursor: pointer;">
+                                <!-- Left: Image + Price -->
+                                <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
+                                    <div class="image-container d-flex align-items-end p-2 mb-2"
+                                        style="width: 100%; height: 140px; overflow: hidden;">
+                                        @php
+                                            $firstImage = $product->images->first();
+                                        @endphp
+
+                                        @if ($firstImage)
+                                            <img src="{{ asset($firstImage->path) }}" class="product-img"
+                                                alt="{{ $product->name }}">
+                                        @else
+                                            <img src="{{ asset('assets/favicon.png') }}" class="product-img"
+                                                alt="Bez obrázka">
+                                        @endif
+                                    </div>
+                                    <div class="fw-bold fs-6 text-center text-color">{{ number_format($product->price, 2) }} €</div>
                                 </div>
-                                <div class="fw-bold fs-6 text-center text-color">1624.23€</div>
-                            </div>
 
-                            <!-- Right: Name + Description -->
-                            <div class="d-flex flex-column justify-content-center w-100 w-md-50">
-                                <div class="fw-semibold fs-5 mb-1 text-color">Macbook Air Blue</div>
-                                <div class="text-muted small text-color">Ľahký, výkonný notebook s čipom M2, ideálny pre študentov
-                                    a
-                                    profesionálov.</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
-                    <a href="../detail/detail.html" class="text-decoration-none">
-                        <div class="card product-card h-100 p-3 border rounded-4 d-flex flex-column flex-md-row"
-                            style="min-height: 250px; max-width: 380px; width: 100%; cursor: pointer;">
-                            <!-- Left: Image + Price -->
-                            <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
-                                <div class="image-container d-flex align-items-end p-2 mb-2"
-                                    style="width: 100%; height: 140px; overflow: hidden;">
-                                    <img src="../../assets/mac/mac_air_blue.webp" alt="Macbook Air Blue"
-                                        class="product-img">
+                                <!-- Right: Name + Description -->
+                                <div class="d-flex flex-column justify-content-center w-100 w-md-50">
+                                    <div class="fw-semibold fs-5 mb-1 text-color">{{ $product->name }}</div>
+                                    <div class="text-muted small text-color">{{ $product->short_description }}</div>
                                 </div>
-                                <div class="fw-bold fs-6 text-center text-color">1624.23€</div>
                             </div>
-
-                            <!-- Right: Name + Description -->
-                            <div class="d-flex flex-column justify-content-center w-100 w-md-50">
-                                <div class="fw-semibold fs-5 mb-1 text-color">Macbook Air Blue</div>
-                                <div class="text-muted small text-color">Ľahký, výkonný notebook s čipom M2, ideálny pre študentov
-                                    a
-                                    profesionálov.</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
-                    <a href="../detail/detail.html" class="text-decoration-none">
-                        <div class="card product-card h-100 p-3 border rounded-4 d-flex flex-column flex-md-row"
-                            style="min-height: 250px; max-width: 380px; width: 100%; cursor: pointer;">
-                            <!-- Left: Image + Price -->
-                            <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
-                                <div class="image-container d-flex align-items-end p-2 mb-2"
-                                    style="width: 100%; height: 140px; overflow: hidden;">
-                                    <img src="../../assets/mac/mac_air_blue.webp" alt="Macbook Air Blue"
-                                        class="product-img">
-                                </div>
-                                <div class="fw-bold fs-6 text-center text-color">1624.23€</div>
-                            </div>
-
-                            <!-- Right: Name + Description -->
-                            <div class="d-flex flex-column justify-content-center w-100 w-md-50">
-                                <div class="fw-semibold fs-5 mb-1 text-color">Macbook Air Blue</div>
-                                <div class="text-muted small text-color">Ľahký, výkonný notebook s čipom M2, ideálny pre študentov
-                                    a
-                                    profesionálov.</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
-                    <a href="../detail/detail.html" class="text-decoration-none">
-                        <div class="card product-card h-100 p-3 border rounded-4 d-flex flex-column flex-md-row"
-                            style="min-height: 250px; max-width: 380px; width: 100%; cursor: pointer;">
-                            <!-- Left: Image + Price -->
-                            <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
-                                <div class="image-container d-flex align-items-end p-2 mb-2"
-                                    style="width: 100%; height: 140px; overflow: hidden;">
-                                    <img src="../../assets/mac/mac_air_blue.webp" alt="Macbook Air Blue"
-                                        class="product-img">
-                                </div>
-                                <div class="fw-bold fs-6 text-center text-color">1624.23€</div>
-                            </div>
-
-                            <!-- Right: Name + Description -->
-                            <div class="d-flex flex-column justify-content-center w-100 w-md-50">
-                                <div class="fw-semibold fs-5 mb-1 text-color">Macbook Air Blue</div>
-                                <div class="text-muted small text-color">Ľahký, výkonný notebook s čipom M2, ideálny pre študentov
-                                    a
-                                    profesionálov.</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
-                    <a href="../detail/detail.html" class="text-decoration-none">
-                        <div class="card product-card h-100 p-3 border rounded-4 d-flex flex-column flex-md-row"
-                            style="min-height: 250px; max-width: 380px; width: 100%; cursor: pointer;">
-                            <!-- Left: Image + Price -->
-                            <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
-                                <div class="image-container d-flex align-items-end p-2 mb-2"
-                                    style="width: 100%; height: 140px; overflow: hidden;">
-                                    <img src="../../assets/mac/mac_air_blue.webp" alt="Macbook Air Blue"
-                                        class="product-img">
-                                </div>
-                                <div class="fw-bold fs-6 text-center text-color">1624.23€</div>
-                            </div>
-
-                            <!-- Right: Name + Description -->
-                            <div class="d-flex flex-column justify-content-center w-100 w-md-50">
-                                <div class="fw-semibold fs-5 mb-1 text-color">Macbook Air Blue</div>
-                                <div class="text-muted small text-color">Ľahký, výkonný notebook s čipom M2, ideálny pre študentov
-                                    a
-                                    profesionálov.</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
-                    <a href="../detail/detail.html" class="text-decoration-none">
-                        <div class="card product-card h-100 p-3 border rounded-4 d-flex flex-column flex-md-row"
-                            style="min-height: 250px; max-width: 380px; width: 100%; cursor: pointer;">
-                            <!-- Left: Image + Price -->
-                            <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
-                                <div class="image-container d-flex align-items-end p-2 mb-2"
-                                    style="width: 100%; height: 140px; overflow: hidden;">
-                                    <img src="../../assets/mac/mac_air_blue.webp" alt="Macbook Air Blue"
-                                        class="product-img">
-                                </div>
-                                <div class="fw-bold fs-6 text-center text-color">1624.23€</div>
-                            </div>
-
-                            <!-- Right: Name + Description -->
-                            <div class="d-flex flex-column justify-content-center w-100 w-md-50">
-                                <div class="fw-semibold fs-5 mb-1 text-color">Macbook Air Blue</div>
-                                <div class="text-muted small text-color">Ľahký, výkonný notebook s čipom M2, ideálny pre študentov
-                                    a
-                                    profesionálov.</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
-                    <a href="../detail/detail.html" class="text-decoration-none">
-                        <div class="card product-card h-100 p-3 border rounded-4 d-flex flex-column flex-md-row"
-                            style="min-height: 250px; max-width: 380px; width: 100%; cursor: pointer;">
-                            <!-- Left: Image + Price -->
-                            <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
-                                <div class="image-container d-flex align-items-end p-2 mb-2"
-                                    style="width: 100%; height: 140px; overflow: hidden;">
-                                    <img src="../../assets/mac/mac_air_blue.webp" alt="Macbook Air Blue"
-                                        class="product-img">
-                                </div>
-                                <div class="fw-bold fs-6 text-center text-color">1624.23€</div>
-                            </div>
-
-                            <!-- Right: Name + Description -->
-                            <div class="d-flex flex-column justify-content-center w-100 w-md-50">
-                                <div class="fw-semibold fs-5 mb-1 text-color">Macbook Air Blue</div>
-                                <div class="text-muted small text-color">Ľahký, výkonný notebook s čipom M2, ideálny pre študentov
-                                    a
-                                    profesionálov.</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
-                    <a href="../detail/detail.html" class="text-decoration-none">
-                        <div class="card product-card h-100 p-3 border rounded-4 d-flex flex-column flex-md-row"
-                            style="min-height: 250px; max-width: 380px; width: 100%; cursor: pointer;">
-                            <!-- Left: Image + Price -->
-                            <div class="d-flex flex-column align-items-center mb-3 mb-md-0 w-100 w-md-50 pe-md-3">
-                                <div class="image-container d-flex align-items-end p-2 mb-2"
-                                    style="width: 100%; height: 140px; overflow: hidden;">
-                                    <img src="../../assets/mac/mac_air_blue.webp" alt="Macbook Air Blue"
-                                        class="product-img">
-                                </div>
-                                <div class="fw-bold fs-6 text-center text-color">1624.23€</div>
-                            </div>
-
-                            <!-- Right: Name + Description -->
-                            <div class="d-flex flex-column justify-content-center w-100 w-md-50">
-                                <div class="fw-semibold fs-5 mb-1 text-color">Macbook Air Blue</div>
-                                <div class="text-muted small text-color">Ľahký, výkonný notebook s čipom M2, ideálny pre študentov
-                                    a
-                                    profesionálov.</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
+                        </a>
+                    </div>
+                @endforeach
             </div>
 
             <!-- Page counter -->
-            <nav aria-label="Product pagination" class="d-flex justify-content-center mt-4">
+            @php
+                $currentPage = $products->currentPage();
+                $lastPage = $products->lastPage();
+            @endphp
+
+            @if ($lastPage > 1)
+                <nav aria-label="Product pagination" class="d-flex justify-content-center mt-4">
+                    <ul class="pagination responsive-pagination">
+                        @for ($i = 1; $i <= min(9, $lastPage); $i++)
+                            <li class="page-item {{ $i == $currentPage ? 'active' : '' }}">
+                                <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
+                            </li>
+                        @endfor
+
+                        @if ($lastPage > 9)
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
+                            <li class="page-item {{ $lastPage == $currentPage ? 'active' : '' }}">
+                                <a class="page-link" href="{{ $products->url($lastPage) }}">{{ $lastPage }}</a>
+                            </li>
+                        @endif
+
+                        @if ($lastPage > 10 && $currentPage < $lastPage)
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $products->nextPageUrl() }}" aria-label="Next">
+                                    <span aria-hidden="true">&rsaquo;</span>
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </nav>
+            @endif
+
+            <!-- <nav aria-label="Product pagination" class="d-flex justify-content-center mt-4">
                 <ul class="pagination responsive-pagination">
                   <li class="page-item active" aria-current="page">
                     <span class="page-link">1</span>
@@ -323,7 +170,7 @@
                     </a>
                   </li>
                 </ul>
-            </nav>                       
+            </nav>                        -->
         </main>
     </div>
 @endsection
