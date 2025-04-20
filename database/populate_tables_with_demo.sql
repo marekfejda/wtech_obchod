@@ -3,11 +3,11 @@ INSERT INTO Brands (brand) VALUES
   ('Marshall'),
   ('JBL');
 
-INSERT INTO Categories (category, icon) VALUES
-  ('iPhone', 'phone'),
-  ('Macbook', 'laptop'),
-  ('iPad', 'tablet'),
-  ('Audio', 'headphones');
+  INSERT INTO Categories (category, icon, slug) VALUES
+  ('iPhone', 'phone', 'iphone'),
+  ('Macbook', 'laptop', 'macbook'),
+  ('iPad', 'tablet', 'ipad'),
+  ('Audio', 'headphones', 'audio');
 
 INSERT INTO Colors (color) VALUES
   ('Black'),

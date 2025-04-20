@@ -11,7 +11,8 @@ CREATE TABLE colors (
 CREATE TABLE categories (
   id SERIAL PRIMARY KEY,
   category VARCHAR NOT NULL,
-  icon VARCHAR NOT NULL
+  icon VARCHAR NOT NULL,
+  slug VARCHAR NOT NULL
 );
 
 CREATE TABLE products (
