@@ -113,6 +113,7 @@
                                     </button>
                                 @endif
                         </div>
+                        <p class="fs-4 mt-5 ms-3 fw-bold" style="color: #45503B;">{{ $product->price }} €</p>
                     </div>
                 </div>
 
