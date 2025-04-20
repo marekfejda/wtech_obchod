@@ -7,6 +7,12 @@
 @endsection
 
 @section('content')
+    @if (session('success'))
+        <div class="alert alert-success text-center">
+            {{ session('success') }}
+        </div>
+    @endif
+    
     <!-- User/Admin Screen -->
     <div class="container d-flex align-items-center justify-content-center flex-grow-1 flex-column">
 
@@ -22,7 +28,10 @@
         </div>
 
         <!-- Logout Button -->
-        <button class="btn btn-danger mb-3 rounded-pill">Odhlásiť sa</button>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-danger mb-3 rounded-pill">Odhlásiť sa</button>
+        </form>
     </div>
 @endsection
 

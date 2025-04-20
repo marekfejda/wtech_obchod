@@ -27,5 +27,6 @@ Route::get('/', [CategoryController::class, 'index'])->name('index');
 Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');
 
 Route::match(['get', 'post'], '/login', [UserController::class, 'login'])->name('login');
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::match(['get', 'post'], '/register', [UserController::class, 'register'])->name('register');
 Route::get('/account', [UserController::class, 'account'])->name('account');

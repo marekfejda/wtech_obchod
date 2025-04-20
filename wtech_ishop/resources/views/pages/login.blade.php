@@ -7,18 +7,24 @@
 @endsection
 
 @section('content')
+    @if (session('success'))
+        <div class="alert alert-success text-center">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger text-center">
+            {{ session('error') }}
+        </div>
+    @endif
+    
     <div class="container d-flex justify-content-center align-items-center flex-grow-1">
         <div class="w-100" style="max-width: 250px;">
             <!-- User Icon -->
             <div class="text-center mb-4">
                 <i class="bi bi-person-circle" style="font-size: 5rem; color: #45503B;"></i>
             </div>
-
-            @if (session('error'))
-                <div class="alert alert-danger text-center">
-                    {{ session('error') }}
-                </div>
-            @endif
 
             <!-- Login Form -->
             <form method="POST" action="{{ route('login') }}">
