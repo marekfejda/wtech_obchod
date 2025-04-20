@@ -1,39 +1,35 @@
 Table Products {
   id integer [primary key]
-  name varchar
+  name varchar[30]
   brand_id integer [ref: > Brands.id] //1 to n relationship
   color_id integer [ref: > Colors.id] //1 to n relationship
+  category_id integer [ref: > Categories.id] //1 to n relationship
   price float
   stockQuantity integer
-  short_description text
-  description text
+  short_description varchar[30]
+  description varchar[5000]
   created_at timestamp
+  updated_at timestamp
 }
 
 Table Brands {
   id integer [primary key]
-  brand varchar
+  brand varchar[10]
 }
 
 Table Colors {
   id integer [primary key]
-  color varchar
+  color varchar[10]
 }
 
 Table Categories {
   id integer [primary key]
-  category varchar
-}
-
-//n to n relationship
-Table product_categories {
-  product_id integer [ref: > Products.id]
-  category_id integer [ref: > Categories.id]
+  category varchar[10]
 }
 
 Table Images {
   uid integer [primary key]
-  path varchar
+  path varchar[100]
 }
 
 //n to n relationship
@@ -44,27 +40,28 @@ Table product_images {
 
 Table Users {
   id integer [primary key]
-  username varchar
-  role varchar
-  email varchar
-  password varchar
+  username varchar[30]
+  role varchar[10]
+  email varchar[30]
+  password varchar[30]
   created_at timestamp
 }
 
 Table Orders {
   id integer [primary key]
   user_id integer [ref: > Users.id] //1 to n relationship
-  name_surname varchar
-  address_streetnumber varchar
-  PSC varchar
-  city_country varchar
-  phone_number varchar
-  email varchar
-  payment_type varchar
+  name_surname varchar[30]
+  address_streetnumber varchar[30]
+  PSC varchar[10]
+  city_country varchar[30]
+  phone_number varchar[30]
+  email varchar[30]
+  payment_type varchar[10]
   card_number integer
   exp_date date
-  cvc varchar
-  card_holder varchar
+  cvc varchar[10]
+  card_holder varchar[30]
+  state varchar[10]
   created_at timestamp
 }
 
@@ -72,11 +69,5 @@ Table Orders {
 Table order_products {
   order_id integer [ref: > Orders.id]
   product_id integer [ref: > Products.id]
-  amount integer
-}
-
-Table CartItems  {
-  user_id integer [ref: > Users.id] //1 to n relationship
-  product_id integer
   amount integer
 }
