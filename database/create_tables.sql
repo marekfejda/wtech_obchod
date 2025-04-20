@@ -25,11 +25,11 @@ CREATE TABLE Categories (
   category VARCHAR NOT NULL
 );
 
-CREATE TABLE product_categories (
-  product_id INTEGER NOT NULL REFERENCES Products(id),
-  category_id INTEGER NOT NULL REFERENCES Categories(id),
-  PRIMARY KEY (product_id, category_id)
-);
+-- CREATE TABLE product_categories (
+--   product_id INTEGER NOT NULL REFERENCES Products(id),
+--   category_id INTEGER NOT NULL REFERENCES Categories(id),
+--   PRIMARY KEY (product_id, category_id)
+-- );
 
 CREATE TABLE Images (
   uid SERIAL PRIMARY KEY,
@@ -65,6 +65,7 @@ CREATE TABLE Orders (
   exp_date DATE,
   cvc VARCHAR,
   card_holder VARCHAR,
+  state VARCHAR,
   created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
@@ -75,9 +76,9 @@ CREATE TABLE order_products (
   PRIMARY KEY (order_id, product_id)
 );
 
-CREATE TABLE CartItems (
-  user_id INTEGER NOT NULL REFERENCES Users(id),
-  product_id INTEGER NOT NULL REFERENCES Products(id),
-  amount INTEGER NOT NULL,
-  PRIMARY KEY (user_id, product_id)
-);
+-- CREATE TABLE CartItems (
+--   user_id INTEGER NOT NULL REFERENCES Users(id),
+--   product_id INTEGER NOT NULL REFERENCES Products(id),
+--   amount INTEGER NOT NULL,
+--   PRIMARY KEY (user_id, product_id)
+-- );
