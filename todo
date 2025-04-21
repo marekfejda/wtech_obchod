@@ -4,14 +4,12 @@ spisat navod na spustenie - -reqs - php(XAMPP), composerako si vytvorit databazu
 -upravit config/database.php podla seba (DB, mail, app key)
 
 
+kedy sa rozhodneme spravit dokumentaciu - DB som zmenil nejake types len (kuknut ppodla gitkraken SQL file) menil som expiry date karty
 
-TODO marek:
+
+
+TODO
 handle empty cart - currently results in error
 handle non registered user
-finish cart2
-finish cart3
 finish cart4
-
-
-
-kedy sa rozhodneme spravit dokumentaciu - DB som zmenil nejake types len (kuknut ppodla gitkraken SQL file) menil som expiry date karty
+pri prvotnom nacitani kategorie je divny kruzok pri sortovani ceny
