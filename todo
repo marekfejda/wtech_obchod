@@ -9,7 +9,6 @@ kedy sa rozhodneme spravit dokumentaciu - DB som zmenil nejake types len (kuknut
 
 
 TODO
-handle empty cart - currently results in error
 handle non registered user
-finish cart4
+ODSTRANIT PRODUKT Z KOSIKA
 pri prvotnom nacitani kategorie je divny kruzok pri sortovani ceny

@@ -47,3 +47,10 @@
     background-color: #36412E;
     border-color: #36412E;
 }
+.disabled-link {
+    pointer-events: none;
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: #7b8d6d; 
+    border-color: #7b8d6d;
+}

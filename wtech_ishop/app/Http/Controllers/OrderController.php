@@ -24,15 +24,21 @@ class OrderController extends Controller
             ->where('state', 'in cart')
             ->first();
 
-        $cartItems = [];
+        $cartItems = collect();
+
+        $total = 0.00;
 
         if ($order) {
             $cartItems = OrderProduct::with(['product' => function ($query) {
                 $query->with('images');
             }])->where('order_id', $order->id)->get();
+
+            $total = $cartItems->sum(function ($item) {
+                return $item->product->price * $item->amount;
+            });
         }
 
-        return view('pages.cart1', compact('cartItems'));
+        return view('pages.cart1', compact('cartItems', 'total'));
     }
 
     public function cart2()

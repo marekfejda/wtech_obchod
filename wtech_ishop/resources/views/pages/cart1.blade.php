@@ -33,43 +33,49 @@
         <div class="container">
 
             <div class="mt-5"></div>
-            @foreach($cartItems as $item)
-                @php
-                    $product = $item->product;
-                    $image = $product->images->first();
-                @endphp
-                
-                <form action="{{ route('addToCart', $product->id) }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="update" value="1">
-                    <div class="row bg-light p-3 align-items-center rounded element-shadow mt-3 rounded-pill">
-                        <!-- Product Image -->
-                        <div class="col-2">
-                            <a href="/detail/{{ $product->id }}">
-                                <img src="{{ asset($image->path ) }}" class="product-image" alt="Product Image">
-                            </a>
-                        </div>
+            @if ($cartItems->isEmpty())
+                <div class="d-flex justify-content-center align-items-center" style="height: 300px;">
+                    <p class="text-muted fs-4 m-0">Košík je prázdny</p>
+                </div>
+            @else
+                @foreach($cartItems as $item)
+                    @php
+                        $product = $item->product;
+                        $image = $product->images->first();
+                    @endphp
+                    
+                    <form action="{{ route('addToCart', $product->id) }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="update" value="1">
+                        <div class="row bg-light p-3 align-items-center rounded element-shadow mt-3 rounded-pill">
+                            <!-- Product Image -->
+                            <div class="col-2">
+                                <a href="/detail/{{ $product->id }}">
+                                    <img src="{{ asset($image->path ) }}" class="product-image" alt="Product Image">
+                                </a>
+                            </div>
 
-                        <!-- Product Details -->
-                        <div class="col-6">
-                            <a href="/detail/{{ $product->id }}" class="fw-bold text-dark text-decoration-none">
-                                {{ $product->name }}
-                            </a>
-                        </div>
+                            <!-- Product Details -->
+                            <div class="col-6">
+                                <a href="/detail/{{ $product->id }}" class="fw-bold text-dark text-decoration-none">
+                                    {{ $product->name }}
+                                </a>
+                            </div>
 
-                        <!-- Quantity -->
-                        <div class="col-2 text-center">
-                            <input name="quantity" type="number" class="form-control rounded-pill" value="{{ $item->amount }}" min="1" max="{{ $product->stockquantity }}"
-                                style="width: 60px; text-align: center;" oninput="this.form.submit()">
-                        </div>
+                            <!-- Quantity -->
+                            <div class="col-2 text-center">
+                                <input name="quantity" type="number" class="form-control rounded-pill" value="{{ $item->amount }}" min="1" max="{{ $product->stockquantity }}"
+                                    style="width: 60px; text-align: center;" oninput="this.form.submit()">
+                            </div>
 
-                        <!-- Price -->
-                        <div class="col-2 text-end fw-bold">
-                            {{ number_format($product->price * $item->amount, 2) }}$
+                            <!-- Price -->
+                            <div class="col-2 text-end fw-bold">
+                                {{ number_format($product->price * $item->amount, 2) }}$
+                            </div>
                         </div>
-                    </div>
-                </form>
-            @endforeach
+                    </form>
+                @endforeach
+            @endif
         </div>
     </main>
 
@@ -83,19 +89,18 @@
                 </div>
 
                 <!-- Cart Total -->
-                @php
-                    $total = $cartItems->sum(function ($item) {
-                        return $item->product->price * $item->amount;
-                    });
-                @endphp
-
                 <div class="col-6 fw-bold text-center">
                     Total: <span id="cartTotal">{{ number_format($total, 2) }}$</span>
                 </div>
 
                 <!-- Next Button -->
                 <div class="col-3 text-end">
-                    <a href="{{ route('cart.2') }}" class="btn btn-primary w-75 rounded-pill button_color">Next</a>
+                    <a href="{{ $cartItems->isEmpty() ? '' : route('cart.2') }}"
+                        class="btn btn-primary w-75 
+                        rounded-pill button_color
+                        {{ $cartItems->isEmpty() ? 'disabled-link' : '' }}"
+                        {{ $cartItems->isEmpty() ? 'aria-disabled=true' : '' }}>
+                        Next</a>
                 </div>
             </div>
         </div>
