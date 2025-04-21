@@ -37,7 +37,25 @@ class OrderController extends Controller
 
     public function cart2()
     {
-        return view('pages.cart2');
+        $user = session('user');
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Musíte byť prihlásený.');
+        }
+
+        // Grab the in‑cart order or abort
+        $order = Order::where('user_id', $user->id)
+            ->where('state', 'in cart')
+            ->firstOrFail();
+
+        // Fetch the products with prices
+        $cartItems = OrderProduct::with('product')->where('order_id', $order->id)->get();
+
+        // Calculate total
+        $total = $cartItems->sum(function ($item) {
+            return $item->product->price * $item->amount;
+        });
+
+        return view('pages.cart2', compact('order', 'total'));
     }
 
     public function cart3()
@@ -72,7 +90,7 @@ class OrderController extends Controller
                 'payment_type' => '',
                 'card_number' => null,
                 'exp_date' => null,
-                'cvc' => '',
+                'cvc' => null,
                 'card_holder' => '',
                 'created_at' => now(),
             ]
@@ -106,5 +124,45 @@ class OrderController extends Controller
         }
 
         return redirect()->back();
+    }
+
+
+    public function storeShipping(Request $request)
+    {
+        $user = session('user');
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Musíte byť prihlásený.');
+        }
+
+        $order = Order::where('user_id', $user->id)
+            ->where('state', 'in cart')
+            ->firstOrFail();
+
+        // Validate inputs
+        $data = $request->validate([
+            'name_surname'           => 'required|string|max:255',
+            'address_streetnumber'   => 'required|string|max:255',
+            'PSC'                    => 'required|string|max:20',
+            'city'                   => 'required|string|max:100',
+            'country'                => 'required|string|in:SK,CZ',
+            'phone_number'           => 'required|string|max:30',
+            'email'                  => 'required|email|max:255',
+        ]);
+
+        // Combine city & country into your single field, if that's your design:
+        $data['city_country'] = $data['city'] . ', ' . $data['country'];
+
+        // Fill the order
+        $order->fill([
+            'name_surname'         => $data['name_surname'],
+            'address_streetnumber' => $data['address_streetnumber'],
+            'PSC'                  => $data['PSC'],
+            'city_country'         => $data['city_country'],
+            'phone_number'         => $data['phone_number'],
+            'email'                => $data['email'],
+        ])->save();
+
+        // Now move on to step 3
+        return redirect()->route('cart.3');
     }
 }

@@ -82,6 +82,7 @@
                     <a href="{{ route('index') }}" class="btn btn-outline-secondary w-50 rounded-pill">Back</a>
                 </div>
 
+                <!-- Cart Total -->
                 @php
                     $total = $cartItems->sum(function ($item) {
                         return $item->product->price * $item->amount;

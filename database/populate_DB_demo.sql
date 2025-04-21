@@ -71,7 +71,7 @@ CREATE TABLE orders (
   payment_type VARCHAR NOT NULL,
   card_number BIGINT,
   exp_date DATE,
-  cvc VARCHAR,
+  cvc INT,
   card_holder VARCHAR,
   state VARCHAR,
   created_at TIMESTAMP NOT NULL DEFAULT NOW()

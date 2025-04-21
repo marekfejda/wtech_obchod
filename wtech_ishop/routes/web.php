@@ -16,12 +16,15 @@ Route::get('/admin-add', [AdminController::class, 'admin_add'])->name('admin.add
 Route::get('/admin-delete', [AdminController::class, 'admin_delete'])->name('admin.delete');
 Route::get('/admin-edit', [AdminController::class, 'admin_edit'])->name('admin.edit');
 
+
+
 Route::post('/cart/add/{productId}', [\App\Http\Controllers\OrderController::class, 'addToCart'])->name('cart.add');
 Route::post('/add-to-cart/{productId}', [OrderController::class, 'addToCart'])->name('addToCart');
 
-
 Route::get('/cart-1', [OrderController::class, 'cart1'])->name('cart.1');
 Route::get('/cart-2', [OrderController::class, 'cart2'])->name('cart.2');
+Route::post('/cart-2', [OrderController::class, 'storeShipping'])->name('cart.2.store');
+
 Route::get('/cart-3', [OrderController::class, 'cart3'])->name('cart.3');
 Route::get('/cart-4', [OrderController::class, 'cart4'])->name('cart.4');
 
