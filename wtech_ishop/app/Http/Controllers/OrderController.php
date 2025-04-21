@@ -84,9 +84,19 @@ class OrderController extends Controller
 
     public function cart4()
     {
-        return view('pages.cart4');
+        $user = session('user');
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Musíte byť prihlásený.');
+        }
+    
+        $order = Order::where('user_id', $user->id)
+            ->where('state', 'placed')
+            ->latest()
+            ->firstOrFail();
+    
+        return view('pages.cart4', compact('order'));
     }
-
+    
     public function addToCart(Request $request, $productId)
     {
         $user = session('user');
