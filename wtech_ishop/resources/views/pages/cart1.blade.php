@@ -45,14 +45,14 @@
                     <div class="row bg-light p-3 align-items-center rounded element-shadow mt-3 rounded-pill">
                         <!-- Product Image -->
                         <div class="col-2">
-                            <a href="#" target="_blank">
+                            <a href="/detail/{{ $product->id }}">
                                 <img src="{{ asset($image->path ) }}" class="product-image" alt="Product Image">
                             </a>
                         </div>
 
                         <!-- Product Details -->
                         <div class="col-6">
-                            <a href="#" target="_blank" class="fw-bold text-dark text-decoration-none">
+                            <a href="/detail/{{ $product->id }}" class="fw-bold text-dark text-decoration-none">
                                 {{ $product->name }}
                             </a>
                         </div>

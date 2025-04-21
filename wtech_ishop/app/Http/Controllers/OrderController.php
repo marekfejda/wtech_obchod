@@ -78,22 +78,24 @@ class OrderController extends Controller
             ]
         );
 
+        $quantity = (int) $request->input('quantity', 1);
+        $isUpdate = $request->has('update');
+
+        $product = Product::findOrFail($productId);
+
         $existing = OrderProduct::where('order_id', $order->id)
             ->where('product_id', $productId)
             ->first();
 
-        $isUpdate = $request->has('update'); //hidden
+        // Correct quantity check
+        $totalRequested = $isUpdate ? $quantity : ($existing->amount ?? 0) + $quantity;
 
-        $quantity = (int) $request->input('quantity', 1);
-        $product = Product::find($productId);
-
-        if ($quantity > $product->stockquantity) {
+        if ($totalRequested > $product->stockquantity) {
             return redirect()->back()->with('error', 'Na sklade nie je dostatok kusov. (' . $product->stockquantity . ' ks)');
         }
-            
 
         if ($existing) {
-            $existing->amount = $isUpdate ? $quantity : $existing->amount + $quantity;
+            $existing->amount = $totalRequested;
             $existing->save();
         } else {
             OrderProduct::create([
