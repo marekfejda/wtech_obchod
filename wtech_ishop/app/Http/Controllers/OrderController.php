@@ -140,7 +140,12 @@ class OrderController extends Controller
             ->where('product_id', $productId)
             ->first();
 
-        // Correct quantity check
+        if ($quantity === 0 && $existing) {
+            // handle remove from cart when quantity is 0
+            $existing->delete();
+            return redirect()->back();
+        }
+
         $totalRequested = $isUpdate ? $quantity : ($existing->amount ?? 0) + $quantity;
 
         if ($totalRequested > $product->stockquantity) {

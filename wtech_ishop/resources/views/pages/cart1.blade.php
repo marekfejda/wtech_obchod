@@ -64,7 +64,7 @@
 
                             <!-- Quantity -->
                             <div class="col-2 text-center">
-                                <input name="quantity" type="number" class="form-control rounded-pill" value="{{ $item->amount }}" min="1" max="{{ $product->stockquantity }}"
+                                <input name="quantity" type="number" class="form-control rounded-pill" value="{{ $item->amount }}" min="0" max="{{ $product->stockquantity }}"
                                     style="width: 60px; text-align: center;" oninput="this.form.submit()">
                             </div>
 

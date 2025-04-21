@@ -8,9 +8,14 @@ class OrderProduct extends Model
 {
     public $timestamps = false;
     public $incrementing = false;
-    protected $primaryKey = null;
 
     protected $fillable = ['order_id', 'product_id', 'amount'];
+
+    protected function setKeysForSaveQuery($query)
+    {
+        return $query->where('order_id', $this->getAttribute('order_id'))
+                     ->where('product_id', $this->getAttribute('product_id'));
+    }
 
     public function product()
     {
