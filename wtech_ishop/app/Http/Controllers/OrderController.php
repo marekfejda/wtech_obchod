@@ -60,7 +60,26 @@ class OrderController extends Controller
 
     public function cart3()
     {
-        return view('pages.cart3');
+        $user = session('user');
+        if (! $user) {
+            return redirect()->route('login')->with('error', 'Musíte byť prihlásený.');
+        }
+
+        // Grab in‑cart order
+        $order = Order::where('user_id', $user->id)
+            ->where('state', 'in cart')
+            ->firstOrFail();
+
+        // Fetch products & calculate total
+        $cartItems = OrderProduct::with('product')
+            ->where('order_id', $order->id)
+            ->get();
+
+        $total = $cartItems->sum(function ($item) {
+            return $item->product->price * $item->amount;
+        });
+
+        return view('pages.cart3', compact('order', 'cartItems', 'total'));
     }
 
     public function cart4()
@@ -164,5 +183,55 @@ class OrderController extends Controller
 
         // Now move on to step 3
         return redirect()->route('cart.3');
+    }
+
+    public function storePayment(Request $request)
+    {
+        $user = session('user');
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Musíte byť prihlásený.');
+        }
+
+        $order = Order::where('user_id', $user->id)
+            ->where('state', 'in cart')
+            ->firstOrFail();
+
+        $paymentType = $request->input('payment_type');
+
+        if ($paymentType === 'card') {
+            $validated = $request->validate([
+                'card_number' => 'required|string|max:20',
+                'exp_date'    => 'required|string|max:6',
+                'cvc'         => 'required|string|max:4',
+                'card_holder' => 'required|string|max:255',
+            ]);
+
+            $order->fill([
+                'payment_type' => 'card',
+                'card_number'  => $validated['card_number'],
+                'exp_date'     => $validated['exp_date'],
+                'cvc'          => $validated['cvc'],
+                'card_holder'  => $validated['card_holder'],
+                'state'        => 'placed',
+            ])->save();
+
+        } elseif ($paymentType === 'cash') {
+            $order->fill([
+                'payment_type' => 'cash',
+                'state'        => 'placed',
+                'card_number'  => null,
+                'exp_date'     => null,
+                'cvc'          => null,
+            ])->save();
+        }
+
+        $items = OrderProduct::where('order_id', $order->id)->get();
+
+        foreach ($items as $item) {
+            Product::where('id', $item->product_id)
+                   ->decrement('stockquantity', $item->amount);
+        }
+    
+        return redirect()->route('cart.4');
     }
 }

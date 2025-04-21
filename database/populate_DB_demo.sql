@@ -70,7 +70,7 @@ CREATE TABLE orders (
   email VARCHAR NOT NULL,
   payment_type VARCHAR NOT NULL,
   card_number BIGINT,
-  exp_date DATE,
+  exp_date VARCHAR,
   cvc INT,
   card_holder VARCHAR,
   state VARCHAR,

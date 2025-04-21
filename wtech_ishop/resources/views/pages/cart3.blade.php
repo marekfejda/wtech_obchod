@@ -43,25 +43,36 @@
                 <!-- PLATBA KARTOU -->
                 <div class="col-12 col-md-6">
                     <div class="bg-light p-3 rounded-4 element-shadow">
-                        <h4 style="color: #45503B;">Platobná karta</h4>
-                        <form>
+                        <form action="{{ route('cart.3.store') }}" method="POST" class="bg-light p-3 rounded-4 element-shadow">
+                            @csrf
+                            <input type="hidden" name="payment_type" value="card">
+
+                            <h4 style="color: #45503B;">Platobná karta</h4>
+
                             <div class="mb-3">
                                 <label for="cardNumber" class="form-label" style="color: #45503B;">Číslo karty</label>
-                                <input type="text" class="form-control rounded-pill" id="cardNumber"
+                                <input name="card_number" type="text" class="form-control rounded-pill" id="card_number"
                                     placeholder="1234 5678 9876 5432" required>
                             </div>
+
                             <div class="mb-3">
                                 <label for="expiryDate" class="form-label" style="color: #45503B;">Dátum expirácie (MM/YY)</label>
-                                <input type="text" class="form-control rounded-pill" id="expiryDate" placeholder="MM/YY"
+                                <input name="exp_date" type="text" class="form-control rounded-pill" id="expiryDate" placeholder="MM/YY"
                                     maxlength="5" required>
                             </div>
+
                             <div class="mb-3">
                                 <label for="cvv" class="form-label" style="color: #45503B;">CVV</label>
-                                <input type="text" class="form-control rounded-pill" id="cvv" placeholder="123" required>
+                                <input name="cvc" type="text" class="form-control rounded-pill" id="cvv" placeholder="123" required>
                             </div>
+
+                            <div class="mb-3">
+                                <label for="card_holder" class="form-label" style="color: #45503B;">Card holder</label>
+                                <input name="card_holder" type="text" class="form-control rounded-pill" id="card_holder" placeholder="Jožko Mrkvička" required>
+                            </div>
+
                             <div class="text-center">
-                                <button type="button" class="btn btn-success rounded-pill button_color"
-                                    onclick="window.location.href='{{ route('cart.4') }}'">Zaplatiť kartou</button>
+                                <button type="submit" class="btn btn-primary rounded-pill px-5 button_color">Zaplatiť kartou</button>
                             </div>
                         </form>
                     </div>
@@ -70,13 +81,17 @@
                 <!-- PLATBA CASH -->
                 <div class="col-12 col-md-6 mt-4 mt-md-0">
                     <div class="bg-light p-3 rounded-4 element-shadow">
-                        <h4 style="color: #45503B;">Hotovosť pri doručení</h4>
-                        <p class="mt-4" style="color: #45503B;">Ak uprednostňujete platbu v hotovosti, môžete si zvoliť túto možnosť. Uistite
-                            sa, že pri doručení produktu máte presnú sumu.</p>
-                        <div class="text-center">
-                            <button type="button" class="btn btn-success mt-4 rounded-pill button_color"
-                                onclick="window.location.href='{{ route('cart.4') }}'">Zaplatiť pri doručení</button>
-                        </div>
+                        <form action="{{ route('cart.3.store') }}" method="POST" style="display: contents;">
+                            @csrf
+                            <input type="hidden" name="payment_type" value="cash">
+
+                            <h4 style="color: #45503B;">Hotovosť pri doručení</h4>
+                            <p class="mt-4" style="color: #45503B;">Ak uprednostňujete platbu v hotovosti, môžete si zvoliť túto možnosť. Uistite
+                                sa, že pri doručení produktu máte presnú sumu.</p>
+                            <div class="text-center  mt-4">
+                                <button type="submit" class="btn btn-primary rounded-pill px-5 button_color">Zaplatiť pri doručení</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -96,7 +111,7 @@
 
                 <!-- Cart Total -->
                 <div class="col-6 fw-bold text-center">
-                    Total: <span id="cartTotal">37.98$</span>
+                    Total: <span id="cartTotal">{{ number_format($total, 2) }}$</span>
                 </div>
             </div>
         </div>
