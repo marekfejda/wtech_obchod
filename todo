@@ -1,6 +1,13 @@
-VYMAZAT product M:M category
--udpate OBRAZOK Databazy
+spisat navod na spustenie - -reqs - php(XAMPP), composerako si vytvorit databazu, ako spustit server - (composer install)
+-zbuchat docker
+-upravit si .env podla seba (DB, mail, app key)
+-upravit config/database.php podla seba (DB, mail, app key)
 
-vymazat cartItems a pridat "stav" (kosik/ordered) do orders
 
-skratit "short description" v produktoch - spravime ked budeme mat hotove dynamicke doplnenie do HTML
+
+TODO marek:
+handle empty cart - currently results in error
+handle non registered user
+finish cart2
+finish cart3
+finish cart4

@@ -36,7 +36,7 @@
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="client_name" class="form-label">Meno a priezvisko</label>
-                        <input type="text" class="form-control rounded-pill " id="client_name" placeholder="Jožko Mrkvička" required>
+                        <input type="text" class="form-control rounded-pill " id="name" placeholder="Jožko Mrkvička" required>
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Adresa a číslo domu</label>
