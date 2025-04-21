@@ -33,97 +33,43 @@
         <div class="container">
 
             <div class="mt-5"></div>
+            @foreach($cartItems as $item)
+                @php
+                    $product = $item->product;
+                    $image = $product->images->first();
+                @endphp
+                
+                <form action="{{ route('addToCart', $product->id) }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="update" value="1">
+                    <div class="row bg-light p-3 align-items-center rounded element-shadow mt-3 rounded-pill">
+                        <!-- Product Image -->
+                        <div class="col-2">
+                            <a href="#" target="_blank">
+                                <img src="{{ asset($image->path ) }}" class="product-image" alt="Product Image">
+                            </a>
+                        </div>
 
+                        <!-- Product Details -->
+                        <div class="col-6">
+                            <a href="#" target="_blank" class="fw-bold text-dark text-decoration-none">
+                                {{ $product->name }}
+                            </a>
+                        </div>
 
+                        <!-- Quantity -->
+                        <div class="col-2 text-center">
+                            <input name="quantity" type="number" class="form-control rounded-pill" value="{{ $item->amount }}" min="1" max="{{ $product->stockquantity }}"
+                                style="width: 60px; text-align: center;" oninput="this.form.submit()">
+                        </div>
 
-            <!-- Product 1-->
-            <div class="row bg-light p-3 align-items-center rounded element-shadow rounded-pill">
-                <!-- Product Image -->
-                <div class="col-2">
-                    <a href="www.odkazNaProdukt.sk" target="_blank">
-                        <img src="../../assets/iphone/iphone_black.webp" class="product-image" alt="Product Image">
-                    </a>
-                </div>
-
-                <!-- Product Details -->
-                <div class="col-6">
-                    <a href="www.odkazNaProdukt.sk" target="_blank" class="fw-bold text-dark text-decoration-none">
-                        Iphone 16 black
-                    </a>
-                </div>
-
-                <!-- Quantity -->
-                <div class="col-2 text-center">
-                    <input type="number" id="quantityInput" class="form-control rounded-pill" value="1" min="1" max="99"
-                        style="width: 60px; text-align: center;">
-                </div>
-
-                <!-- Price -->
-                <div class="col-2 text-end fw-bold">
-                    18.99$
-                </div>
-            </div>
-
-
-
-            <!-- Product 2-->
-            <div class="row bg-light p-3 align-items-center rounded element-shadow mt-3 rounded-pill">
-                <!-- Product Image -->
-                <div class="col-2">
-                    <a href="www.odkazNaProdukt.sk" target="_blank">
-                        <img src="../../assets/iphone/iphone_white.webp" class="product-image" alt="Product Image">
-                    </a>
-                </div>
-
-                <!-- Product Details -->
-                <div class="col-6">
-                    <a href="www.odkazNaProdukt.sk" target="_blank" class="fw-bold text-dark text-decoration-none">
-                        Iphone 16 white
-                    </a>
-                </div>
-
-                <!-- Quantity -->
-                <div class="col-2 text-center">
-                    <input type="number" id="quantityInput" class="form-control rounded-pill" value="1" min="1" max="99"
-                        style="width: 60px; text-align: center;">
-                </div>
-
-                <!-- Price -->
-                <div class="col-2 text-end fw-bold">
-                    18.99$
-                </div>
-            </div>
-
-
-
-            <!-- Product 3-->
-            <div class="row bg-light p-3 align-items-center rounded element-shadow mt-3 rounded-pill">
-                <!-- Product Image -->
-                <div class="col-2">
-                    <a href="www.odkazNaProdukt.sk" target="_blank">
-                        <img src="../../assets/iphone/iphone_red.webp" class="product-image" alt="Product Image">
-                    </a>
-                </div>
-
-                <!-- Product Details -->
-                <div class="col-6">
-                    <a href="www.odkazNaProdukt.sk" target="_blank" class="fw-bold text-dark text-decoration-none">
-                        Iphone 16 red
-                    </a>
-                </div>
-
-                <!-- Quantity -->
-                <div class="col-2 text-center">
-                    <input type="number" id="quantityInput" class="form-control rounded-pill" value="1" min="1" max="99"
-                        style="width: 60px; text-align: center;">
-                </div>
-
-                <!-- Price -->
-                <div class="col-2 text-end fw-bold">
-                    1928.99$
-                </div>
-            </div>
-
+                        <!-- Price -->
+                        <div class="col-2 text-end fw-bold">
+                            {{ number_format($product->price * $item->amount, 2) }}$
+                        </div>
+                    </div>
+                </form>
+            @endforeach
         </div>
     </main>
 
@@ -136,9 +82,14 @@
                     <a href="{{ route('index') }}" class="btn btn-outline-secondary w-50 rounded-pill">Back</a>
                 </div>
 
-                <!-- Cart Total -->
+                @php
+                    $total = $cartItems->sum(function ($item) {
+                        return $item->product->price * $item->amount;
+                    });
+                @endphp
+
                 <div class="col-6 fw-bold text-center">
-                    Total: <span id="cartTotal">37.98$</span>
+                    Total: <span id="cartTotal">{{ number_format($total, 2) }}$</span>
                 </div>
 
                 <!-- Next Button -->

@@ -17,6 +17,8 @@ Route::get('/admin-delete', [AdminController::class, 'admin_delete'])->name('adm
 Route::get('/admin-edit', [AdminController::class, 'admin_edit'])->name('admin.edit');
 
 Route::post('/cart/add/{productId}', [\App\Http\Controllers\OrderController::class, 'addToCart'])->name('cart.add');
+Route::post('/add-to-cart/{productId}', [OrderController::class, 'addToCart'])->name('addToCart');
+
 
 Route::get('/cart-1', [OrderController::class, 'cart1'])->name('cart.1');
 Route::get('/cart-2', [OrderController::class, 'cart2'])->name('cart.2');

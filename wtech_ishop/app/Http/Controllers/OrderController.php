@@ -6,13 +6,33 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
+use App\Models\Image;
+use App\Models\ProductImage;
 use Illuminate\Support\Facades\Session;
 
 class OrderController extends Controller
 {
     public function cart1()
     {
-        return view('pages.cart1');
+        $user = session('user');
+
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Musíte byť prihlásený.');
+        }
+
+        $order = Order::where('user_id', $user->id)
+            ->where('state', 'in cart')
+            ->first();
+
+        $cartItems = [];
+
+        if ($order) {
+            $cartItems = OrderProduct::with(['product' => function ($query) {
+                $query->with('images');
+            }])->where('order_id', $order->id)->get();
+        }
+
+        return view('pages.cart1', compact('cartItems'));
     }
 
     public function cart2()
@@ -40,14 +60,9 @@ class OrderController extends Controller
         }
 
 
-        $order = Order::where('user_id', $user->id)
-            ->where('state', 'in cart')
-            ->first();
-
-        //Ak nema kosik /(ak nema objednavku v stave "in cart"), vytvor novu objednavku
-        if (!$order) {
-            $order = Order::create([
-                'user_id' => $user->id,
+        $order = Order::firstOrCreate(
+            ['user_id' => $user->id, 'state' => 'in cart'],
+            [
                 'name_surname' => '',
                 'address_streetnumber' => '',
                 'PSC' => '',
@@ -59,25 +74,26 @@ class OrderController extends Controller
                 'exp_date' => null,
                 'cvc' => '',
                 'card_holder' => '',
-                'state' => 'in cart',
                 'created_at' => now(),
-            ]);
-        }
+            ]
+        );
 
         $existing = OrderProduct::where('order_id', $order->id)
             ->where('product_id', $productId)
             ->first();
 
+        $isUpdate = $request->has('update'); //hidden
+
         $quantity = (int) $request->input('quantity', 1);
-        $totalRequested = $quantity + ($existing->amount ?? 0);
         $product = Product::find($productId);
-        if ($totalRequested > $product->stockquantity) {
-            return redirect()->back()->with('error', 'Na sklade nie je dostatok kusov. ' . $product->stockquantity . ' kusov je k dispozícii.');
+
+        if ($quantity > $product->stockquantity) {
+            return redirect()->back()->with('error', 'Na sklade nie je dostatok kusov. (' . $product->stockquantity . ' ks)');
         }
             
 
         if ($existing) {
-            $existing->amount += $quantity;
+            $existing->amount = $isUpdate ? $quantity : $existing->amount + $quantity;
             $existing->save();
         } else {
             OrderProduct::create([
