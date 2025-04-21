@@ -58,3 +58,26 @@ function restoreDefaultLayout() {
     searchToggle.classList.remove("d-none"); // Show search icon
     sidebarMenu.classList.remove("show"); // Hide sidebar menu if open
 };
+
+// document.addEventListener('DOMContentLoaded', function () {
+//     const priceFrom = document.getElementById('priceFrom');
+//     const priceTo = document.getElementById('priceTo');
+
+//     if (priceFrom) {
+//         priceFrom.addEventListener('keydown', function (e) {
+//             if (e.key === 'Enter') {
+//                 e.preventDefault(); // zabráni submitnutiu defaultného formulára (ak treba)
+//                 document.getElementById('filterForm').submit();
+//             }
+//         });
+//     }
+
+//     if (priceTo) {
+//         priceTo.addEventListener('keydown', function (e) {
+//             if (e.key === 'Enter') {
+//                 e.preventDefault();
+//                 document.getElementById('filterForm').submit();
+//             }
+//         });
+//     }
+// });

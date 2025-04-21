@@ -34,49 +34,146 @@
             <!-- Filters -->
             <div class="d-flex flex-wrap align-items-end responsive-gap mb-4">
 
-                <!-- Cena (from-to in one input group) -->
-                <div>
-                    <label for="priceRange" class="form-label">Cena</label>
-                    <div class="input-group">
-                        <input type="number" class="form-control rounded-pill" placeholder="od" id="priceFrom" min="0">
-                        <span class="input-group-text border-0 bg-transparent rounded-pill">-</span>
-                        <input type="number" class="form-control rounded-pill" placeholder="do" id="priceTo" min="0">
+                <!-- Cena (from-to) -->
+                <form id="filterForm" method="GET" action="{{ route('category', ['slug' => $currentCategory->slug]) }}">
+                    <!-- Aktuálne zoradenie -->
+                    <input type="hidden" name="sort" value="{{ request('sort', 'id_asc') }}">
+
+                    <!-- Aktuálne vybraté farby -->
+                    @foreach (request('colors', []) as $colorId)
+                        <input type="hidden" name="colors[]" value="{{ $colorId }}">
+                    @endforeach
+
+                    <!-- Aktuálne vybraté značky -->
+                    @foreach (request('brands', []) as $brandId)
+                        <input type="hidden" name="brands[]" value="{{ $brandId }}">
+                    @endforeach
+
+                    <!-- Cena (from-to) -->
+                    <div>
+                        <label for="priceRange" class="form-label">Cena</label>
+                        <div class="input-group">
+                            <input
+                                type="number"
+                                class="form-control rounded-pill"
+                                step="0.01"
+                                placeholder="od"
+                                id="priceFrom"
+                                name="price_min"
+                                value="{{ request('price_min', 0) }}"
+                                min="0"
+                                max="{{ request('price_max', $maxPrice) }}"
+                            >
+                            <span class="input-group-text border-0 bg-transparent rounded-pill">-</span>
+                            <input
+                                type="number"
+                                class="form-control rounded-pill"
+                                step="0.01"
+                                placeholder="do"
+                                id="priceTo"
+                                name="price_max"
+                                value="{{ request('price_max', $maxPrice) }}"
+                                min="{{ request('price_min', 0) }}"
+                                max="{{ $maxPrice }}"
+                            >
+                        </div>
                     </div>
-                </div>
 
-                <!-- Farba dropdown -->
-                <div class="dropdown">
-                    <label class="form-label d-block">Farba</label>
-                    <button class="btn btn-outline-secondary dropdown-toggle rounded-pill button_color" type="button" data-bs-toggle="dropdown"
-                        data-bs-auto-close="outside">
-                        Vyber farby
-                    </button>
-                    <ul class="dropdown-menu p-2" style="min-width: 200px;">
-                        @foreach ($colors as $color)
-                            <li><input class="form-check-input me-1" type="checkbox" value="red">{{ $color->color }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+                    <!-- Skryté submit tlačidlo pre Enter -->
+                    <button type="submit" hidden></button>
+                </form>
 
-                <!-- Značka dropdown -->
-                <div class="dropdown">
-                    <label class="form-label d-block">Značka</label>
-                    <button class="btn btn-outline-secondary dropdown-toggle rounded-pill button_color" type="button" data-bs-toggle="dropdown"
-                        data-bs-auto-close="outside">
-                        Vyber značky
-                    </button>
-                    <ul class="dropdown-menu p-2" style="min-width: 200px;">
-                        @foreach ($brands as $brand)
-                            <li><input class="form-check-input me-1" type="checkbox" value="z1">{{ $brand->brand }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+                <form method="GET" action="{{ route('category', ['slug' => $currentCategory->slug]) }}">
+                    <input type="hidden" name="sort" value="{{ request('sort', 'id_asc') }}">
+
+                    <div class="d-flex flex-wrap gap-4">
+                        <!-- Farba dropdown -->
+                        <div class="dropdown">
+                            <label class="form-label d-block">Farba</label>
+                            <button class="btn btn-outline-secondary dropdown-toggle rounded-pill button_color dropdown-toggle-color"
+                                    type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                Vyber farby
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-menu-color p-2" style="min-width: 200px;">
+                                @foreach ($colors as $color)
+                                    <li>
+                                        <label class="form-check-label">
+                                            <input
+                                                class="form-check-input me-1"
+                                                type="checkbox"
+                                                name="colors[]"
+                                                value="{{ $color->id }}"
+                                                {{ in_array($color->id, request()->input('colors', [])) ? 'checked' : '' }}>
+                                            {{ $color->color }}
+                                        </label>
+                                    </li>
+                                @endforeach
+                                <li class="mt-2 text-center">
+                                    <button type="submit" class="btn btn-sm btn-primary rounded-pill px-4">Filtrovať</button>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Značka dropdown -->
+                        <div class="dropdown">
+                            <label class="form-label d-block">Značka</label>
+                            <button class="btn btn-outline-secondary dropdown-toggle rounded-pill button_color dropdown-toggle-brand"
+                                    type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                Vyber značky
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-menu-brand p-2" style="min-width: 200px;">
+                                @foreach ($brands as $brand)
+                                    <li>
+                                        <label class="form-check-label">
+                                            <input
+                                                class="form-check-input me-1"
+                                                type="checkbox"
+                                                name="brands[]"
+                                                value="{{ $brand->id }}"
+                                                {{ in_array($brand->id, request()->input('brands', [])) ? 'checked' : '' }}>
+                                            {{ $brand->brand }}
+                                        </label>
+                                    </li>
+                                @endforeach
+                                <li class="mt-2 text-center">
+                                    <button type="submit" class="btn btn-sm btn-primary rounded-pill px-4">Filtrovať</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <input type="hidden" name="price_min" value="{{ request('price_min', 0) }}">
+                    <input type="hidden" name="price_max" value="{{ request('price_max', $maxPrice) }}">
+                </form>
+
 
                 <!-- Sorting -->
+                @php
+                    $query = [
+                        'sort' => $sort === 'price_asc' ? 'price_desc' : 'price_asc',
+                        'colors' => request('colors', []),
+                        'brands' => request('brands', []),
+                        'price_min' => request('price_min', 0),
+                        'price_max' => request('price_max', $maxPrice),
+                    ];
+
+                    // Vygeneruj URL
+                    $sortUrl = route('category', ['slug' => $currentCategory->slug]) . '?' . http_build_query($query);
+                @endphp
+
                 <div class="ms-auto d-flex align-items-center">
                     <span class="form-label mb-0 me-1">Cena</span>
-                    <i id="sortIcon" class="bi bi-caret-up-fill" style="cursor: pointer;"></i>
+                    <a href="{{ $sortUrl }}">
+
+
+                        <i id="sortIcon"
+                        class="bi {{ $sort === 'price_asc' ? 'bi-caret-up-fill' : ($sort === 'price_desc' ? 'bi-caret-down-fill' : 'bi-circle' ) }}"
+                        style="cursor: pointer; color: #000;">
+                        </i>
+                    </a>
                 </div>
+
 
             </div>
 

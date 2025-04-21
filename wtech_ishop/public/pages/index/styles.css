@@ -12,9 +12,19 @@ main {
     padding: 2rem;
 }
 
+.responsive-pagination .page-link {
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+}
+
 @media (max-width: 768px) {
     main {
         margin-left: 0;
+    }
+
+    .responsive-pagination .page-link {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
     }
 }
 
@@ -96,5 +106,22 @@ footer {
 }
 
 .product-card .card-text {
+    color: #45503B;
+}
+
+.pagination .page-link {
+    color: #45503B;
+    background-color: #F0F0F0;
+    border-color: #45503B;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #45503B;
+    color: white;
+    border-color: #45503B;
+}
+
+.pagination .page-item:hover .page-link {
+    background-color: #DBD9DB;
     color: #45503B;
 }

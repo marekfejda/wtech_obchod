@@ -4,12 +4,19 @@
             <img src="{{ asset('assets/logo.png') }}" alt="Logo" style="height: 40px;">
         </a>
 
-        <form id="searchForm" class="d-flex flex-grow-1 mx-3 w-100 d-sm-flex d-none" style="max-width: 600px;">
-            <input id="searchInput" class="form-control me-2 rounded-pill" type="search" placeholder="Search">
+        @php
+            $isCategoryPage = request()->routeIs('category');
+            $slugFromRoute = request()->route('slug');
+        @endphp
+
+        <form id="searchForm" class="d-flex flex-grow-1 mx-3 w-100 d-sm-flex d-none" method="GET" action="{{ route('search') }}" style="max-width: 600px;">
+            <input id="searchInput" name="q" class="form-control me-2 rounded-pill" type="search" placeholder="Search">
+            <input type="hidden" name="category" value="{{ $isCategoryPage ? $slugFromRoute : '' }}">
             <button id="searchButton" class="btn btn-primary d-sm-block d-none rounded-pill" type="submit" style="background-color: #45503B; border-color: #45503B;">
                 Search
             </button>
         </form>
+
         <div class="d-flex align-items-center">
             <button id="searchToggle" class="btn d-block d-sm-none me-3">
                 <i class="bi bi-search"></i>
@@ -18,13 +25,10 @@
                 $user = session('user');
             @endphp
 
-            <span class="me-2 d-none d-lg-inline" style="color: #45503B;">
-                @if ($user)
-                    {{ $user->username }}
-                @else
-                    Prihlásiť sa
-                @endif
-            </span>
+            <a href="{{ $user ? route('account') : route('login') }}" class="me-2 d-none d-lg-inline" style="color: #45503B; text-decoration: none;">
+                {{ $user ? $user->username : 'Prihlásiť sa' }}
+            </a>
+
 
             <a href="{{ $user ? route('account') : route('login') }}" class="text-dark me-3">
                 <i class="bi bi-person-circle fs-4" style="color: #45503B;"></i>

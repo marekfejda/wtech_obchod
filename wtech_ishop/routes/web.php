@@ -26,6 +26,7 @@ Route::get('/cart-3', [OrderController::class, 'cart3'])->name('cart.3');
 Route::get('/cart-4', [OrderController::class, 'cart4'])->name('cart.4');
 
 Route::get('/category/{slug}', [CategoryController::class, 'category'])->name('category');
+Route::get('/search', [CategoryController::class, 'search'])->name('search');
 Route::get('/', [CategoryController::class, 'index'])->name('index');
 
 Route::get('/detail/{id}', [ProductController::class, 'detail'])->name('detail');

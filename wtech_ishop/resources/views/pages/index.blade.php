@@ -68,6 +68,44 @@
                     @endforeach
                 </div>
             </div>
+            <!-- Page counter -->
+            @php
+                $isPaginated = $products instanceof \Illuminate\Pagination\LengthAwarePaginator;
+            @endphp
+
+            @if ($isPaginated)
+                @php
+                    $currentPage = $products->currentPage();
+                    $lastPage = $products->lastPage();
+                @endphp
+
+                @if ($lastPage > 1)
+                    <nav aria-label="Product pagination" class="d-flex justify-content-center mt-4">
+                        <ul class="pagination responsive-pagination">
+                            @for ($i = 1; $i <= min(9, $lastPage); $i++)
+                                <li class="page-item {{ $i == $currentPage ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
+                                </li>
+                            @endfor
+
+                            @if ($lastPage > 9)
+                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                                <li class="page-item {{ $lastPage == $currentPage ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $products->url($lastPage) }}">{{ $lastPage }}</a>
+                                </li>
+                            @endif
+
+                            @if ($lastPage > 10 && $currentPage < $lastPage)
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $products->nextPageUrl() }}" aria-label="Next">
+                                        <span aria-hidden="true">&rsaquo;</span>
+                                    </a>
+                                </li>
+                            @endif
+                        </ul>
+                    </nav>
+                @endif
+            @endif
         </main>
     </div>
 @endsection
