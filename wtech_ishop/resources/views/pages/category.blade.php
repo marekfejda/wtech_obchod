@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'iSHOP - ' . ($category->category ?? 'Kategória'))
+@section('title', 'iSHOP - ' . ($currentCategory->category ?? 'Kategória'))
 
 @section('page-css')
     <link rel="stylesheet" href="{{ asset('pages/category/styles.css') }}">
@@ -35,7 +35,7 @@
             <div class="d-flex flex-wrap align-items-end responsive-gap mb-4">
 
                 <!-- Cena (from-to) -->
-                <form id="filterForm" method="GET" action="{{ route('category', ['slug' => $currentCategory->slug]) }}">
+                <form id="filterForm" method="GET" action="{{ route('category', ['slug' => $currentCategory->slug]) }}">    
                     <!-- Aktuálne zoradenie -->
                     <input type="hidden" name="sort" value="{{ request('sort', 'id_asc') }}">
 

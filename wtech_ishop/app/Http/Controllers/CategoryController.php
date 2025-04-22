@@ -75,6 +75,8 @@ class CategoryController extends Controller
         $query = trim(strtolower($request->input('q')));
         $categorySlug = $request->input('category');
 
+        $currentCategory = Category::where('slug', $categorySlug)->firstOrFail();
+
         $categories = Category::all();
 
         // Ak je zadaná kategória, vyhľadávaj len v nej
@@ -96,7 +98,7 @@ class CategoryController extends Controller
             $maxPrice =$products->where('category_id', $category->id)->max('price');
 
 
-            return view('pages.category', compact('categories', 'products', 'brands', 'colors', 'category', 'sort', 'maxPrice'));
+            return view('pages.category', compact('categories', 'products', 'brands', 'colors', 'category', 'sort', 'maxPrice', 'currentCategory'));
 
         }
 
