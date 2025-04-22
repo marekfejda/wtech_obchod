@@ -61,7 +61,8 @@ CREATE TABLE users (
 
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER NOT NULL REFERENCES Users(id),
+  user_id INTEGER REFERENCES Users(id),
+  temp_user_id INTEGER,
   name_surname VARCHAR NOT NULL,
   address_streetnumber VARCHAR NOT NULL,
   "PSC" VARCHAR NOT NULL,

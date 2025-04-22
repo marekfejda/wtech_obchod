@@ -24,12 +24,23 @@ class UserController extends Controller
     {
         if ($request->isMethod('post')) {
             $user = User::where('username', $request->input('name'))
-                            ->where('password', $request->input('password')) // bez hashovania
-                            ->first();
+                        ->where('password', $request->input('password')) // bez hashovania
+                        ->first();
 
-            if ($user) {
+            if ($user) { // meno a heslo sú správne -> prihlásenie
+                $tempUserId = session('temp_user_id');
                 session(['user' => $user]);
-                return redirect()->route('account');
+                session()->forget('temp_user_id');
+
+                if ($tempUserId) { // ak v session existuje temp_user_id, tak preradime objednavky do trvaleho user_id
+                    \App\Models\Order::where('temp_user_id', $tempUserId)->update(
+                        [
+                            'user_id' => $user->id,
+                            'temp_user_id' => null,
+                        ]);
+                }
+
+                return redirect()->route('index');
             } else {
                 return back()->with('error', 'Nesprávne meno alebo heslo');
             }

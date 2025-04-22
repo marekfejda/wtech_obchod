@@ -9,5 +9,4 @@ kedy sa rozhodneme spravit dokumentaciu - DB som zmenil nejake types len (kuknut
 
 
 TODO
-handle non registered user
-pri prvotnom nacitani kategorie je divny kruzok pri sortovani ceny
+porovnat rozpracovanu OrderController s tou co je hotova v gite
