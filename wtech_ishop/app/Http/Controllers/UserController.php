@@ -70,7 +70,17 @@ class UserController extends Controller
                 'created_at' => Carbon::now(),
             ]);
 
+            $tempUserId = session('temp_user_id');
             session(['user' => $user]);
+            session()->forget('temp_user_id');
+
+            if ($tempUserId) { // ak v session existuje temp_user_id, tak preradime objednavky do trvaleho user_id
+                \App\Models\Order::where('temp_user_id', $tempUserId)->update(
+                    [
+                        'user_id' => $user->id,
+                        'temp_user_id' => null,
+                    ]);
+            }
 
             return redirect()->route('account')->with('success', 'Boli ste úspešne registrovaný.');
         }
