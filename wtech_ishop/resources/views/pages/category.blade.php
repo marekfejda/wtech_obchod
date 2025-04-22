@@ -168,7 +168,7 @@
 
 
                         <i id="sortIcon"
-                        class="bi {{ $sort === 'price_asc' ? 'bi-caret-up-fill' : ($sort === 'price_desc' ? 'bi-caret-down-fill' : 'bi-circle' ) }}"
+                        class="bi {{ $sort === 'price_asc' ? 'bi-chevron-up' : ($sort === 'price_desc' ? 'bi-chevron-down' : 'bi-code' ) }}"
                         style="cursor: pointer; color: #000;">
                         </i>
                     </a>
