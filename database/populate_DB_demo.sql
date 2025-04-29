@@ -109,9 +109,9 @@ INSERT INTO Colors (color) VALUES
   ('Brown');
 
 INSERT INTO Users (username, role, email, password) VALUES
-  ('James Bond', 'user', 'jamesbond@gmail.com', '12345'),
-  ('Picklemaster', 'user', 'picklemaster@gmail.com','12345'),
-  ('admin', 'admin', 'admin@ishop.com', '12345');
+  ('James Bond', 'user', 'jamesbond@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5'), --sha256 password (pass: 12345)
+  ('Picklemaster', 'user', 'picklemaster@gmail.com','5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5'),
+  ('admin', 'admin', 'admin@ishop.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5');
 
 INSERT INTO Products (name, brand_id, category_id, color_id, price, stockQuantity, short_description, description) VALUES
   -- iPhone 15

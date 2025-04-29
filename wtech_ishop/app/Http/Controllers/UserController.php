@@ -23,11 +23,9 @@ class UserController extends Controller
     public function login(Request $request)
     {
         if ($request->isMethod('post')) {
-            $user = User::where('username', $request->input('name'))
-                        ->where('password', $request->input('password')) // bez hashovania
-                        ->first();
+            $user = User::where('username', $request->input('name'))->first();
 
-            if ($user) { // meno a heslo sú správne -> prihlásenie
+            if ($user && $user->password === hash('sha256', $request->input('password'))) {
                 $tempUserId = session('temp_user_id');
                 session(['user' => $user]);
                 session()->forget('temp_user_id');
@@ -65,7 +63,7 @@ class UserController extends Controller
             $user = User::create([
                 'username' => $request->input('name'),
                 'email' => $request->input('email'),
-                'password' => $request->input('password'),
+                'password' => hash('sha256', $request->input('password')),
                 'role' => 'user',
                 'created_at' => Carbon::now(),
             ]);
