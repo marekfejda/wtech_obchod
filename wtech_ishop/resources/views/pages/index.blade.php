@@ -39,6 +39,11 @@
 
             <div class="container">
                 <div class="row">
+                    @if ($products->isEmpty())
+                        <div class="d-flex justify-content-center align-items-center" style="height: 300px;">
+                            <p class="text-muted fs-4 m-0">Vyhľadávaniu nevyhovujú žiadne produkty</p>
+                        </div>
+                    @endif
                     @foreach ($products as $product)
                         <article class="col-xl-3 col-lg-4 col-md-6 mb-4">
                             <div class="card product-card rounded-4">

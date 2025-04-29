@@ -179,6 +179,11 @@
 
             <!-- Product List -->
             <div class="row">
+                @if ($products->isEmpty())
+                    <div class="d-flex justify-content-center align-items-center" style="height: 300px;">
+                        <p class="text-muted fs-4 m-0">Vyhľadávaniu nevyhovujú žiadne produkty</p>
+                    </div>
+                @endif
                 @foreach ($products as $product)
                     <div class="col-xl-4 col-lg-4 col-md-6 mb-4 d-flex justify-content-center">
                         <a href="{{ route('detail', $product->id) }}" class="text-decoration-none">
