@@ -7,11 +7,12 @@
         @php
             $isCategoryPage = request()->routeIs('category');
             $slugFromRoute = request()->route('slug');
+            $categoryFromRequest = request()->input('category');
         @endphp
 
         <form id="searchForm" class="d-flex flex-grow-1 mx-3 w-100 d-sm-flex d-none" method="GET" action="{{ route('search') }}" style="max-width: 600px;">
             <input id="searchInput" name="q" class="form-control me-2 rounded-pill" type="search" placeholder="Search">
-            <input type="hidden" name="category" value="{{ $isCategoryPage ? $slugFromRoute : '' }}">
+            <input type="hidden" name="category" value="{{ $isCategoryPage ? $slugFromRoute : ($categoryFromRequest ?? '') }}">
             <button id="searchButton" class="btn btn-primary d-sm-block d-none rounded-pill" type="submit" style="background-color: #45503B; border-color: #45503B;">
                 Search
             </button>

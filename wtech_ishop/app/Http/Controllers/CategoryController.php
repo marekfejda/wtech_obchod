@@ -78,35 +78,36 @@ class CategoryController extends Controller
         $categories = Category::all();
 
         // Ak je zadaná kategória, vyhľadávaj len v nej
-        // if ($categorySlug) {
-        //     $category = Category::where('slug', $categorySlug)->firstOrFail();
+        if ($categorySlug) {
+            // $category = Category::where('slug', $categorySlug)->firstOrFail();
 
-        //     $products = Product::with('images')
-        //         ->where('category_id', $category->id)
-        //         ->whereRaw('LOWER(name) LIKE ?', ["%{$query}%"])
-        //         ->paginate(12)
-        //         ->appends([
-        //             'q' => $request->input('q'),
-        //             'category' => $request->input('category'),
-        //         ]);
+            $currentCategory = Category::where('slug', $categorySlug)->firstOrFail();
 
-        //     $brands = Brand::all();
-        //     $colors = Color::all();
-        //     $sort = 'id_asc';
-        //     $maxPrice =$products->where('category_id', $category->id)->max('price');
+            $productsQuery = Product::with('images')
+                ->where('category_id', $currentCategory->id)
+                ->whereRaw('LOWER(name) LIKE ?', ["%{$query}%"]);
+
+            $products = $productsQuery->paginate(12)->appends([
+                'q' => $request->input('q'),
+                'category' => $request->input('category'),
+            ]);
+
+            $brands = Brand::all();
+            $colors = Color::all();
+            $sort = 'id_asc';
+            $maxPrice =$products->where('category_id', $currentCategory->id)->max('price');
 
 
-        //     return view('pages.category', compact('categories', 'products', 'brands', 'colors', 'category', 'sort', 'maxPrice', 'currentCategory'));
+            return view('pages.category', compact('categories', 'products', 'brands', 'colors', 'currentCategory', 'sort', 'maxPrice'));
 
-        // }
+        }
 
         // Inak vyhľadávaj vo všetkých produktoch a zobraz index
         $products = Product::with('images')
                 ->whereRaw('LOWER(name) LIKE ?', ["%{$query}%"])
                 ->paginate(12)
                 ->appends([
-                    'q' => $request->input('q'),
-                    'category' => $request->input('category'),
+                    'q' => $request->input('q')
                 ]);
 
         return view('pages.index', compact('categories', 'products'));
