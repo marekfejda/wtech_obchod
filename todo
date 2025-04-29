@@ -12,3 +12,5 @@ TODO
 porovnat rozpracovanu OrderController s tou co je hotova TEMP v gite
 pridat X do kosika
 opravit cely search
+
+opravit users table zmazat NOT NULL aj v controllery upravit 
