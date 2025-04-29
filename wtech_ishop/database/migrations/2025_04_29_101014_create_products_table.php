@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('color_id'); // INTEGER NOT NULL REFERENCES colors(id)
         
             $table->float('price'); // FLOAT NOT NULL
-            $table->integer('stockQuantity'); // INTEGER NOT NULL
+            $table->integer('stockquantity'); // INTEGER NOT NULL
         
             $table->text('short_description')->nullable(); // TEXT (nullable by default unless NOT NULL specified)
             $table->text('description')->nullable(); // TEXT (nullable)

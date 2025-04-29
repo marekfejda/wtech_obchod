@@ -34,7 +34,7 @@ class ImageSeeder extends Seeder
 
                 DB::table('product_images')->insert([
                     'product_id' => $product_id,
-                    'image_id' => $i,
+                    'image_id' => $image_id,
                 ]);
             }
         }
