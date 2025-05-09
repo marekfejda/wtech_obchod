@@ -13,6 +13,7 @@ Route::get('/about-us', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
 Route::get('/admin-add', [AdminController::class, 'admin_add'])->name('admin.add');
+Route::post('/admin/add-product', [AdminController::class, 'store_product'])->name('admin.store_product');
 Route::get('/admin-delete', [AdminController::class, 'admin_delete'])->name('admin.delete');
 Route::get('/admin-edit', [AdminController::class, 'admin_edit'])->name('admin.edit');
 

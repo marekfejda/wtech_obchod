@@ -8,7 +8,8 @@
 
 @section('content')
     <div class="container my-5">
-        <form class="row g-4" enctype="multipart/form-data">
+        <form class="row g-4" method="POST" action="{{ route('admin.store_product') }}" enctype="multipart/form-data">
+            @csrf
 
             <!-- Left Column -->
             <div class="col-md-6">
@@ -18,37 +19,38 @@
 
             <!-- Right Column -->
             <div class="col-md-6">
-                <!-- Dropdowns -->
-                <select class="form-select mb-3 rounded-pill">
+                <!-- Category -->
+                <select name="category_id" class="form-select mb-3 rounded-pill">
                     <option selected disabled>Kategória</option>
-                    <option value="notebook">Notebook</option>
-                    <option value="telefon">Telefón</option>
-                    <option value="tablet">Tablet</option>
-                    <option value="prislusenstvo">Príslušenstvo</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->category }}</option>
+                    @endforeach
                 </select>
 
-                <select class="form-select mb-3 rounded-pill">
+                <!-- Color -->
+                <select name="color_id" class="form-select mb-3 rounded-pill">
                     <option selected disabled>Farba</option>
-                    <option value="cierna">Čierna</option>
-                    <option value="biela">Biela</option>
-                    <option value="modra">Modrá</option>
-                    <option value="cervena">Červená</option>
-                    <option value="zlata">Zlatá</option>
+                    @foreach($colors as $color)
+                        <option value="{{ $color->id }}">{{ $color->color }}</option>
+                    @endforeach
                 </select>
 
-                <select class="form-select mb-3 rounded-pill">
+                <!-- Brand -->
+                <select name="brand_id" class="form-select mb-3 rounded-pill">
                     <option selected disabled>Značka</option>
-                    <option value="apple">Apple</option>
-                    <option value="samsung">Samsung</option>
-                    <option value="xiaomi">Xiaomi</option>
-                    <option value="hp">HP</option>
-                    <option value="dell">Dell</option>
+                    @foreach($brands as $brand)
+                        <option value="{{ $brand->id }}">{{ $brand->brand }}</option>
+                    @endforeach
                 </select>
+
+                <!-- Price and Quantity -->
+                <input name="price" type="number" step="0.01" class="form-control mb-3 rounded-pill" placeholder="Cena">
+                <input name="stockQuantity" type="number" class="form-control mb-3 rounded-pill" placeholder="Skladom ks">
 
                 <!-- File Input -->
                 <div class="mb-3">
                     <label for="productPhotos" class="btn btn-outline-dark rounded-pill">Pridať fotky</label>
-                    <input type="file" class="form-control d-none" id="productPhotos" accept="image/*" multiple>
+                    <input name="images[]" type="file" class="form-control d-none" id="productPhotos" accept="image/*" multiple>
                 </div>
 
                 <!-- Image Previews -->
