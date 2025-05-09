@@ -97,3 +97,37 @@ function restoreDefaultLayout() {
     searchButton.classList.add("d-none"); // Hide blue search button on mobile
     searchToggle.classList.remove("d-none"); // Show search icon
 };
+
+
+//validate inputs
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('addProductForm');
+  form.addEventListener('submit', function (e) {
+    // grab values
+    const name = document.getElementById('name').value.trim();
+    const short_description = document.getElementById('short_description').value.trim();
+    const description = document.getElementById('description').value.trim();
+    const category = document.getElementById('category_id').value;
+    const color = document.getElementById('color_id').value;
+    const brand = document.getElementById('brand_id').value;
+    const price = document.getElementById('price').value.trim();
+    const stock = document.getElementById('stockQuantity').value.trim();
+
+    let errorMsg = '';
+    if (!name)                 errorMsg += 'Meno produktu je povinné.\n';
+    if (!short_description)    errorMsg += 'Titulný popis je povinný.\n';
+    if (!description)          errorMsg += 'Popis je povinný.\n';
+    if (!category)             errorMsg += 'Kategória je povinná.\n';
+    if (!color)                errorMsg += 'Farba je povinná.\n';
+    if (!brand)                errorMsg += 'Značka je povinná.\n';
+    if (!price)                errorMsg += 'Cena je povinná.\n';
+    if (!stock)                errorMsg += 'Počet kusov je povinný.\n';
+    if (price <= 0)            errorMsg += 'Cena nesmie byť záporná.\n';
+    if (stock <= 0)            errorMsg += 'Počet ks nesmie byť záporný.\n';
+
+    if (errorMsg) {
+      alert(errorMsg);
+      e.preventDefault();
+    }
+  });
+});

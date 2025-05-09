@@ -10,6 +10,8 @@ use App\Models\Product;
 use App\Models\Image;
 use App\Models\ProductImage;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image as InterventionImage;
 
 class AdminController extends Controller
 {
@@ -24,6 +26,7 @@ class AdminController extends Controller
 
     public function store_product(Request $request)
     {
+        // dd($request->all());
         $validated = $request->validate([
             'name' => 'required|string',
             'brand_id' => 'required|exists:brands,id',
@@ -31,9 +34,11 @@ class AdminController extends Controller
             'color_id' => 'required|exists:colors,id',
             'price' => 'required|numeric',
             'stockQuantity' => 'required|integer',
-            'description' => 'nullable|string',
+            'short_description' => 'required|string',
+            'description' => 'required|string',
             'images.*' => 'nullable|image|max:2048'
         ]);
+        
 
         $product = Product::create([
             'name' => $validated['name'],
@@ -41,16 +46,61 @@ class AdminController extends Controller
             'category_id' => $validated['category_id'],
             'color_id' => $validated['color_id'],
             'price' => $validated['price'],
-            'stockQuantity' => $validated['stockQuantity'],
-            'description' => $validated['description'] ?? null,
+            'stockquantity' => $validated['stockQuantity'],
+            'short_description' => $validated['short_description'],
+            'description' => $validated['description'],
         ]);
 
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $imageFile) {
-                $path = $imageFile->store('products', 'public');
+        if ($request->hasFile('images')) 
+        {
+            $files = $request->file('images');
+            $baseDir = public_path("assets/product_pictures/{$product->id}");
+            // 1) make product folder if it doesn't exist
+            if (! File::exists($baseDir)) 
+            {
+                File::makeDirectory($baseDir, 0755, true);
+            }
 
-                $image = Image::create(['path' => $path]);
-                $product->images()->attach($image->uid);
+            $counter = 1;
+            foreach ($files as $file) 
+            {
+                // original extension
+                $ext = strtolower($file->getClientOriginalExtension());
+                // target filename and full path
+                $isWebp = ($ext === 'webp');
+                $filename = $counter . ($isWebp ? '.webp' : ".$ext");
+                $fullPath = "{$baseDir}/{$filename}";
+
+                try 
+                {
+                    // 2) use Intervention to read/convert
+                    $img = InterventionImage::make($file->getRealPath());
+                    if (! $isWebp) 
+                    {
+                        // convert to webp with 90% quality
+                        $img->encode('webp', 90)->save($fullPath);
+                        $filename = $counter . '.webp';
+                    } 
+                    else 
+                    {
+                        // already webp: just save
+                        $img->save($fullPath);
+                    }
+                } 
+                catch (\Exception $e) 
+                {
+                    // fallback: just move the file
+                    $file->move($baseDir, $filename);
+                }
+
+                // 3) record path relative to public/
+                $relativePath = "assets/product_pictures/{$product->id}/{$filename}";
+                $imgModel = Image::create(['path' => $relativePath]);
+
+                // 4) pivot
+                $product->images()->attach($imgModel->uid);
+
+                $counter++;
             }
         }
 

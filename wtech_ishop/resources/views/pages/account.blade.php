@@ -42,10 +42,16 @@
         @if ($user && $user->role === 'admin')
             <!-- Admin Buttons -->
             <div class="d-flex flex-column align-items-center mb-3">
-                <button class="btn btn-primary mb-2 rounded-pill button_color">Pridať produkt</button>
-                <button class="btn btn-primary mb-3 rounded-pill button_color">Odstrániť produkt</button>
+                <a href="{{ route('admin.add') }}" class="btn btn-primary rounded-pill button_color mb-2">
+                    Pridať produkt
+                </a>
+
+                <a href="{{ route('admin.delete') }}" class="btn btn-primary rounded-pill button_color">
+                    Odstrániť produkt
+                </a>
             </div>
         @endif
+
 
 
         <!-- Logout Button -->
