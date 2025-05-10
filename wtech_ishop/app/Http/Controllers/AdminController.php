@@ -187,6 +187,9 @@ class AdminController extends Controller
         ]);
 
 
+        $maxId = Image::max('uid');
+        $counter = ($maxId ?? 0) + 1;   
+
         // delete the ones not in keep_images[]
         $keep = $request->input('keep_images',[]);
         $toDelete = $product->images->filter(fn($img)=> ! in_array($img->uid, $keep));
@@ -206,9 +209,7 @@ class AdminController extends Controller
             {
                 File::makeDirectory($baseDir, 0755, true);
             }
-
-            $maxId = Image::max('uid');
-            $counter = ($maxId ?? 0) + 1;    
+            
             foreach ($request->file('images') as $file) 
             {
                 // original extension
