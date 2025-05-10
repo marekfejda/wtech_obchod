@@ -53,6 +53,14 @@ input.addEventListener('change', () => {
     input.value = '';
 });
 
+const form = document.getElementById('addProductForm');
+form.addEventListener('submit', e => {
+  const dt = new DataTransfer();
+  selectedFiles.forEach(f => dt.items.add(f));
+  input.files = dt.files;
+});
+
+
 
 
 //header logic

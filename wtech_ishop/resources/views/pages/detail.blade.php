@@ -57,7 +57,7 @@
                             @endforeach
                         </div>
 
-                        <div class="carousel-inner ratio ratio-1x1 bg-white">
+                        <div class="carousel-inner ratio ratio-1x1 bg-white" style="max-width: 550px;">
                             @foreach ($product->images as $index => $image)
                                 <div class="carousel-item {{ $index === 0 ? 'active' : '' }} h-100">
                                     <div class="d-flex justify-content-center align-items-center h-100">
@@ -86,7 +86,17 @@
                     <div class="w-75">
                         <h3 class="fw-bold ms-3 mb-5 mt-4 text-color">{{ $product->name }}</h3>
 
-                        <p class="product-text text-color">{{ $product->description }}</p>
+                        @php
+                            $desc = $product->description;
+                            $diff = 150 - strlen($desc);
+                            if ($diff > 0) {
+                                $desc .= str_repeat("\u{00A0} ", $diff); // Adds non-breaking spaces
+                            }
+                        @endphp
+
+                        <div class="product-description-container mb-3" style="max-height: 40vh; max-width: 1200px; overflow-y: auto;">
+                            <p class="product-text text-color">{!! $desc !!}</p>
+                        </div>
 
                         <div class="ms-3 d-flex align-items-center mt-3">
                             <form method="POST" action="{{ route('cart.add', $product->id) }}" style="display: contents;">

@@ -11,7 +11,8 @@ use App\Models\Image;
 use App\Models\ProductImage;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-use Intervention\Image\Facades\Image as InterventionImage;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver as GdDriver;
 
 class AdminController extends Controller
 {
@@ -36,10 +37,11 @@ class AdminController extends Controller
             'stockQuantity' => 'required|integer',
             'short_description' => 'required|string',
             'description' => 'required|string',
-            'images.*' => 'nullable|image|max:2048'
+            'images'    => 'nullable|array',
+            'images.*'  => 'image|mimes:jpeg,jpg,png,gif,svg,webp'
         ]);
         
-
+        
         $product = Product::create([
             'name' => $validated['name'],
             'brand_id' => $validated['brand_id'],
@@ -53,16 +55,17 @@ class AdminController extends Controller
 
         if ($request->hasFile('images')) 
         {
-            $files = $request->file('images');
             $baseDir = public_path("assets/product_pictures/{$product->id}");
-            // 1) make product folder if it doesn't exist
-            if (! File::exists($baseDir)) 
+
+            $manager = new ImageManager(new GdDriver());
+            // make product folder if it doesn't exist
+            if (!File::exists($baseDir)) 
             {
                 File::makeDirectory($baseDir, 0755, true);
             }
 
             $counter = 1;
-            foreach ($files as $file) 
+            foreach ($request->file('images') as $file) 
             {
                 // original extension
                 $ext = strtolower($file->getClientOriginalExtension());
@@ -73,12 +76,12 @@ class AdminController extends Controller
 
                 try 
                 {
-                    // 2) use Intervention to read/convert
-                    $img = InterventionImage::make($file->getRealPath());
-                    if (! $isWebp) 
+                    // use Intervention to read/convert
+                    $img = $manager->read($file->getRealPath());
+                    if (!$isWebp) 
                     {
                         // convert to webp with 90% quality
-                        $img->encode('webp', 90)->save($fullPath);
+                        $image->toWebp(90)->save($fullPath);
                         $filename = $counter . '.webp';
                     } 
                     else 
@@ -93,11 +96,10 @@ class AdminController extends Controller
                     $file->move($baseDir, $filename);
                 }
 
-                // 3) record path relative to public/
+                // record path relative to \public
                 $relativePath = "assets/product_pictures/{$product->id}/{$filename}";
                 $imgModel = Image::create(['path' => $relativePath]);
 
-                // 4) pivot
                 $product->images()->attach($imgModel->uid);
 
                 $counter++;
