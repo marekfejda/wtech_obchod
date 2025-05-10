@@ -18,7 +18,7 @@ Route::get('/admin-delete', [AdminController::class, 'admin_delete'])->name('adm
 Route::delete('/admin/delete-product', [AdminController::class, 'delete_product'])->name('admin.delete.product');
 Route::get('/admin/product-info/{id}', [AdminController::class, 'getProductInfo']);
 Route::get('/admin-edit/{product}', [AdminController::class, 'admin_edit'])->name('admin.edit');
-Route::post('/admin/update-product', [AdminController::class, 'update_product'])->name('admin.update_product');
+Route::post('/admin/update-product/{product}', [AdminController::class, 'update_product'])->name('admin.update_product');
 
 
 

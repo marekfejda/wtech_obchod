@@ -6,19 +6,17 @@
     <link rel="stylesheet" href="{{ asset('pages/admin_edit/styles.css') }}">
 @endsection
 
-<script>
-const selectedFiles = {!! json_encode(
-    $product->images->map(function ($img) {
-        return [
-            '_id' => uniqid(),
-            'name' => basename($img->path),
-            'src' => asset($img->path)
-        ];
-    })
-) !!};
-</script>
-
 @section('content')
+	<script>
+	window.initialFiles = {!! json_encode(
+		$product->images->map(function ($img) {
+		return [
+			'uid' => $img->uid,
+			'src'  => asset($img->path),
+		];
+		})
+	) !!};
+	</script>
 	@if (session('success'))
         <div id="flash-message" class="alert alert-success alert-dismissible fade show text-center" role="alert">
             {{ session('success') }}
@@ -38,7 +36,7 @@ const selectedFiles = {!! json_encode(
     @endif
 
 	<div class="container my-5 px-3 px-sm-5">
-		<form id="editProductForm" class="row g-4" method="POST" action="{{ route('admin.update_product') }}" enctype="multipart/form-data" novalidate>
+		<form id="editProductForm" class="row g-4" method="POST" action="{{ route('admin.update_product', $product->id) }}" enctype="multipart/form-data" novalidate>
             @csrf
 
 			<!-- Left Column -->
@@ -107,7 +105,6 @@ const selectedFiles = {!! json_encode(
 		</form>
 	</div>
 @endsection
-
 
 @section('page-js')
     <script src="{{ asset('pages/admin_edit/scripts.js') }}"></script>

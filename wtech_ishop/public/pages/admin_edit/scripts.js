@@ -59,7 +59,7 @@ input.addEventListener('change', () => {
 const form = document.getElementById('editProductForm');
 form.addEventListener('submit', e => {
     const dt = new DataTransfer();
-    selectedFiles.forEach(f => dt.items.add(f));
+    selectedFiles.filter(f => f instanceof File).forEach(f => dt.items.add(f));
     input.files = dt.files;
 });
 
@@ -94,6 +94,13 @@ function loadExistingImages(file) {
 
     wrapper.appendChild(img);
     wrapper.appendChild(removeBtn);
+
+    const keep = document.createElement('input');
+    keep.type = 'hidden';
+    keep.name = 'keep_images[]';
+    keep.value = file.uid;
+    wrapper.appendChild(keep);
+
     previewContainer.appendChild(wrapper);
 }
 

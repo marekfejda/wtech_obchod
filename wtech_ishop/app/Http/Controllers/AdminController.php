@@ -27,6 +27,7 @@ class AdminController extends Controller
 
     public function store_product(Request $request)
     {
+        // dd($request->all());
         $validated = $request->validate([
             'name' => 'required|string',
             'brand_id' => 'required|exists:brands,id',
@@ -105,7 +106,7 @@ class AdminController extends Controller
             }
         }
 
-        return redirect()->back()->with('success', 'Produkt bol pridaný!');
+        return back()->with('success', 'Produkt bol pridaný!');
     }
 
     public function admin_delete()
@@ -155,9 +156,8 @@ class AdminController extends Controller
         return view('pages.admin_edit', compact('product', 'categories', 'colors', 'brands'));
     }
 
-    public function update_product(Request $request)
+    public function update_product(Request $request, Product $product)
     {
-        // dd($request->all());
         $validated = $request->validate([
             'name' => 'required|string',
             'brand_id' => 'required|exists:brands,id',
@@ -167,75 +167,87 @@ class AdminController extends Controller
             'stockQuantity' => 'required|integer',
             'short_description' => 'required|string',
             'description' => 'required|string',
-            // 'images'    => 'nullable|array',
-            // 'images.*'  => 'image|mimes:jpeg,jpg,png,gif,svg,webp'
+            'keep_images'       => 'nullable|array',
+            'keep_images.*'     => 'exists:images,uid',
+            'images'    => 'nullable|array',
+            'images.*'  => 'image|mimes:jpeg,jpg,png,gif,svg,webp'
         ]);
         
+        // dd($request->all());
         
-        // $product = Product::create([
-        //     'name' => $validated['name'],
-        //     'brand_id' => $validated['brand_id'],
-        //     'category_id' => $validated['category_id'],
-        //     'color_id' => $validated['color_id'],
-        //     'price' => $validated['price'],
-        //     'stockquantity' => $validated['stockQuantity'],
-        //     'short_description' => $validated['short_description'],
-        //     'description' => $validated['description'],
-        // ]);
+        $product->update([
+            'name' => $validated['name'],
+            'brand_id' => $validated['brand_id'],
+            'category_id' => $validated['category_id'],
+            'color_id' => $validated['color_id'],
+            'price' => $validated['price'],
+            'stockquantity' => $validated['stockQuantity'],
+            'short_description' => $validated['short_description'],
+            'description' => $validated['description'],
+        ]);
 
-        // if ($request->hasFile('images')) 
-        // {
-        //     $baseDir = public_path("assets/product_pictures/{$product->id}");
 
-        //     $manager = new ImageManager(new GdDriver());
-        //     // make product folder if it doesn't exist
-        //     if (!File::exists($baseDir)) 
-        //     {
-        //         File::makeDirectory($baseDir, 0755, true);
-        //     }
+        // delete the ones not in keep_images[]
+        $keep = $request->input('keep_images',[]);
+        $toDelete = $product->images->filter(fn($img)=> ! in_array($img->uid, $keep));
+        foreach($toDelete as $old){
+            \File::delete(public_path($old->path));
+            $product->images()->detach($old->uid);
+            $old->delete();
+        }
 
-        //     $counter = 1;
-        //     foreach ($request->file('images') as $file) 
-        //     {
-        //         // original extension
-        //         $ext = strtolower($file->getClientOriginalExtension());
-        //         // target filename and full path
-        //         $isWebp = ($ext === 'webp');
-        //         $filename = $counter . ($isWebp ? '.webp' : ".$ext");
-        //         $fullPath = "{$baseDir}/{$filename}";
+        if ($request->hasFile('images')) 
+        {
+            $baseDir = public_path("assets/product_pictures/{$product->id}");
 
-        //         try 
-        //         {
-        //             // use Intervention to read/convert
-        //             $img = $manager->read($file->getRealPath());
-        //             if (!$isWebp) 
-        //             {
-        //                 // convert to webp with 90% quality
-        //                 $image->toWebp(90)->save($fullPath);
-        //                 $filename = $counter . '.webp';
-        //             } 
-        //             else 
-        //             {
-        //                 // already webp: just save
-        //                 $img->save($fullPath);
-        //             }
-        //         } 
-        //         catch (\Exception $e) 
-        //         {
-        //             // fallback: just move the file
-        //             $file->move($baseDir, $filename);
-        //         }
+            $manager = new ImageManager(new GdDriver());
+            // make product folder if it doesn't exist
+            if (!File::exists($baseDir)) 
+            {
+                File::makeDirectory($baseDir, 0755, true);
+            }
 
-        //         // record path relative to \public
-        //         $relativePath = "assets/product_pictures/{$product->id}/{$filename}";
-        //         $imgModel = Image::create(['path' => $relativePath]);
+            foreach ($request->file('images') as $file) 
+            {
+                // record path relative to \public
+                $relativePath = "assets/product_pictures/{$product->id}/{$filename}";
+                $imgModel = Image::create(['path' => $relativePath]);
 
-        //         $product->images()->attach($imgModel->uid);
+                $product->images()->attach($imgModel->uid);
 
-        //         $counter++;
-        //     }
-        // }
+                // original extension
+                $ext = strtolower($file->getClientOriginalExtension());
+                // target filename and full path
+                $isWebp = ($ext === 'webp');
+                $filename = $imgModel->uid . ($isWebp ? '.webp' : ".$ext");
+                $fullPath = "{$baseDir}/{$filename}";
 
-        return redirect()->back()->with('success', 'Produkt bol aktualizovaný!');
+                try 
+                {
+                    // use Intervention to read/convert
+                    $img = $manager->read($file->getRealPath());
+                    if (!$isWebp) 
+                    {
+                        // convert to webp with 90% quality
+                        $image->toWebp(90)->save($fullPath);
+                        $filename = $imgModel->uid . '.webp';
+                    } 
+                    else 
+                    {
+                        // already webp: just save
+                        $img->save($fullPath);
+                    }
+                } 
+                catch (\Exception $e) 
+                {
+                    // fallback: just move the file
+                    $file->move($baseDir, $filename);
+                }
+
+                
+            }
+        }
+
+        return back()->with('success', 'Produkt bol aktualizovaný!');
     }
 }
