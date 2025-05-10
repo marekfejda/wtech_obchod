@@ -21,4 +21,10 @@ php artisan serve
 
 DONE ked sa vykupi produkt, skovat ho... (indexe sa uz nezobrazuje, ale v kategorii a vyhladavani)
 DONE fix text v migracii - pri iphonoch sa pridal \
-osetrenie inputov pri CART
+DONE osetrenie inputov pri CART
+
+
+delete - potvrdzujuce okno
+handle neexistujuce id
+
+docs
