@@ -24,7 +24,9 @@ DONE fix text v migracii - pri iphonoch sa pridal \
 DONE osetrenie inputov pri CART
 
 
-delete - potvrdzujuce okno
-handle neexistujuce id
+DONE delete - potvrdzujuce okno
+DONE handle neexistujuce id
 
-docs
+TODO docs
+
+https://www.flaticon.com/free-icon/no-results_6134116

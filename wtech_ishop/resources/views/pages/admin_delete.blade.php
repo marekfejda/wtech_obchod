@@ -7,6 +7,24 @@
 @endsection
 
 @section('content')
+    @if (session('success'))
+        <div id="flash-message" class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <script>
+            setTimeout(function () {
+                let el = document.getElementById('flash-message');
+                if (el) {
+                    el.style.transition = 'opacity 0.5s ease';
+                    el.style.opacity = 0;
+                    setTimeout(() => el.remove(), 500);
+                }
+            }, 3000); // 3 sekundy
+        </script>
+    @endif
+    
     <!-- Delete Product by UID -->
     <div class="container d-flex justify-content-center align-items-center flex-grow-1 flex-column">
         <!-- Title -->
@@ -34,14 +52,12 @@
                 </div>
                 
                 <!-- Body -->
-                <!-- <div class="modal-body text-center py-3 fs-5">Naozaj chcete natrvalo odstrániť tento produkt?</div> -->
-
                 <div class="modal-body text-center py-3 fs-5">
                     <div id="productPreview" class="mb-3 d-none">
-                        <img id="previewImage" src="" alt="Preview" style="max-width: 150px;" class="mb-2 rounded shadow-sm">
-                        <div id="previewName" class="fw-bold"></div>
+                        <img id="previewImage" src="" alt="/assets/icons/not_found.png" style="max-width: 150px;" class="mb-2 rounded">
+                        <div id="previewName" class="fw-bold" style="color: #45503B;"></div>
                     </div>
-                    <div>Naozaj chcete natrvalo odstrániť tento produkt?</div>
+                    <div style="color: #45503B;">Naozaj chcete natrvalo odstrániť tento produkt?</div>
                 </div>
 
                 <form method="POST" action="{{ route('admin.delete.product') }}">
@@ -67,28 +83,33 @@
 <script src="{{ asset('pages/admin_delete/scripts.js') }}"></script>
 <script>
     document.querySelector('[data-bs-target="#confirmDeleteModal"]').addEventListener('click', async () => {
-        const uid = document.getElementById('productUidInput').value;
+        const uid = document.getElementById('productUidInput').value.trim();
+        const submitButton = document.querySelector('#confirmDeleteModal button[type="submit"]');
+        const productPreview = document.getElementById('productPreview');
+        const previewImage = document.getElementById('previewImage');
+        const previewName = document.getElementById('previewName');
+        productPreview.classList.add('d-none');
+        
         document.getElementById('deleteProductId').value = uid;
-
-        const preview = document.getElementById('productPreview');
-        const imageEl = document.getElementById('previewImage');
-        const nameEl = document.getElementById('previewName');
-        preview.classList.add('d-none');
-
-        if (!uid) return;
+        if (!uid) {
+            return;
+        }
 
         try {
             const response = await fetch(`/admin/product-info/${uid}`);
             if (!response.ok) throw new Error('Produkt nenájdený');
             const data = await response.json();
 
-            nameEl.textContent = data.name ?? 'Bez názvu';
-            imageEl.src = data.image ?? '';
-            preview.classList.remove('d-none');
+            previewName.textContent = data.name;
+            previewImage.src = data.image ?? '';
+            productPreview.classList.remove('d-none');
+
+            submitButton.disabled = false;
         } catch (err) {
-            nameEl.textContent = 'Produkt nenájdený';
-            imageEl.src = '';
-            preview.classList.remove('d-none');
+            previewName.textContent = 'Produkt nenájdený';
+            previewImage.src = '/assets/icons/not_found.png';
+            productPreview.classList.remove('d-none');
+            submitButton.disabled = true;
         }
     });
 </script>

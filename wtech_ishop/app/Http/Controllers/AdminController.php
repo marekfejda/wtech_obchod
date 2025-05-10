@@ -117,27 +117,18 @@ class AdminController extends Controller
         $id = $request->input('product_id');
         $product = Product::find($id);
 
-        if (!$product) {
-            return redirect()->back()->with('error', 'Produkt nebol nájdený.');
-        }
+        $images = $product->images;
 
-        try {
-            $images = $product->images;
-
-            foreach ($images as $image) {
-                $imagePath = public_path($image->path);
-                if (File::exists($imagePath)) {
-                    File::delete($imagePath);
-                }
-                $image->delete();
+        foreach ($images as $image) {
+            $imagePath = public_path($image->path);
+            if (File::exists($imagePath)) {
+                File::delete($imagePath);
             }
-
-            $product->delete();
-
-            return redirect()->back()->with('success', 'Produkt bol odstránený.');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Chyba pri odstraňovaní produktu: ' . $e->getMessage());
+            $image->delete();
         }
+
+        $product->delete();
+        return redirect()->back()->with('success', 'Produkt bol odstránený.');
     }
 
 
