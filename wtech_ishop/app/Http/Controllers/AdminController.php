@@ -207,7 +207,8 @@ class AdminController extends Controller
                 File::makeDirectory($baseDir, 0755, true);
             }
 
-            $counter = Image::count() + 1;
+            $maxId = Image::max('id');
+            $counter = ($maxId ?? 0) + 1;    
             foreach ($request->file('images') as $file) 
             {
                 // original extension
