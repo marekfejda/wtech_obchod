@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         
             // temp_user_id without foreign key
-            $table->integer('temp_user_id');
+            $table->integer('temp_user_id')->nullable();
         
             $table->string('name_surname');
             $table->string('address_streetnumber');
