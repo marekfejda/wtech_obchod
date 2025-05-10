@@ -27,7 +27,6 @@ class AdminController extends Controller
 
     public function store_product(Request $request)
     {
-        // dd($request->all());
         $validated = $request->validate([
             'name' => 'required|string',
             'brand_id' => 'required|exists:brands,id',
@@ -133,7 +132,6 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Produkt bol odstránený.');
     }
 
-
     public function getProductInfo($id)
     {
         $product = Product::with('images')->find($id);
@@ -148,9 +146,96 @@ class AdminController extends Controller
         ]);
     }
 
-
-    public function admin_edit()
+    public function admin_edit(Product $product)
     {
-        return view('pages.admin_edit');
+        $categories = Category::all();
+        $colors = Color::all();
+        $brands = Brand::all();
+
+        return view('pages.admin_edit', compact('product', 'categories', 'colors', 'brands'));
+    }
+
+    public function update_product(Request $request)
+    {
+        // dd($request->all());
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'brand_id' => 'required|exists:brands,id',
+            'category_id' => 'required|exists:categories,id',
+            'color_id' => 'required|exists:colors,id',
+            'price' => 'required|numeric',
+            'stockQuantity' => 'required|integer',
+            'short_description' => 'required|string',
+            'description' => 'required|string',
+            // 'images'    => 'nullable|array',
+            // 'images.*'  => 'image|mimes:jpeg,jpg,png,gif,svg,webp'
+        ]);
+        
+        
+        // $product = Product::create([
+        //     'name' => $validated['name'],
+        //     'brand_id' => $validated['brand_id'],
+        //     'category_id' => $validated['category_id'],
+        //     'color_id' => $validated['color_id'],
+        //     'price' => $validated['price'],
+        //     'stockquantity' => $validated['stockQuantity'],
+        //     'short_description' => $validated['short_description'],
+        //     'description' => $validated['description'],
+        // ]);
+
+        // if ($request->hasFile('images')) 
+        // {
+        //     $baseDir = public_path("assets/product_pictures/{$product->id}");
+
+        //     $manager = new ImageManager(new GdDriver());
+        //     // make product folder if it doesn't exist
+        //     if (!File::exists($baseDir)) 
+        //     {
+        //         File::makeDirectory($baseDir, 0755, true);
+        //     }
+
+        //     $counter = 1;
+        //     foreach ($request->file('images') as $file) 
+        //     {
+        //         // original extension
+        //         $ext = strtolower($file->getClientOriginalExtension());
+        //         // target filename and full path
+        //         $isWebp = ($ext === 'webp');
+        //         $filename = $counter . ($isWebp ? '.webp' : ".$ext");
+        //         $fullPath = "{$baseDir}/{$filename}";
+
+        //         try 
+        //         {
+        //             // use Intervention to read/convert
+        //             $img = $manager->read($file->getRealPath());
+        //             if (!$isWebp) 
+        //             {
+        //                 // convert to webp with 90% quality
+        //                 $image->toWebp(90)->save($fullPath);
+        //                 $filename = $counter . '.webp';
+        //             } 
+        //             else 
+        //             {
+        //                 // already webp: just save
+        //                 $img->save($fullPath);
+        //             }
+        //         } 
+        //         catch (\Exception $e) 
+        //         {
+        //             // fallback: just move the file
+        //             $file->move($baseDir, $filename);
+        //         }
+
+        //         // record path relative to \public
+        //         $relativePath = "assets/product_pictures/{$product->id}/{$filename}";
+        //         $imgModel = Image::create(['path' => $relativePath]);
+
+        //         $product->images()->attach($imgModel->uid);
+
+        //         $counter++;
+        //     }
+        // }
+
+        return redirect()->back()->with('success', 'Produkt bol aktualizovaný!');
     }
 }
