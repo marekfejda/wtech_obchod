@@ -194,6 +194,8 @@ class OrderController extends Controller
                 'card_holder' => 'required|string|max:255',
             ]);
 
+            $validated['card_number'] = str_replace(' ', '', $validated['card_number']);
+
             $order->fill([
                 'payment_type' => 'card',
                 'card_number'  => $validated['card_number'],
