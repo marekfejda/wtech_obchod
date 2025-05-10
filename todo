@@ -15,7 +15,10 @@ opravit cely search
 
 opravit users table zmazat NOT NULL aj v controllery upravit 
 
-kontrolovat vstupy v kosiku aj v db
 
 php artisan migrate:fresh --seed
 php artisan serve
+
+ked sa vykupi produkt, skovat ho... (indexe sa uz nezobrazuje, ale v kategorii a vyhladavani)
+fix text v migracii - pri iphonoch sa pridal \
+osetrenie inputov pri CART

@@ -31,8 +31,10 @@ class CategoryController extends Controller
 
         $sort = $request->input('sort', 'id_asc');
 
-        $productsQuery = Product::with('images')->where('category_id', $currentCategory->id);
-        
+        $productsQuery = Product::with('images')
+            ->where('category_id', $currentCategory->id)
+            ->where('stockquantity', '>', 0);
+
         $productsQuery->whereBetween('price', [$priceMin, $priceMax]);
         
         $selectedColors = $request->input('colors', []);
@@ -85,6 +87,7 @@ class CategoryController extends Controller
 
             $productsQuery = Product::with('images')
                 ->where('category_id', $currentCategory->id)
+                ->where('stockquantity', '>', 0)
                 ->whereRaw('LOWER(name) LIKE ?', ["%{$query}%"]);
 
             $products = $productsQuery->paginate(12)->appends([
@@ -104,6 +107,7 @@ class CategoryController extends Controller
 
         // Inak vyhľadávaj vo všetkých produktoch a zobraz index
         $products = Product::with('images')
+                ->where('stockquantity', '>', 0)
                 ->whereRaw('LOWER(name) LIKE ?', ["%{$query}%"])
                 ->paginate(12)
                 ->appends([
