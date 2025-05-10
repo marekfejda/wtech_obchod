@@ -125,14 +125,16 @@
                             @endphp
                             
                             @if ($user && $user->role === 'admin')
-                                    <span class="ms-2 product-uid"
-                                        style="opacity: 0.4; font-size: 0.8rem; color: #6c757d;">{{ $product->id }}</span>
+                                <span class="ms-2 product-uid"
+                                    style="opacity: 0.4; font-size: 0.8rem; color: #6c757d;">{{ $product->id }}</span>
 
+                                <a href="{{ route('admin.edit', $product->id) }}" style="text-decoration: none;">
                                     <button class="btn btn-outline-secondary"
                                         style="opacity: 0.4; border: none; background: none;">
                                         <i class="bi bi-pencil" style="font-size: 1.2rem; color: #6c757d;"></i>
                                     </button>
-                                @endif
+                                </a>
+                            @endif
                         </div>
                         <p class="fs-4 mt-5 ms-3 fw-bold" style="color: #45503B;">{{ $product->price }} €</p>
                     </div>

@@ -63,6 +63,7 @@ form.addEventListener('submit', e => {
 
 
 
+
 //header logic
 let logo = document.getElementById("logo");
 let searchForm = document.getElementById("searchForm");
@@ -105,6 +106,8 @@ function restoreDefaultLayout() {
     searchButton.classList.add("d-none"); // Hide blue search button on mobile
     searchToggle.classList.remove("d-none"); // Show search icon
 };
+
+
 
 
 //validate inputs

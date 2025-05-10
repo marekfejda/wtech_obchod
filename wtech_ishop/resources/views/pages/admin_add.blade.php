@@ -26,7 +26,7 @@
         </script>
     @endif
 
-    <div class="container my-5">
+    <div class="container my-5 px-3 px-sm-5">
         <form id="addProductForm" class="row g-4" method="POST" action="{{ route('admin.store_product') }}" enctype="multipart/form-data" novalidate>
             @csrf
 
@@ -64,8 +64,8 @@
                 </select>
 
                 <!-- Price and Quantity -->
-                <input id="price" name="price" type="number" step="0.01" class="form-control mb-3 rounded-pill" placeholder="Cena">
-                <input id="stockQuantity" name="stockQuantity" type="number" class="form-control mb-3 rounded-pill" placeholder="Skladom ks">
+                <input id="price" name="price" type="number" step="0.01" class="form-control mb-3 rounded-pill" min="0" placeholder="Cena">
+                <input id="stockQuantity" name="stockQuantity" type="number" class="form-control mb-3 rounded-pill" min="0" placeholder="Skladom ks">
 
                 <!-- File Input -->
                 <div class="mb-3">
@@ -77,7 +77,9 @@
                 <div id="previewContainer" class="d-flex flex-wrap gap-2 mb-3"></div>
 
                 <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary rounded-pill button_color">Pridať produkt</button>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary rounded-pill button_color">Pridať produkt</button>
+                </div>
             </div>
         </form>
     </div>
