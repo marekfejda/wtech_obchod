@@ -207,19 +207,14 @@ class AdminController extends Controller
                 File::makeDirectory($baseDir, 0755, true);
             }
 
+            $counter = Image::count() + 1;
             foreach ($request->file('images') as $file) 
             {
-                // record path relative to \public
-                $relativePath = "assets/product_pictures/{$product->id}/{$filename}";
-                $imgModel = Image::create(['path' => $relativePath]);
-
-                $product->images()->attach($imgModel->uid);
-
                 // original extension
                 $ext = strtolower($file->getClientOriginalExtension());
                 // target filename and full path
                 $isWebp = ($ext === 'webp');
-                $filename = $imgModel->uid . ($isWebp ? '.webp' : ".$ext");
+                $filename = $counter . ($isWebp ? '.webp' : ".$ext");
                 $fullPath = "{$baseDir}/{$filename}";
 
                 try 
@@ -230,7 +225,7 @@ class AdminController extends Controller
                     {
                         // convert to webp with 90% quality
                         $image->toWebp(90)->save($fullPath);
-                        $filename = $imgModel->uid . '.webp';
+                        $filename = $counter . '.webp';
                     } 
                     else 
                     {
@@ -244,7 +239,13 @@ class AdminController extends Controller
                     $file->move($baseDir, $filename);
                 }
 
-                
+                // record path relative to \public
+                $relativePath = "assets/product_pictures/{$product->id}/{$filename}";
+                $imgModel = Image::create(['path' => $relativePath]);
+
+                $product->images()->attach($imgModel->uid);
+
+                $counter++;
             }
         }
 
