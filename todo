@@ -16,3 +16,6 @@ opravit cely search
 opravit users table zmazat NOT NULL aj v controllery upravit 
 
 kontrolovat vstupy v kosiku aj v db
+
+php artisan migrate:fresh --seed
+php artisan serve
