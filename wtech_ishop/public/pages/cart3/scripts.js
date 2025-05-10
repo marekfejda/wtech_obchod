@@ -1,13 +1,24 @@
-document.getElementById('expiryDate').addEventListener('input', function () {
-    var value = this.value;
+// -------------------------CLEAN INPUTS-------------------------
+let lastKey = null;
 
-    if (value.length === 2 && !value.includes('/')) {
+document.getElementById('expiryDate').addEventListener('keydown', function (event) {
+    lastKey = event.key;
+});
+
+document.getElementById('expiryDate').addEventListener('input', function () {
+    var value = this.value.replace(/\D/g, '');
+
+    if (value.length >= 3) {
+        this.value = value.slice(0, 2) + '/' + value.slice(2, 4);
+    } else if (value.length === 2 && lastKey !== 'Backspace') {
         this.value = value + '/';
+    } else {
+        this.value = value;
     }
 });
 
-document.getElementById('cardNumber').addEventListener('input', function () {
-    var value = this.value.split(' ').join('');
+document.getElementById('card_number').addEventListener('input', function () {
+    var value = this.value.replace(/\D/g, '');
     var formattedValue = '';
 
     for (var i = 0; i < value.length; i += 4) {
@@ -20,15 +31,7 @@ document.getElementById('cardNumber').addEventListener('input', function () {
 
     this.value = formattedValue.trim();
 });
-
-document.getElementById('cvv').addEventListener('input', function () {
-    var value = this.value;
-
-    if (value.length > 3) {
-        this.value = value.substring(0, 3);
-    }
-});
-
+// --------------------------------------------------------------------
 
 //header logic
 let logo = document.getElementById("logo");

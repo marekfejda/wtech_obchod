@@ -57,13 +57,14 @@
 
                             <div class="mb-3">
                                 <label for="expiryDate" class="form-label" style="color: #45503B;">Dátum expirácie (MM/YY)</label>
-                                <input name="exp_date" type="text" class="form-control rounded-pill" id="expiryDate" placeholder="MM/YY"
-                                    maxlength="5" required>
+                                <input name="exp_date" type="text" class="form-control rounded-pill" id="expiryDate" placeholder="MM/YY" required
+                                onkeypress="return /[0-9]/.test(event.key);" maxlength="5">
                             </div>
 
                             <div class="mb-3">
                                 <label for="cvv" class="form-label" style="color: #45503B;">CVV</label>
-                                <input name="cvc" type="text" class="form-control rounded-pill" id="cvv" placeholder="123" required>
+                                <input name="cvc" type="text" class="form-control rounded-pill" id="cvv" placeholder="123" required
+                                onkeypress="return /[0-9]/.test(event.key);" maxlength="3">
                             </div>
 
                             <div class="mb-3">

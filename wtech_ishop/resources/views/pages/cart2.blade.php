@@ -47,7 +47,9 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="PSC" class="form-label">ZIP Code</label>
-                                <input name="PSC" type="text" class="form-control rounded-pill @error('PSC') is-invalid @enderror" id="PSC" placeholder="842 16" required>
+                                <input name="PSC" type="text" class="form-control rounded-pill @error('PSC') is-invalid @enderror" id="PSC" placeholder="84216" required
+                                    maxlength="5" inputmode="numeric" onkeypress="return /[0-9]/.test(event.key);"
+                                >
                             </div>
                         </div>
                         <div class="col-md-6">

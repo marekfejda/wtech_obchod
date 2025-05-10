@@ -40,3 +40,24 @@ function restoreDefaultLayout() {
     searchButton.classList.add("d-none"); // Hide blue search button on mobile
     searchToggle.classList.remove("d-none"); // Show search icon
 };
+
+// Function to clean up the phone number input
+document.addEventListener("DOMContentLoaded", function () {
+    const phoneInput = document.getElementById("phoneNumber");
+
+    phoneInput.addEventListener("input", function (e) {
+        let cleaned = phoneInput.value.replace(/\D/g, "");
+
+        cleaned = cleaned.slice(0, 9);
+
+        let out = "";
+        for (let i = 0; i < cleaned.length; i++) {
+            if (i % 3 == 0 && i != 0) {
+                out += " ";
+            }
+            out += cleaned[i];
+        }
+
+        phoneInput.value = out;
+    });
+});
