@@ -13,7 +13,7 @@ class Image extends Model
 
     protected $primaryKey = 'uid';
 
-    // protected $fillable = ['path'];
+    protected $fillable = ['path'];
 
     public function products()
     {

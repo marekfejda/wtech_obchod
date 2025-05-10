@@ -26,10 +26,6 @@
         </script>
     @endif
 
-
-
-
-
     <div class="container my-5">
         <form id="addProductForm" class="row g-4" method="POST" action="{{ route('admin.store_product') }}" enctype="multipart/form-data" novalidate>
             @csrf

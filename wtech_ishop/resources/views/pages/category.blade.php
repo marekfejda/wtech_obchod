@@ -209,9 +209,16 @@
                                 </div>
 
                                 <!-- Right: Name + Description -->
+                                 @php
+                                    $desc = $product->short_description;
+                                    $diff = 50 - strlen($desc);
+                                    if ($diff > 0) {
+                                        $desc .= str_repeat("\u{00A0} ", $diff); // Adds non-breaking spaces
+                                    }
+                                @endphp
                                 <div class="d-flex flex-column justify-content-center w-100 w-md-50">
                                     <div class="fw-semibold fs-5 mb-1 text-color">{{ $product->name }}</div>
-                                    <div class="text-muted small text-color">{{ $product->short_description }}</div>
+                                    <div class="text-muted small text-color">{!! $desc !!}</div>
                                 </div>
                             </div>
                         </a>
