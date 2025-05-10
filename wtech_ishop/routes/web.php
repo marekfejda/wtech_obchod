@@ -15,6 +15,8 @@ Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/admin-add', [AdminController::class, 'admin_add'])->name('admin.add');
 Route::post('/admin/store-product', [AdminController::class, 'store_product'])->name('admin.store_product');
 Route::get('/admin-delete', [AdminController::class, 'admin_delete'])->name('admin.delete');
+Route::delete('/admin/delete-product', [AdminController::class, 'delete_product'])->name('admin.delete.product');
+Route::get('/admin/product-info/{id}', [AdminController::class, 'getProductInfo']);
 Route::get('/admin-edit', [AdminController::class, 'admin_edit'])->name('admin.edit');
 
 

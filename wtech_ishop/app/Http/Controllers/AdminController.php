@@ -111,6 +111,51 @@ class AdminController extends Controller
     {
         return view('pages.admin_delete');
     }
+
+    public function delete_product(Request $request)
+    {
+        $id = $request->input('product_id');
+        $product = Product::find($id);
+
+        if (!$product) {
+            return redirect()->back()->with('error', 'Produkt nebol nájdený.');
+        }
+
+        try {
+            $images = $product->images;
+
+            foreach ($images as $image) {
+                $imagePath = public_path($image->path);
+                if (File::exists($imagePath)) {
+                    File::delete($imagePath);
+                }
+                $image->delete();
+            }
+
+            $product->delete();
+
+            return redirect()->back()->with('success', 'Produkt bol odstránený.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Chyba pri odstraňovaní produktu: ' . $e->getMessage());
+        }
+    }
+
+
+    public function getProductInfo($id)
+    {
+        $product = Product::with('images')->find($id);
+
+        if (!$product) {
+            return response()->json(['message' => 'Produkt nenájdený'], 404);
+        }
+
+        return response()->json([
+            'name' => $product->name,
+            'image' => $product->images->first()?->path ? asset($product->images->first()->path) : null,
+        ]);
+    }
+
+
     public function admin_edit()
     {
         return view('pages.admin_edit');
