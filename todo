@@ -19,6 +19,6 @@ opravit users table zmazat NOT NULL aj v controllery upravit
 php artisan migrate:fresh --seed
 php artisan serve
 
-ked sa vykupi produkt, skovat ho... (indexe sa uz nezobrazuje, ale v kategorii a vyhladavani)
-fix text v migracii - pri iphonoch sa pridal \
+DONE ked sa vykupi produkt, skovat ho... (indexe sa uz nezobrazuje, ale v kategorii a vyhladavani)
+DONE fix text v migracii - pri iphonoch sa pridal \
 osetrenie inputov pri CART
