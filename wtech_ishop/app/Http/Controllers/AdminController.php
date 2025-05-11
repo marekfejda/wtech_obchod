@@ -80,9 +80,10 @@ class AdminController extends Controller
                     $img = $manager->read($file->getRealPath());
                     if (!$isWebp) 
                     {
-                        // convert to webp with 90% quality
-                        $image->toWebp(90)->save($fullPath);
                         $filename = $counter . '.webp';
+                        $fullPath = "{$baseDir}/{$filename}";
+                        // convert to webp with 90% quality
+                        $img->toWebp(90)->save($fullPath);
                     } 
                     else 
                     {
@@ -225,9 +226,10 @@ class AdminController extends Controller
                     $img = $manager->read($file->getRealPath());
                     if (!$isWebp) 
                     {
-                        // convert to webp with 90% quality
-                        $image->toWebp(90)->save($fullPath);
                         $filename = $counter . '.webp';
+                        $fullPath = "{$baseDir}/{$filename}";
+                        // convert to webp with 90% quality
+                        $img->toWebp(90)->save($fullPath);
                     } 
                     else 
                     {
