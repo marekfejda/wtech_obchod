@@ -114,9 +114,14 @@
                                         });
                                     </script>
 
-                                <button type="submit" class="btn btn-primary rounded-pill button_color" style="min-width: 145px;">
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary rounded-pill button_color"
+                                    style="min-width: 145px;"
+                                    {{ $product->stockquantity == 0 ? 'disabled' : '' }}>
                                     Pridať do košíka
                                 </button>
+
                             </form>
 
                             

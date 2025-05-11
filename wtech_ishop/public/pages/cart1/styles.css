@@ -43,6 +43,10 @@
     border-color: #45503B;
 }
 
+.button_color:active {
+  background-color: #2a3c2a !important;
+}
+
 .button_color:hover {
     background-color: #36412E;
     border-color: #36412E;

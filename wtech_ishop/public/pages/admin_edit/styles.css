@@ -7,3 +7,7 @@
     background-color: #36412E;
     border-color: #36412E;
 }
+
+.button_color:active {
+  background-color: #2a3c2a !important;
+}

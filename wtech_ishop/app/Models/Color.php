@@ -11,5 +11,5 @@ class Color extends Model
 
     public $timestamps = false;
 
-    // protected $fillable = ['color'];
+    protected $fillable = ['color'];
 }

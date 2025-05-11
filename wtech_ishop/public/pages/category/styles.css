@@ -80,9 +80,27 @@ footer {
     color: #45503B;
 }
 
+.button_color {
+    background-color: #45503B; 
+    border-color: #45503B;
+}
+
 .button_color:hover {
     background-color: #36412E;
     border-color: #36412E;
+}
+
+.button_color:active {
+  background-color: #2a3c2a !important;
+}
+
+.button_color_dif:hover {
+    background-color: #36412E;
+    border-color: #36412E;
+}
+
+.button_color_dif:active {
+  background-color: #2a3c2a !important;
 }
 
 .pagination .page-link {
