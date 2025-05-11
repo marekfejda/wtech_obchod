@@ -11,7 +11,7 @@ kedy sa rozhodneme spravit dokumentaciu - DB som zmenil nejake types len (kuknut
 TODO
 porovnat rozpracovanu OrderController s tou co je hotova TEMP v gite
 pridat X do kosika
-opravit cely search
+opravit cely search - done
 
 opravit users table zmazat NOT NULL aj v controllery upravit 
 
