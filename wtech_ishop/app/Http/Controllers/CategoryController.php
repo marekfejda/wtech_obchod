@@ -13,7 +13,11 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $products = Product::with('images')->take(10)->get();
+        $products = Product::with('images')
+        ->where('stockquantity', '>', 0)
+        ->orderBy('id', 'asc')
+        ->take(10)
+        ->get();
 
         return view('pages.index', compact('categories', 'products'));
     }
@@ -32,8 +36,7 @@ class CategoryController extends Controller
         $sort = $request->input('sort', 'id_asc');
 
         $productsQuery = Product::with('images')
-            ->where('category_id', $currentCategory->id)
-            ->where('stockquantity', '>', 0);
+            ->where('category_id', $currentCategory->id);
 
         $productsQuery->whereBetween('price', [$priceMin, $priceMax]);
         
@@ -87,7 +90,6 @@ class CategoryController extends Controller
 
             $productsQuery = Product::with('images')
                 ->where('category_id', $currentCategory->id)
-                ->where('stockquantity', '>', 0)
                 ->whereRaw('LOWER(name) LIKE ?', ["%{$query}%"]);
 
             $products = $productsQuery->paginate(12)->appends([
@@ -107,7 +109,6 @@ class CategoryController extends Controller
 
         // Inak vyhľadávaj vo všetkých produktoch a zobraz index
         $products = Product::with('images')
-                ->where('stockquantity', '>', 0)
                 ->whereRaw('LOWER(name) LIKE ?', ["%{$query}%"])
                 ->paginate(12)
                 ->appends([
