@@ -90,7 +90,7 @@
                         <!-- Farba dropdown -->
                         <div class="dropdown">
                             <label class="form-label d-block">Farba</label>
-                            <button class="btn btn-outline-secondary dropdown-toggle rounded-pill button_color dropdown-toggle-color"
+                            <button class="btn btn-outline-secondary dropdown-toggle rounded-pill button_color_dif dropdown-toggle-color"
                                     type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                 Vyber farby
                             </button>
@@ -110,7 +110,7 @@
                                     </li>
                                 @endforeach
                                 <li class="mt-2 text-center">
-                                    <button type="submit" class="btn btn-sm btn-primary rounded-pill px-4">Filtrovať</button>
+                                    <button type="submit" class="btn button_color btn-sm btn-primary rounded-pill px-4">Filtrovať</button>
                                 </li>
                             </ul>
                         </div>
@@ -118,7 +118,7 @@
                         <!-- Značka dropdown -->
                         <div class="dropdown">
                             <label class="form-label d-block">Značka</label>
-                            <button class="btn btn-outline-secondary dropdown-toggle rounded-pill button_color dropdown-toggle-brand"
+                            <button class="btn btn-outline-secondary dropdown-toggle rounded-pill button_color_dif dropdown-toggle-brand"
                                     type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                 Vyber značky
                             </button>
@@ -138,7 +138,7 @@
                                     </li>
                                 @endforeach
                                 <li class="mt-2 text-center">
-                                    <button type="submit" class="btn btn-sm btn-primary rounded-pill px-4">Filtrovať</button>
+                                    <button type="submit" class="btn button_color btn-sm btn-primary rounded-pill px-4">Filtrovať</button>
                                 </li>
                             </ul>
                         </div>

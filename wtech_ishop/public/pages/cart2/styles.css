@@ -30,6 +30,10 @@
     margin-bottom: 20px;
 }
 
+.button_color:active {
+  background-color: #2a3c2a !important;
+}
+
 .button_color {
     background-color: #45503B; 
     border-color: #45503B;
