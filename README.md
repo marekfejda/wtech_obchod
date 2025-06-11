@@ -93,10 +93,10 @@ The application will be available at:
 The following diagram presents the physical data model used in our application.  
 It provides a visual overview of the main entities (such as Products, Orders, Users) and the relationships between them.
 
-<!-- ![Database Schema](/database/database.png) -->
 <p align="center">
   <img src="/database/database.png" width="65%" />
 </p>
+
 ---
 
 ## 🧠 What We Learned
