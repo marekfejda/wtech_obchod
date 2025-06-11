@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
     libpq-dev \
+    postgresql-client \
     zip \
     unzip \
     git \
@@ -19,9 +20,13 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 COPY . .
 
-RUN composer install
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
 RUN chown -R www-data:www-data /var/www && chmod -R 755 /var/www
 
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
 EXPOSE 9000
-CMD ["php-fpm"]
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
