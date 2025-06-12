@@ -41,6 +41,19 @@ docker-compose up
 
 ---
 
+## 🐳 Why Docker?
+
+We decided to dockerize the application to gain hands-on experience with containerized development environments. This approach allowed us to:
+
+- Learn the fundamentals of **Docker**, **Docker Compose**, and **volumes**
+- Create a setup that is easy to **deploy**, **reproduce**, and **share**
+- Isolate services (PHP, PostgreSQL) for better development workflow
+- Automate the first-time database setup using a custom `entrypoint.sh` script  
+  This script ensures that **seeders are run only on first startup**, while data is **persisted via Docker volumes** in subsequent runs
+
+
+---
+
 ## 🔗 Accessing the Application
 
 The application will be available at:
@@ -113,6 +126,21 @@ This project provided us with valuable hands-on experience in the following area
 - Implementing **full-text search** and product filtering  
 - Developing pagination and a responsive UI  
 - Collaborating using **GIT**, ensuring fair distribution of work and traceable contributions  
+
+---
+
+## 🧱 Development Process
+
+The development was divided into two main phases:
+
+1. **Wireframing Phase**  
+   We started by designing the basic layout and structure of the application using **Figma**. These wireframes served as a visual guide for the look and flow of the user interface.
+
+2. **Frontend Prototyping Phase**  
+   The wireframes were then translated into static templates using **HTML**, **CSS**, and **JavaScript**. This helped us validate the layout and interactions before integrating any backend logic.
+
+3. **Server-side Integration Phase**  
+   In the final phase, we converted the static templates into dynamic **Laravel Blade views** and implemented server-side rendering. Functionality such as routing, authentication, database communication, and full e-commerce logic was gradually integrated using Laravel’s MVC architecture.
 
 ---
 
